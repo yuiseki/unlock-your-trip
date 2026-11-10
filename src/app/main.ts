@@ -1,18 +1,11 @@
-import type * as maplibregl from "maplibre-gl";
-import { Map as MapLibreMap, NavigationControl, Popup, setWorkerUrl, type GeoJSONSource, type IControl } from "maplibre-gl";
-import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
-import "maplibre-gl/dist/maplibre-gl.css";
 import "./app.css";
 import type { Achievement, Catalogue } from "../shared/catalogue";
 import type { LngLat } from "../shared/geo";
+import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
-import { japaneseLabels } from "./style";
 import { sync } from "./sync";
 import { creditText, formatDistance, listView } from "./view";
 
-setWorkerUrl(workerUrl);
-
-const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
 const REGION = "osaka";
 const KIND_LABEL = { visit: "行く", eat: "食べる", ride: "乗る", see: "見る", do: "する" } as const;
 
@@ -37,7 +30,7 @@ let catalogue: Catalogue;
 let store: Store;
 let unlocks: Unlock[] = [];
 let here: LngLat | null = null;
-let map: MapLibreMap | null = null;
+let mapView: MapView | null = null;
 const { token, user } = readCredentials();
 const canWrite = !publicUser && !!token;
 
@@ -77,7 +70,7 @@ function render() {
       return li;
     }),
   );
-  updateMap();
+  mapView?.update();
 }
 
 function escape(s: string) {
@@ -91,7 +84,7 @@ async function unlock(id: string) {
   unlocks = await store.all();
   toast(`🏆 実績解除！ ${a.title}`);
   render();
-  if (map) map.flyTo({ center: a.lngLat, zoom: 16 });
+  mapView?.flyTo(a.lngLat);
   void trySync();
 }
 
@@ -116,77 +109,17 @@ function geojson() {
   };
 }
 
-function hereGeojson() {
-  return { type: "FeatureCollection" as const, features: here ? [{ type: "Feature" as const, geometry: { type: "Point" as const, coordinates: here }, properties: {} }] : [] };
-}
-
-function updateMap() {
-  (map?.getSource("achievements") as GeoJSONSource | undefined)?.setData(geojson());
-  (map?.getSource("here") as GeoJSONSource | undefined)?.setData(hereGeojson());
-}
-
-// The device position comes from the one watchPosition the list already
-// uses, so the list and the map always agree on where "here" is.
-class LocateButton implements IControl {
-  private el = document.createElement("div");
-  onAdd() {
-    this.el.className = "maplibregl-ctrl maplibregl-ctrl-group";
-    this.el.innerHTML = '<button type="button" class="locate" title="現在地へ" aria-label="現在地へ">📍</button>';
-    this.el.querySelector("button")!.addEventListener("click", () => {
-      if (here) map?.flyTo({ center: here, zoom: 15 });
-      else toast("現在地がまだ分かりません");
-    });
-    return this.el;
-  }
-  onRemove() {
-    this.el.remove();
-  }
-}
-
 async function openMap() {
-  if (map) return;
-  const style = japaneseLabels((await (await fetch(STYLE_URL)).json()) as maplibregl.StyleSpecification & { layers: any[] });
-  const [w, s, e, n] = catalogue.bbox;
-  map = here ? new MapLibreMap({ container: "map", style, center: here, zoom: 14 }) : new MapLibreMap({ container: "map", style, bounds: [w, s, e, n] });
-  map.addControl(new NavigationControl(), "top-right");
-  map.addControl(new LocateButton(), "top-right");
-  map.on("load", () => {
-    map!.addSource("achievements", { type: "geojson", data: geojson() });
-    map!.addLayer({
-      id: "achievements",
-      type: "circle",
-      source: "achievements",
-      paint: {
-        "circle-radius": 9,
-        "circle-color": ["case", ["get", "unlocked"], "#9ca3af", "#d97706"],
-        "circle-stroke-width": 2,
-        "circle-stroke-color": "#ffffff",
-      },
-    });
-    map!.addLayer({
-      id: "achievement-labels",
-      type: "symbol",
-      source: "achievements",
-      layout: { "text-field": ["get", "title"], "text-size": 12, "text-offset": [0, 1.2], "text-anchor": "top", "text-max-width": 10 },
-      paint: { "text-color": "#7c2d12", "text-halo-color": "#ffffff", "text-halo-width": 1.5 },
-    });
-    map!.addSource("here", { type: "geojson", data: hereGeojson() });
-    map!.addLayer({
-      id: "here",
-      type: "circle",
-      source: "here",
-      paint: { "circle-radius": 8, "circle-color": "#2563eb", "circle-stroke-width": 3, "circle-stroke-color": "#ffffff" },
-    });
+  if (mapView) return;
+  const { createMap } = await import("./map");
+  mapView = await createMap({
+    container: "map",
+    bbox: catalogue.bbox,
+    here: () => here,
+    achievements: geojson,
+    canWrite,
+    toast,
   });
-  map.on("click", "achievements", (ev) => {
-    const f = ev.features?.[0];
-    if (!f) return;
-    const { id, title, unlocked } = f.properties as { id: string; title: string; unlocked: boolean };
-    const html = `<strong>${escape(title)}</strong><br>` + (unlocked ? "🏆 解除済み" : canWrite ? `<button class="unlock" data-id="${id}">解除！</button>` : "");
-    new Popup().setLngLat((f.geometry as { coordinates: [number, number] }).coordinates).setHTML(html).addTo(map!);
-  });
-  map.on("mouseenter", "achievements", () => (map!.getCanvas().style.cursor = "pointer"));
-  map.on("mouseleave", "achievements", () => (map!.getCanvas().style.cursor = ""));
 }
 
 function showTab(which: "list" | "map") {
@@ -194,7 +127,7 @@ function showTab(which: "list" | "map") {
   $("tab-map").setAttribute("aria-pressed", String(which === "map"));
   $("list").hidden = which !== "list";
   $("map").hidden = which !== "map";
-  if (which === "map") void openMap().then(() => map?.resize());
+  if (which === "map") void openMap().then(() => mapView?.resize());
 }
 
 function watchLocation() {
