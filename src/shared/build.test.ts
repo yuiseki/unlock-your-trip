@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { buildCatalogue, parseTsv } from "./build";
 
-const seed = "id\ttitle\tkind\tplace\tsearch\nosaka-castle\t大阪城天守閣に登る\tvisit\t大阪城天守閣\t大阪城天守閣\neat-551\t551蓬莱の豚まんを食べる\teat\t551蓬莱\t551蓬莱\n";
+const seed = "id\ttitle\tkind\tcategory\tplace\tsearch\nosaka-castle\t大阪城天守閣に登る\tvisit\tsightseeing\t大阪城天守閣\t大阪城天守閣\neat-551\t551蓬莱の豚まんを食べる\teat\tfood\t551蓬莱\t551蓬莱\n";
 const places = "id\tsource\twikidata\tlng\tlat\timage_file\nosaka-castle\twikidata:Q96338884\tQ96338884\t135.52587\t34.68729\tCastle.jpg\neat-551\tosm:way/219869422\t\t135.50126\t34.66647\t\n";
 const images = "file\tthumb_url\tpage_url\tcredit\tlicense\nCastle.jpg\thttps://upload.wikimedia.org/c.jpg\thttps://commons.wikimedia.org/wiki/File:Castle.jpg\tSomeone\tCC BY-SA 4.0\n";
 const meta = { region: "osaka", name: "大阪", bbox: [135.35, 34.55, 135.65, 34.78] as [number, number, number, number] };
@@ -18,6 +18,7 @@ describe("buildCatalogue", () => {
     expect(errors).toEqual([]);
     expect(catalogue.achievements.map((a) => a.id)).toEqual(["osaka-castle", "eat-551"]);
     expect(catalogue.achievements[0]).toMatchObject({
+      category: "sightseeing",
       lngLat: [135.52587, 34.68729],
       wikidata: "Q96338884",
       source: "wikidata:Q96338884",

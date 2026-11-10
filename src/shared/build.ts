@@ -1,4 +1,4 @@
-import { validateCatalogue, type Achievement, type Catalogue, type Kind } from "./catalogue";
+import { validateCatalogue, type Achievement, type Catalogue, type Category, type Kind } from "./catalogue";
 
 export function parseTsv(text: string): Record<string, string>[] {
   const [head, ...lines] = text.replace(/\r/g, "").split("\n").filter((l) => l.length > 0);
@@ -28,6 +28,7 @@ export function buildCatalogue(meta: Meta, seedTsv: string, placesTsv: string, i
       id: s.id,
       title: s.title,
       kind: s.kind as Kind,
+      category: s.category as Category,
       place: s.place,
       lngLat: [Number(p.lng), Number(p.lat)],
       source: p.source,

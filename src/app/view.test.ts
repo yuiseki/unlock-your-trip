@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { listView } from "./view";
 import type { Achievement } from "../shared/catalogue";
 
-const a = (id: string, lngLat: [number, number]): Achievement => ({ id, title: id, kind: "visit", place: id, lngLat });
+const a = (id: string, lngLat: [number, number], category: Achievement["category"] = "sightseeing"): Achievement => ({ id, title: id, kind: "visit", category, place: id, lngLat });
 const achievements = [a("far", [135.5262, 34.6873]), a("near", [135.5017, 34.6689]), a("mid", [135.5061, 34.6522])];
 const here: [number, number] = [135.5014, 34.6687];
 
@@ -37,6 +37,25 @@ describe("listView", () => {
   it("ignores unlocks of achievements that are not in this catalogue", () => {
     const v = listView(achievements, [{ achievementId: "kyoto-tower", unlockedAt: "2026-11-13T03:00:00.000Z", synced: true }], null);
     expect(v.progress.unlocked).toBe(0);
+  });
+});
+
+describe("listView groups", () => {
+  const mixed = [a("castle", [135.5262, 34.6873]), a("takoyaki", [135.5017, 34.6689], "food"), a("tram", [135.5057, 34.6556], "transport"), a("shop", [135.5014, 34.6720])];
+
+  it("groups by category in a fixed order and skips empty categories", () => {
+    const v = listView(mixed.filter((x) => x.category !== "transport"), [], null);
+    expect(v.groups.map((g) => g.category)).toEqual(["sightseeing", "food"]);
+    expect(v.groups[0].label).toBe("観光");
+  });
+
+  it("keeps the nearest-first order inside each group and counts each group", () => {
+    const v = listView(mixed, [{ achievementId: "castle", unlockedAt: "2026-11-13T03:00:00.000Z", synced: true }], here);
+    expect(v.groups.map((g) => [g.label, g.items.map((i) => i.achievement.id), g.unlocked, g.total])).toEqual([
+      ["観光", ["shop", "castle"], 1, 2],
+      ["交通", ["tram"], 0, 1],
+      ["食", ["takoyaki"], 0, 1],
+    ]);
   });
 });
 

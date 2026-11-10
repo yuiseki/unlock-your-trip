@@ -3,6 +3,12 @@ import type { LngLat } from "./geo";
 export const KINDS = ["visit", "eat", "ride", "see", "do"] as const;
 export type Kind = (typeof KINDS)[number];
 
+// The genres the Scrapbox pages used (Hiroshima 2026: 観光, 交通, 食), in
+// the order the list shows them.
+export const CATEGORIES = ["sightseeing", "transport", "food"] as const;
+export type Category = (typeof CATEGORIES)[number];
+export const CATEGORY_LABEL: Record<Category, string> = { sightseeing: "観光", transport: "交通", food: "食" };
+
 export type Image = {
   url: string; // the file itself
   page: string; // where the credit and licence come from
@@ -14,6 +20,7 @@ export type Achievement = {
   id: string;
   title: string;
   kind: Kind;
+  category: Category;
   place: string;
   lngLat: LngLat;
   wikidata?: string;
@@ -44,6 +51,7 @@ export function validateCatalogue(c: Catalogue): string[] {
     if (!SLUG.test(a.id)) errors.push(`bad id: ${a.id}`);
     if (!a.title?.trim()) errors.push(`missing title: ${a.id}`);
     if (!(KINDS as readonly string[]).includes(a.kind)) errors.push(`unknown kind: ${a.id}`);
+    if (!(CATEGORIES as readonly string[]).includes(a.category)) errors.push(`unknown category: ${a.id}`);
     const [lng, lat] = a.lngLat ?? [NaN, NaN];
     if (!(lng >= w && lng <= e && lat >= s && lat <= n)) errors.push(`outside region: ${a.id}`);
     if (a.image) {

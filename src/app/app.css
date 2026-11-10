@@ -42,3 +42,6 @@ main { flex: 1; min-height: 0; position: relative; }
 footer { font-size: 10px; color: var(--muted); padding: 6px 12px; background: #fff; border-top: 1px solid #f3e8d8; }
 footer a, .credit { color: inherit; }
 .maplibregl-popup-content .unlock { margin-top: 6px; }
+.group { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 0 4px; border-bottom: 2px solid var(--accent); }
+.group h2 { margin: 0; font-size: 16px; color: var(--accent); }
+.group span { font-size: 13px; color: var(--muted); }

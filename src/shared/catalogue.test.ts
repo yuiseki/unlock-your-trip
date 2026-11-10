@@ -10,12 +10,13 @@ const ok: Catalogue = {
       id: "osaka-castle",
       title: "大阪城の天守閣に登る",
       kind: "visit",
+      category: "sightseeing",
       place: "大阪城",
       lngLat: [135.5259, 34.6873],
       wikidata: "Q194155",
       image: { url: "https://upload.wikimedia.org/x.jpg", page: "https://commons.wikimedia.org/wiki/File:X.jpg", credit: "Someone", license: "CC BY-SA 4.0" },
     },
-    { id: "eat-takoyaki", title: "たこ焼きを食べる", kind: "eat", place: "道頓堀", lngLat: [135.5013, 34.6687] },
+    { id: "eat-takoyaki", title: "たこ焼きを食べる", kind: "eat", category: "food", place: "道頓堀", lngLat: [135.5013, 34.6687] },
   ],
 };
 
@@ -44,6 +45,11 @@ describe("validateCatalogue", () => {
     const errors = validateCatalogue(bad);
     expect(errors).toContain("missing title: eat-takoyaki");
     expect(errors).toContain("unknown kind: eat-takoyaki");
+  });
+
+  it("rejects a missing or unknown category", () => {
+    const bad = { ...ok, achievements: [{ ...ok.achievements[1], category: "nightlife" as never }] };
+    expect(validateCatalogue(bad)).toContain("unknown category: eat-takoyaki");
   });
 
   it("rejects an image without credit or licence", () => {

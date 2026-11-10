@@ -4,7 +4,7 @@ import type { LngLat } from "../shared/geo";
 import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
 import { sync } from "./sync";
-import { creditText, formatDistance, listView } from "./view";
+import { creditText, formatDistance, listView, type ListItem } from "./view";
 
 const REGION = "osaka";
 const KIND_LABEL = { visit: "行く", eat: "食べる", ride: "乗る", see: "見る", do: "する" } as const;
@@ -52,8 +52,7 @@ function render() {
   $("progress").textContent =
     `${p.unlocked} / ${p.total} 解除` + (p.pending ? `(未送信 ${p.pending})` : "") + (publicUser ? ` ・ ${publicUser} さんの記録` : "");
   const list = $("list");
-  list.replaceChildren(
-    ...view.items.map(({ achievement: a, unlocked, unlockedAt, meters }) => {
+  const itemLi = ({ achievement: a, unlocked, unlockedAt, meters }: ListItem) => {
       const li = document.createElement("li");
       li.className = unlocked ? "item unlocked" : "item";
       const img = a.image ? `<img src="${a.image.url}" alt="" loading="lazy" width="72" height="72">` : `<div class="noimg">${KIND_LABEL[a.kind]}</div>`;
@@ -68,6 +67,13 @@ function render() {
       li.innerHTML = `${img}<div class="body"><div class="title">${escape(a.title)}</div>
         <div class="meta">${KIND_LABEL[a.kind]} ・ ${escape(a.place)}${meters !== null ? ` ・ ${formatDistance(meters)}` : ""}</div>${credit}</div>${action}`;
       return li;
+  };
+  list.replaceChildren(
+    ...view.groups.flatMap((g) => {
+      const head = document.createElement("li");
+      head.className = "group";
+      head.innerHTML = `<h2>${escape(g.label)}</h2><span>${g.unlocked} / ${g.total}</span>`;
+      return [head, ...g.items.map(itemLi)];
     }),
   );
   mapView?.update();

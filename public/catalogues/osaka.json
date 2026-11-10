@@ -12,6 +12,7 @@
    "id": "osaka-castle",
    "title": "大阪城天守閣に登る",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "大阪城天守閣",
    "lngLat": [
     135.52587,
@@ -30,6 +31,7 @@
    "id": "tsutenkaku",
    "title": "通天閣に登ってビリケンさんの足をなでる",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "通天閣",
    "lngLat": [
     135.50611,
@@ -48,6 +50,7 @@
    "id": "shinsekai-kushikatsu",
    "title": "新世界で串カツを食べる",
    "kind": "eat",
+   "category": "food",
    "place": "新世界",
    "lngLat": [
     135.50611,
@@ -66,6 +69,7 @@
    "id": "dotonbori-glico",
    "title": "道頓堀でグリコサインを見る",
    "kind": "see",
+   "category": "sightseeing",
    "place": "戎橋",
    "lngLat": [
     135.50136,
@@ -84,6 +88,7 @@
    "id": "hozenji",
    "title": "法善寺の水掛不動に水をかける",
    "kind": "do",
+   "category": "sightseeing",
    "place": "法善寺",
    "lngLat": [
     135.50263,
@@ -102,6 +107,7 @@
    "id": "kuromon",
    "title": "黒門市場で食べ歩く",
    "kind": "eat",
+   "category": "food",
    "place": "黒門市場",
    "lngLat": [
     135.50698,
@@ -120,6 +126,7 @@
    "id": "shinsaibashisuji",
    "title": "心斎橋筋商店街を歩く",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "心斎橋筋商店街",
    "lngLat": [
     135.50136,
@@ -138,6 +145,7 @@
    "id": "amemura",
    "title": "アメリカ村を歩く",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "アメリカ村",
    "lngLat": [
     135.49796,
@@ -156,6 +164,7 @@
    "id": "abeno-harukas",
    "title": "あべのハルカスの展望台に上る",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "あべのハルカス",
    "lngLat": [
     135.51427,
@@ -174,6 +183,7 @@
    "id": "umeda-sky",
    "title": "梅田スカイビルの空中庭園に上る",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "梅田スカイビル",
    "lngLat": [
     135.48972,
@@ -192,6 +202,7 @@
    "id": "hep-five",
    "title": "HEP FIVE の観覧車に乗る",
    "kind": "ride",
+   "category": "sightseeing",
    "place": "HEP FIVE",
    "lngLat": [
     135.50047,
@@ -210,6 +221,7 @@
    "id": "kaiyukan",
    "title": "海遊館でジンベエザメを見る",
    "kind": "see",
+   "category": "sightseeing",
    "place": "海遊館",
    "lngLat": [
     135.42889,
@@ -228,6 +240,7 @@
    "id": "tempozan-wheel",
    "title": "天保山大観覧車に乗る",
    "kind": "ride",
+   "category": "sightseeing",
    "place": "天保山大観覧車",
    "lngLat": [
     135.431,
@@ -246,6 +259,7 @@
    "id": "usj",
    "title": "ユニバーサル・スタジオ・ジャパンに行く",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "ユニバーサル・スタジオ・ジャパン",
    "lngLat": [
     135.433,
@@ -264,6 +278,7 @@
    "id": "sumiyoshi",
    "title": "住吉大社の反橋を渡る",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "住吉大社",
    "lngLat": [
     135.49293,
@@ -282,6 +297,7 @@
    "id": "shitennoji",
    "title": "四天王寺に参る",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "四天王寺",
    "lngLat": [
     135.51645,
@@ -300,6 +316,7 @@
    "id": "central-public-hall",
    "title": "大阪市中央公会堂を見る",
    "kind": "see",
+   "category": "sightseeing",
    "place": "大阪市中央公会堂",
    "lngLat": [
     135.504,
@@ -318,6 +335,7 @@
    "id": "tenjinbashisuji",
    "title": "天神橋筋商店街を歩き通す",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "天神橋筋商店街",
    "lngLat": [
     135.51156,
@@ -330,6 +348,7 @@
    "id": "tenmangu",
    "title": "大阪天満宮に参る",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "大阪天満宮",
    "lngLat": [
     135.51262,
@@ -348,6 +367,7 @@
    "id": "namba-yasaka",
    "title": "難波八阪神社の獅子殿を見る",
    "kind": "see",
+   "category": "sightseeing",
    "place": "難波八阪神社",
    "lngLat": [
     135.49669,
@@ -366,6 +386,7 @@
    "id": "tennoji-zoo",
    "title": "天王寺動物園に行く",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "天王寺動物園",
    "lngLat": [
     135.508,
@@ -384,6 +405,7 @@
    "id": "denden-town",
    "title": "日本橋でんでんタウンを歩く",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "でんでんタウン",
    "lngLat": [
     135.50582,
@@ -402,6 +424,7 @@
    "id": "ngk",
    "title": "なんばグランド花月で笑う",
    "kind": "see",
+   "category": "sightseeing",
    "place": "なんばグランド花月",
    "lngLat": [
     135.50372,
@@ -420,6 +443,7 @@
    "id": "history-museum",
    "title": "大阪歴史博物館に行く",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "大阪歴史博物館",
    "lngLat": [
     135.52081,
@@ -438,6 +462,7 @@
    "id": "nmao",
    "title": "国立国際美術館に行く",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "国立国際美術館",
    "lngLat": [
     135.49202,
@@ -456,6 +481,7 @@
    "id": "nakanoshima-museum",
    "title": "大阪中之島美術館に行く",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "大阪中之島美術館",
    "lngLat": [
     135.49147,
@@ -474,6 +500,7 @@
    "id": "tombori-cruise",
    "title": "とんぼりリバークルーズに乗る",
    "kind": "ride",
+   "category": "sightseeing",
    "place": "道頓堀川",
    "lngLat": [
     135.48098,
@@ -492,6 +519,7 @@
    "id": "hankai",
    "title": "阪堺電車に乗る",
    "kind": "ride",
+   "category": "transport",
    "place": "阪堺電気軌道",
    "lngLat": [
     135.50566,
@@ -503,6 +531,7 @@
    "id": "midosuji-line",
    "title": "御堂筋線に乗る",
    "kind": "ride",
+   "category": "transport",
    "place": "御堂筋線",
    "lngLat": [
     135.50027,
@@ -514,6 +543,7 @@
    "id": "eat-takoyaki",
    "title": "たこ焼きを食べる",
    "kind": "eat",
+   "category": "food",
    "place": "道頓堀",
    "lngLat": [
     135.50139,
@@ -532,6 +562,7 @@
    "id": "eat-okonomiyaki",
    "title": "お好み焼きを食べる",
    "kind": "eat",
+   "category": "food",
    "place": "道頓堀",
    "lngLat": [
     135.50139,
@@ -550,6 +581,7 @@
    "id": "eat-551",
    "title": "551蓬莱の豚まんを食べる",
    "kind": "eat",
+   "category": "food",
    "place": "551蓬莱",
    "lngLat": [
     135.50126,
@@ -561,6 +593,7 @@
    "id": "eat-kitsune-udon",
    "title": "発祥の店できつねうどんを食べる",
    "kind": "eat",
+   "category": "food",
    "place": "うさみ亭マツバヤ",
    "lngLat": [
     135.50232,
@@ -572,6 +605,7 @@
    "id": "tsuruhashi-yakiniku",
    "title": "鶴橋で焼肉を食べる",
    "kind": "eat",
+   "category": "food",
    "place": "鶴橋",
    "lngLat": [
     135.53,
@@ -590,6 +624,7 @@
    "id": "nakazakicho",
    "title": "中崎町の路地を歩く",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "中崎町",
    "lngLat": [
     135.50562,
@@ -602,6 +637,7 @@
    "id": "osaka-station",
    "title": "大阪ステーションシティの時空の広場に行く",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "大阪ステーションシティ",
    "lngLat": [
     135.495,
@@ -620,6 +656,7 @@
    "id": "nakanoshima-park",
    "title": "中之島公園のバラ園を歩く",
    "kind": "visit",
+   "category": "sightseeing",
    "place": "中之島公園",
    "lngLat": [
     135.50643,
@@ -638,6 +675,7 @@
    "id": "expo-yumeshima",
    "title": "大阪・関西万博の跡地 (夢洲) を見に行く",
    "kind": "see",
+   "category": "sightseeing",
    "place": "夢洲",
    "lngLat": [
     135.38959,
