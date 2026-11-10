@@ -24,3 +24,19 @@ describe("sortByDistance", () => {
     expect(out[0].meters).toBeLessThan(100);
   });
 });
+
+describe("boundsOf", () => {
+  it("wraps every point and the current position", async () => {
+    const { boundsOf } = await import("./geo");
+    const pts: [number, number][] = [[135.50, 34.66], [135.52, 34.69]];
+    expect(boundsOf(pts, [135.49, 34.70])).toEqual([135.49, 34.66, 135.52, 34.70]);
+  });
+  it("wraps the points alone when the position is unknown", async () => {
+    const { boundsOf } = await import("./geo");
+    expect(boundsOf([[135.50, 34.66], [135.52, 34.69]], null)).toEqual([135.50, 34.66, 135.52, 34.69]);
+  });
+  it("returns null when there is nothing to wrap", async () => {
+    const { boundsOf } = await import("./geo");
+    expect(boundsOf([], null)).toBeNull();
+  });
+});

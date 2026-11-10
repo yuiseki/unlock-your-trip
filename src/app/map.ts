@@ -4,7 +4,7 @@ import { Map as MapLibreMap, NavigationControl, Popup, setWorkerUrl, type GeoJSO
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { FeatureCollection, Point } from "geojson";
-import type { LngLat } from "../shared/geo";
+import { boundsOf, type LngLat } from "../shared/geo";
 import { japaneseLabels } from "./style";
 
 setWorkerUrl(workerUrl);
@@ -26,10 +26,20 @@ const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<":
 
 export async function createMap(ctx: Context): Promise<MapView> {
   const style = japaneseLabels((await (await fetch(STYLE_URL)).json()) as StyleSpecification);
-  const here = ctx.here();
-  const map = here
-    ? new MapLibreMap({ container: ctx.container, style, center: here, zoom: 14 })
-    : new MapLibreMap({ container: ctx.container, style, bounds: ctx.bbox });
+  const points = () => ctx.achievements().features.map((f) => (f.geometry as Point).coordinates as LngLat);
+  const PADDING = { top: 60, bottom: 60, left: 40, right: 60 };
+  const map = new MapLibreMap({
+    container: ctx.container,
+    style,
+    bounds: boundsOf(points(), ctx.here()) ?? ctx.bbox,
+    fitBoundsOptions: { padding: PADDING, maxZoom: 16 },
+  });
+  // If the position arrives after the map opened, widen the view once to
+  // include it, unless the person has already moved the map.
+  let fittedWithHere = ctx.here() !== null;
+  let moved = false;
+  map.on("dragstart", () => (moved = true));
+  map.on("zoomstart", (e) => { if ((e as { originalEvent?: Event }).originalEvent) moved = true; });
 
   const hereData = (): FeatureCollection => {
     const h = ctx.here();
@@ -56,7 +66,7 @@ export async function createMap(ctx: Context): Promise<MapView> {
   }
 
   map.addControl(new NavigationControl(), "top-right");
-  map.addControl(new LocateButton(), "top-right");
+  if (ctx.canWrite) map.addControl(new LocateButton(), "top-right");
   map.on("load", () => {
     map.addSource("achievements", { type: "geojson", data: ctx.achievements() });
     map.addLayer({
@@ -100,6 +110,11 @@ export async function createMap(ctx: Context): Promise<MapView> {
     update() {
       (map.getSource("achievements") as GeoJSONSource | undefined)?.setData(ctx.achievements());
       (map.getSource("here") as GeoJSONSource | undefined)?.setData(hereData());
+      const h = ctx.here();
+      if (h && !fittedWithHere && !moved) {
+        fittedWithHere = true;
+        map.fitBounds(boundsOf(points(), h)!, { padding: PADDING, maxZoom: 16 });
+      }
     },
     flyTo: (lngLat) => map.flyTo({ center: lngLat, zoom: 16 }),
     resize: () => map.resize(),

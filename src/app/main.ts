@@ -161,7 +161,9 @@ async function main() {
   });
   $("tab-list").addEventListener("click", () => showTab("list"));
   $("tab-map").addEventListener("click", () => showTab("map"));
-  watchLocation();
+  // Only the person unlocking needs "near me". Viewers of a public page
+  // are never asked for their position.
+  if (canWrite) watchLocation();
   window.addEventListener("online", () => void trySync());
   setInterval(() => void trySync(), 60_000);
   void trySync();

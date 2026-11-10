@@ -17,3 +17,14 @@ export function sortByDistance<T extends { lngLat: LngLat }>(items: T[], here: L
     .map((item) => ({ item, meters: distanceMeters(here, item.lngLat) }))
     .sort((x, y) => x.meters - y.meters);
 }
+
+// [west, south, east, north] around the points and, if known, the current
+// position, so the first view of the map shows both where you are and what
+// is left to unlock.
+export function boundsOf(points: LngLat[], here: LngLat | null): [number, number, number, number] | null {
+  const all = here ? [...points, here] : points;
+  if (!all.length) return null;
+  const lngs = all.map((p) => p[0]);
+  const lats = all.map((p) => p[1]);
+  return [Math.min(...lngs), Math.min(...lats), Math.max(...lngs), Math.max(...lats)];
+}
