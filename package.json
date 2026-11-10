@@ -6,7 +6,8 @@
   "scripts": {
     "test": "vitest run",
     "dev": "vite",
-    "build": "tsc --noEmit && vite build"
+    "build": "tsc --noEmit && vite build",
+    "catalogue": "vite-node scripts/build-catalogue.ts osaka"
   },
   "keywords": [],
   "author": "",

@@ -51,4 +51,15 @@ describe("validateCatalogue", () => {
     const bad = { ...ok, achievements: [{ ...ok.achievements[0], image: img }] };
     expect(validateCatalogue(bad)).toContain("image without credit or licence: osaka-castle");
   });
+
+  it("allows a public-domain or CC0 image without an author, but still needs its page", () => {
+    for (const license of ["Public domain", "CC0"]) {
+      const img = { url: "https://upload.wikimedia.org/x.jpg", page: "https://commons.wikimedia.org/wiki/File:X.jpg", credit: "", license };
+      expect(validateCatalogue({ ...ok, achievements: [{ ...ok.achievements[0], image: img }] })).toEqual([]);
+    }
+    const noPage = { url: "https://upload.wikimedia.org/x.jpg", page: "", credit: "", license: "CC0" };
+    expect(validateCatalogue({ ...ok, achievements: [{ ...ok.achievements[0], image: noPage }] })).toContain(
+      "image without credit or licence: osaka-castle",
+    );
+  });
 });

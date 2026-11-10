@@ -17,6 +17,7 @@ export type Achievement = {
   place: string;
   lngLat: LngLat;
   wikidata?: string;
+  source?: string; // where the point came from, e.g. "wikidata:Q194155" or "osm:node/1"
   image?: Image;
 };
 
@@ -28,6 +29,8 @@ export type Catalogue = {
 };
 
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+// These carry no attribution duty, so an empty author is not an error.
+const NO_CREDIT_NEEDED = ["Public domain", "CC0"];
 
 // Returns every problem found, so a broken catalogue fails loudly at build
 // time instead of shipping a list with silent holes.
@@ -43,8 +46,12 @@ export function validateCatalogue(c: Catalogue): string[] {
     if (!(KINDS as readonly string[]).includes(a.kind)) errors.push(`unknown kind: ${a.id}`);
     const [lng, lat] = a.lngLat ?? [NaN, NaN];
     if (!(lng >= w && lng <= e && lat >= s && lat <= n)) errors.push(`outside region: ${a.id}`);
-    if (a.image && !(a.image.credit?.trim() && a.image.license?.trim() && a.image.page?.trim()))
-      errors.push(`image without credit or licence: ${a.id}`);
+    if (a.image) {
+      const { credit, license, page } = a.image;
+      const needsCredit = !NO_CREDIT_NEEDED.includes(license?.trim());
+      if (!license?.trim() || !page?.trim() || (needsCredit && !credit?.trim()))
+        errors.push(`image without credit or licence: ${a.id}`);
+    }
   }
   return errors;
 }
