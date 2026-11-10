@@ -5,7 +5,7 @@ import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
 import { sync } from "./sync";
 import { creditText, formatDistance, listView, type ListItem } from "./view";
-import { loadPrefs, orderCategories, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
+import { loadPrefs, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
 
 const REGION = "osaka";
 const KIND_LABEL = { visit: "行く", eat: "食べる", ride: "乗る", see: "見る", do: "する" } as const;
@@ -49,14 +49,12 @@ function time(iso: string) {
 }
 
 function render() {
-  const ranked = orderCategories(catalogue.categories, prefs);
-  const rank = new Map(ranked.map((c) => [c.id, c]));
-  const view = listView(catalogue.achievements, unlocks, here, ranked);
+  const view = listView(catalogue.achievements, unlocks, here, catalogue.categories, prefs.stars);
   const p = view.progress;
   $("progress").textContent =
     `${p.unlocked} / ${p.total} 解除` + (p.pending ? `(未送信 ${p.pending})` : "") + (publicUser ? ` ・ ${publicUser} さんの記録` : "");
   const list = $("list");
-  const itemLi = ({ achievement: a, unlocked, unlockedAt, meters }: ListItem) => {
+  const itemLi = ({ achievement: a, unlocked, unlockedAt, meters, stars }: ListItem) => {
       const li = document.createElement("li");
       li.className = unlocked ? "item unlocked" : "item";
       const img = a.image ? `<img src="${a.image.url}" alt="" loading="lazy" width="72" height="72">` : `<div class="noimg">${KIND_LABEL[a.kind]}</div>`;
@@ -68,21 +66,22 @@ function render() {
         : canWrite
           ? `<button class="unlock" data-id="${a.id}">解除！</button>`
           : "";
+      const starButtons = [1, 2, 3, 4, 5]
+        .map((n) => `<button class="star" data-id="${a.id}" data-stars="${n}" aria-label="優先度 ${n}" aria-pressed="${n <= stars}">${n <= stars ? "★" : "☆"}</button>`)
+        .join("");
       li.innerHTML = `${img}<div class="body"><div class="title">${escape(a.title)}</div>
+        <div class="stars" role="group" aria-label="${escape(a.title)}の優先度">${starButtons}</div>
         <div class="meta">${KIND_LABEL[a.kind]} ・ ${escape(a.place)}${meters !== null ? ` ・ ${formatDistance(meters)}` : ""}</div>${credit}</div>${action}`;
       return li;
   };
   list.replaceChildren(
     ...view.groups.flatMap((g) => {
-      const r = rank.get(g.category)!;
+      const collapsed = prefs.collapsed.includes(g.category);
       const head = document.createElement("li");
       head.className = "group";
-      const stars = [1, 2, 3, 4, 5]
-        .map((n) => `<button class="star" data-cat="${g.category}" data-stars="${n}" aria-label="優先度 ${n}" aria-pressed="${n <= r.stars}">${n <= r.stars ? "★" : "☆"}</button>`)
-        .join("");
-      head.innerHTML = `<button class="fold" data-cat="${g.category}" aria-expanded="${!r.collapsed}"><span class="chev">${r.collapsed ? "▸" : "▾"}</span><h2>${escape(g.label)}</h2></button>
-        <span class="stars" role="group" aria-label="${escape(g.label)}の優先度">${stars}</span><span class="count">${g.unlocked} / ${g.total}</span>`;
-      return r.collapsed ? [head] : [head, ...g.items.map(itemLi)];
+      head.innerHTML = `<button class="fold" data-cat="${g.category}" aria-expanded="${!collapsed}"><span class="chev">${collapsed ? "▸" : "▾"}</span><h2>${escape(g.label)}</h2></button>
+        <span class="count">${g.unlocked} / ${g.total}</span>`;
+      return collapsed ? [head] : [head, ...g.items.map(itemLi)];
     }),
   );
   mapView?.update();
@@ -182,7 +181,7 @@ async function main() {
     const b = t.closest<HTMLButtonElement>("button.unlock");
     if (b?.dataset.id) void unlock(b.dataset.id);
     const star = t.closest<HTMLButtonElement>("button.star");
-    if (star?.dataset.cat) updatePrefs(setStars(prefs, star.dataset.cat, Number(star.dataset.stars)));
+    if (star?.dataset.id) updatePrefs(setStars(prefs, star.dataset.id, Number(star.dataset.stars)));
     const fold = t.closest<HTMLButtonElement>("button.fold");
     if (fold?.dataset.cat) updatePrefs(toggleCollapsed(prefs, fold.dataset.cat));
   });

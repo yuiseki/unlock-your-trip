@@ -1,12 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { loadPrefs, orderCategories, savePrefs, setStars, toggleCollapsed, DEFAULT_STARS } from "./prefs";
-
-const cats = [
-  { id: "modern-history", label: "近代史" },
-  { id: "kuidaore", label: "食い倒れ" },
-  { id: "suito", label: "水都" },
-  { id: "sightseeing", label: "観光" },
-];
+import { loadPrefs, savePrefs, setStars, starsOf, toggleCollapsed, DEFAULT_STARS } from "./prefs";
 
 class MemoryStorage {
   data = new Map<string, string>();
@@ -14,27 +7,18 @@ class MemoryStorage {
   setItem(k: string, v: string) { this.data.set(k, v); }
 }
 
-describe("orderCategories", () => {
-  it("keeps the catalogue order when nothing is starred", () => {
-    expect(orderCategories(cats, { stars: {}, collapsed: [] }).map((c) => c.id)).toEqual(["modern-history", "kuidaore", "suito", "sightseeing"]);
-  });
-
-  it("puts more stars first and keeps the catalogue order among equals", () => {
-    const prefs = { stars: { sightseeing: 5, suito: 1, kuidaore: 5 }, collapsed: [] };
-    expect(orderCategories(cats, prefs).map((c) => [c.id, c.stars])).toEqual([
-      ["kuidaore", 5],
-      ["sightseeing", 5],
-      ["modern-history", DEFAULT_STARS],
-      ["suito", 1],
-    ]);
+describe("starsOf", () => {
+  it("gives an achievement without a rating the default stars", () => {
+    expect(starsOf({ stars: { tekijuku: 5 }, collapsed: [] }, "tekijuku")).toBe(5);
+    expect(starsOf({ stars: {}, collapsed: [] }, "tekijuku")).toBe(DEFAULT_STARS);
   });
 });
 
 describe("setStars and toggleCollapsed", () => {
   it("clamps stars to 1-5 without touching the input", () => {
     const prefs = { stars: {}, collapsed: [] };
-    expect(setStars(prefs, "suito", 7).stars.suito).toBe(5);
-    expect(setStars(prefs, "suito", 0).stars.suito).toBe(1);
+    expect(setStars(prefs, "tekijuku", 7).stars.tekijuku).toBe(5);
+    expect(setStars(prefs, "tekijuku", 0).stars.tekijuku).toBe(1);
     expect(prefs.stars).toEqual({});
   });
 

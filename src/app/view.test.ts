@@ -65,6 +65,32 @@ describe("listView groups", () => {
   });
 });
 
+describe("listView stars", () => {
+  const cats = [{ id: "sightseeing", label: "観光" }];
+  const three = [a("far", [135.5262, 34.6873]), a("near", [135.5017, 34.6689]), a("mid", [135.5061, 34.6522])];
+
+  it("orders by stars inside a group, nearest first among equal stars, unlocked last", () => {
+    const stars = { far: 5, mid: 5, near: 1 };
+    const v = listView(three, [], here, cats, stars);
+    expect(v.groups[0].items.map((i) => [i.achievement.id, i.stars])).toEqual([
+      ["mid", 5],
+      ["far", 5],
+      ["near", 1],
+    ]);
+    const done = listView(three, [{ achievementId: "mid", unlockedAt: "2026-11-13T03:00:00.000Z", synced: true }], here, cats, stars);
+    expect(done.groups[0].items.map((i) => i.achievement.id)).toEqual(["far", "near", "mid"]);
+  });
+
+  it("orders by stars and then catalogue order when the location is unknown", () => {
+    const v = listView(three, [], null, cats, { mid: 4 });
+    expect(v.groups[0].items.map((i) => [i.achievement.id, i.stars])).toEqual([
+      ["mid", 4],
+      ["far", 3],
+      ["near", 3],
+    ]);
+  });
+});
+
 describe("formatDistance", () => {
   it("shows metres under 1 km and kilometres above", async () => {
     const { formatDistance } = await import("./view");

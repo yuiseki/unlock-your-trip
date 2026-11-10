@@ -1,14 +1,22 @@
 import type { Achievement, Category, Image } from "../shared/catalogue";
 import { distanceMeters, type LngLat } from "../shared/geo";
+import { DEFAULT_STARS } from "./prefs";
 import type { Unlock } from "./store";
 
-export type ListItem = { achievement: Achievement; unlocked: boolean; unlockedAt: string | null; meters: number | null };
+export type ListItem = { achievement: Achievement; unlocked: boolean; unlockedAt: string | null; meters: number | null; stars: number };
 export type Group = { category: string; label: string; items: ListItem[]; unlocked: number; total: number };
 export type ListView = { items: ListItem[]; groups: Group[]; progress: { unlocked: number; total: number; pending: number } };
 
-// What the list shows: the achievements still to unlock come first, and
-// when we know where the person is, the nearest of those come first.
-export function listView(achievements: Achievement[], unlocks: Unlock[], here: LngLat | null, categories: Category[] = []): ListView {
+// What the list shows: the achievements still to unlock come first, then
+// the ones the person starred higher, then the nearest (or, without a
+// position, the catalogue order).
+export function listView(
+  achievements: Achievement[],
+  unlocks: Unlock[],
+  here: LngLat | null,
+  categories: Category[] = [],
+  stars: Record<string, number> = {},
+): ListView {
   const byId = new Map(unlocks.map((u) => [u.achievementId, u]));
   const items: ListItem[] = achievements.map((achievement) => {
     const u = byId.get(achievement.id);
@@ -17,9 +25,11 @@ export function listView(achievements: Achievement[], unlocks: Unlock[], here: L
       unlocked: !!u,
       unlockedAt: u?.unlockedAt ?? null,
       meters: here ? distanceMeters(here, achievement.lngLat) : null,
+      stars: stars[achievement.id] ?? DEFAULT_STARS,
     };
   });
-  if (here) items.sort((x, y) => Number(x.unlocked) - Number(y.unlocked) || x.meters! - y.meters!);
+  // Array.prototype.sort is stable, so equal items keep the catalogue order.
+  items.sort((x, y) => Number(x.unlocked) - Number(y.unlocked) || y.stars - x.stars || (here ? x.meters! - y.meters! : 0));
   const mine = achievements.filter((a) => byId.has(a.id)).map((a) => byId.get(a.id)!);
   const groups = categories.map(({ id, label }) => {
     const inGroup = items.filter((i) => i.achievement.category === id);

@@ -1,20 +1,14 @@
-import type { Category } from "../shared/catalogue";
-
-// How one person likes to see the list: stars per category and which
+// How one person likes to see the list: stars per achievement and which
 // categories are folded. Kept on the device; it is nobody else's business.
 export type Prefs = { stars: Record<string, number>; collapsed: string[] };
-export type RankedCategory = Category & { stars: number; collapsed: boolean };
 
 export const DEFAULT_STARS = 3;
 const EMPTY = (): Prefs => ({ stars: {}, collapsed: [] });
 
 type KeyValue = { getItem(k: string): string | null; setItem(k: string, v: string): void };
 
-export function orderCategories(categories: Category[], prefs: Prefs): RankedCategory[] {
-  return categories
-    .map((c, i) => ({ ...c, stars: prefs.stars[c.id] ?? DEFAULT_STARS, collapsed: prefs.collapsed.includes(c.id), i }))
-    .sort((a, b) => b.stars - a.stars || a.i - b.i)
-    .map(({ i: _i, ...c }) => c);
+export function starsOf(prefs: Prefs, achievementId: string): number {
+  return prefs.stars[achievementId] ?? DEFAULT_STARS;
 }
 
 export function setStars(prefs: Prefs, id: string, stars: number): Prefs {
