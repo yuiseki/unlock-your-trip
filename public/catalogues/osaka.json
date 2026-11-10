@@ -7,6 +7,24 @@
   135.65,
   34.78
  ],
+ "categories": [
+  {
+   "id": "modern-history",
+   "label": "近代史"
+  },
+  {
+   "id": "kuidaore",
+   "label": "食い倒れ"
+  },
+  {
+   "id": "suito",
+   "label": "水都"
+  },
+  {
+   "id": "sightseeing",
+   "label": "観光"
+  }
+ ],
  "achievements": [
   {
    "id": "osaka-castle",
@@ -50,7 +68,7 @@
    "id": "shinsekai-kushikatsu",
    "title": "新世界で串カツを食べる",
    "kind": "eat",
-   "category": "food",
+   "category": "kuidaore",
    "place": "新世界",
    "lngLat": [
     135.50611,
@@ -107,7 +125,7 @@
    "id": "kuromon",
    "title": "黒門市場で食べ歩く",
    "kind": "eat",
-   "category": "food",
+   "category": "kuidaore",
    "place": "黒門市場",
    "lngLat": [
     135.50698,
@@ -316,7 +334,7 @@
    "id": "central-public-hall",
    "title": "大阪市中央公会堂を見る",
    "kind": "see",
-   "category": "sightseeing",
+   "category": "modern-history",
    "place": "大阪市中央公会堂",
    "lngLat": [
     135.504,
@@ -443,7 +461,7 @@
    "id": "history-museum",
    "title": "大阪歴史博物館に行く",
    "kind": "visit",
-   "category": "sightseeing",
+   "category": "modern-history",
    "place": "大阪歴史博物館",
    "lngLat": [
     135.52081,
@@ -500,7 +518,7 @@
    "id": "tombori-cruise",
    "title": "とんぼりリバークルーズに乗る",
    "kind": "ride",
-   "category": "sightseeing",
+   "category": "suito",
    "place": "道頓堀川",
    "lngLat": [
     135.48098,
@@ -519,7 +537,7 @@
    "id": "hankai",
    "title": "阪堺電車に乗る",
    "kind": "ride",
-   "category": "transport",
+   "category": "sightseeing",
    "place": "阪堺電気軌道",
    "lngLat": [
     135.50566,
@@ -531,7 +549,7 @@
    "id": "midosuji-line",
    "title": "御堂筋線に乗る",
    "kind": "ride",
-   "category": "transport",
+   "category": "sightseeing",
    "place": "御堂筋線",
    "lngLat": [
     135.50027,
@@ -543,7 +561,7 @@
    "id": "eat-takoyaki",
    "title": "たこ焼きを食べる",
    "kind": "eat",
-   "category": "food",
+   "category": "kuidaore",
    "place": "道頓堀",
    "lngLat": [
     135.50139,
@@ -562,7 +580,7 @@
    "id": "eat-okonomiyaki",
    "title": "お好み焼きを食べる",
    "kind": "eat",
-   "category": "food",
+   "category": "kuidaore",
    "place": "道頓堀",
    "lngLat": [
     135.50139,
@@ -581,7 +599,7 @@
    "id": "eat-551",
    "title": "551蓬莱の豚まんを食べる",
    "kind": "eat",
-   "category": "food",
+   "category": "kuidaore",
    "place": "551蓬莱",
    "lngLat": [
     135.50126,
@@ -593,7 +611,7 @@
    "id": "eat-kitsune-udon",
    "title": "発祥の店できつねうどんを食べる",
    "kind": "eat",
-   "category": "food",
+   "category": "kuidaore",
    "place": "うさみ亭マツバヤ",
    "lngLat": [
     135.50232,
@@ -605,7 +623,7 @@
    "id": "tsuruhashi-yakiniku",
    "title": "鶴橋で焼肉を食べる",
    "kind": "eat",
-   "category": "food",
+   "category": "kuidaore",
    "place": "鶴橋",
    "lngLat": [
     135.53,
@@ -656,7 +674,7 @@
    "id": "nakanoshima-park",
    "title": "中之島公園のバラ園を歩く",
    "kind": "visit",
-   "category": "sightseeing",
+   "category": "suito",
    "place": "中之島公園",
    "lngLat": [
     135.50643,
@@ -689,6 +707,182 @@
     "credit": "黄犬太郎",
     "license": "CC BY-SA 4.0"
    }
+  },
+  {
+   "id": "daiyon-shidan",
+   "title": "旧第四師団司令部庁舎 (ミライザ大阪城) を見る",
+   "kind": "see",
+   "category": "modern-history",
+   "place": "旧第四師団司令部庁舎",
+   "lngLat": [
+    135.52653,
+    34.68588
+   ],
+   "source": "osm:way/34596708"
+  },
+  {
+   "id": "peace-osaka",
+   "title": "ピースおおさかで大阪大空襲を学ぶ",
+   "kind": "visit",
+   "category": "modern-history",
+   "place": "ピースおおさか",
+   "lngLat": [
+    135.53,
+    34.68167
+   ],
+   "source": "wikidata:Q7105564",
+   "wikidata": "Q7105564",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Peace-osaka.jpg/960px-Peace-osaka.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Peace-osaka.jpg",
+    "credit": "Bittercup",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "mint-museum",
+   "title": "造幣博物館に行く",
+   "kind": "visit",
+   "category": "modern-history",
+   "place": "造幣博物館",
+   "lngLat": [
+    135.52167,
+    34.69592
+   ],
+   "source": "wikidata:Q11271546",
+   "wikidata": "Q11271546",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Mint_Museum_Osaka_Japan01s5.jpg/960px-Mint_Museum_Osaka_Japan01s5.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Mint_Museum_Osaka_Japan01s5.jpg",
+    "credit": "663highland",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "tekijuku",
+   "title": "適塾を訪ねる",
+   "kind": "visit",
+   "category": "modern-history",
+   "place": "適塾",
+   "lngLat": [
+    135.503,
+    34.6912
+   ],
+   "source": "wikidata:Q1049405",
+   "wikidata": "Q1049405",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Tekijuku_01.JPG/960px-Tekijuku_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Tekijuku_01.JPG",
+    "credit": "by Reggaeman",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "sanadayama",
+   "title": "旧真田山陸軍墓地に参る",
+   "kind": "visit",
+   "category": "modern-history",
+   "place": "旧真田山陸軍墓地",
+   "lngLat": [
+    135.52875,
+    34.67278
+   ],
+   "source": "wikidata:Q60476591",
+   "wikidata": "Q60476591"
+  },
+  {
+   "id": "nakanoshima-library",
+   "title": "大阪府立中之島図書館を見る",
+   "kind": "see",
+   "category": "modern-history",
+   "place": "中之島図書館",
+   "lngLat": [
+    135.5032,
+    34.69366
+   ],
+   "source": "wikidata:Q7105601",
+   "wikidata": "Q7105601"
+  },
+  {
+   "id": "mengyo-kaikan",
+   "title": "綿業会館の外観を見る",
+   "kind": "see",
+   "category": "modern-history",
+   "place": "綿業会館",
+   "lngLat": [
+    135.50386,
+    34.68542
+   ],
+   "source": "wikidata:Q11607435",
+   "wikidata": "Q11607435",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Mengyo_Kaikan_Osaka_Japan01.jpg/960px-Mengyo_Kaikan_Osaka_Japan01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Mengyo_Kaikan_Osaka_Japan01.jpg",
+    "credit": "Oilstreet",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "sempukan",
+   "title": "泉布観の外観を見る",
+   "kind": "see",
+   "category": "modern-history",
+   "place": "泉布観",
+   "lngLat": [
+    135.52139,
+    34.69806
+   ],
+   "source": "wikidata:Q7450922",
+   "wikidata": "Q7450922",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Sempukan.jpg/960px-Sempukan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sempukan.jpg",
+    "credit": "Mc681",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "boj-osaka",
+   "title": "日本銀行大阪支店旧館を見る",
+   "kind": "see",
+   "category": "modern-history",
+   "place": "日本銀行大阪支店",
+   "lngLat": [
+    135.49953,
+    34.69389
+   ],
+   "source": "wikidata:Q108912361",
+   "wikidata": "Q108912361",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Bank_of_Japan_Osaka.jpg/960px-Bank_of_Japan_Osaka.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Bank_of_Japan_Osaka.jpg",
+    "credit": "Kakidai",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kyobashi-air-raid",
+   "title": "京橋駅の大阪大空襲被災者慰霊碑に参る",
+   "kind": "visit",
+   "category": "modern-history",
+   "place": "京橋駅",
+   "lngLat": [
+    135.53454,
+    34.69573
+   ],
+   "source": "osm:node/402300916"
+  },
+  {
+   "id": "aqua-liner",
+   "title": "水上バス アクアライナーに乗る",
+   "kind": "ride",
+   "category": "suito",
+   "place": "大阪城港",
+   "lngLat": [
+    135.5328,
+    34.68974
+   ],
+   "source": "osm:node/5052364472"
   }
  ]
 }

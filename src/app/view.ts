@@ -1,14 +1,14 @@
-import { CATEGORIES, CATEGORY_LABEL, type Achievement, type Category, type Image } from "../shared/catalogue";
+import type { Achievement, Category, Image } from "../shared/catalogue";
 import { distanceMeters, type LngLat } from "../shared/geo";
 import type { Unlock } from "./store";
 
 export type ListItem = { achievement: Achievement; unlocked: boolean; unlockedAt: string | null; meters: number | null };
-export type Group = { category: Category; label: string; items: ListItem[]; unlocked: number; total: number };
+export type Group = { category: string; label: string; items: ListItem[]; unlocked: number; total: number };
 export type ListView = { items: ListItem[]; groups: Group[]; progress: { unlocked: number; total: number; pending: number } };
 
 // What the list shows: the achievements still to unlock come first, and
 // when we know where the person is, the nearest of those come first.
-export function listView(achievements: Achievement[], unlocks: Unlock[], here: LngLat | null): ListView {
+export function listView(achievements: Achievement[], unlocks: Unlock[], here: LngLat | null, categories: Category[] = []): ListView {
   const byId = new Map(unlocks.map((u) => [u.achievementId, u]));
   const items: ListItem[] = achievements.map((achievement) => {
     const u = byId.get(achievement.id);
@@ -21,9 +21,9 @@ export function listView(achievements: Achievement[], unlocks: Unlock[], here: L
   });
   if (here) items.sort((x, y) => Number(x.unlocked) - Number(y.unlocked) || x.meters! - y.meters!);
   const mine = achievements.filter((a) => byId.has(a.id)).map((a) => byId.get(a.id)!);
-  const groups = CATEGORIES.map((category) => {
-    const inGroup = items.filter((i) => i.achievement.category === category);
-    return { category, label: CATEGORY_LABEL[category], items: inGroup, unlocked: inGroup.filter((i) => i.unlocked).length, total: inGroup.length };
+  const groups = categories.map(({ id, label }) => {
+    const inGroup = items.filter((i) => i.achievement.category === id);
+    return { category: id, label, items: inGroup, unlocked: inGroup.filter((i) => i.unlocked).length, total: inGroup.length };
   }).filter((g) => g.total > 0);
   return {
     items,

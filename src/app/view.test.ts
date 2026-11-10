@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { listView } from "./view";
 import type { Achievement } from "../shared/catalogue";
 
-const a = (id: string, lngLat: [number, number], category: Achievement["category"] = "sightseeing"): Achievement => ({ id, title: id, kind: "visit", category, place: id, lngLat });
+const a = (id: string, lngLat: [number, number], category = "sightseeing"): Achievement => ({ id, title: id, kind: "visit", category, place: id, lngLat });
 const achievements = [a("far", [135.5262, 34.6873]), a("near", [135.5017, 34.6689]), a("mid", [135.5061, 34.6522])];
 const here: [number, number] = [135.5014, 34.6687];
 
@@ -40,21 +40,27 @@ describe("listView", () => {
   });
 });
 
+const CATS = [
+  { id: "modern-history", label: "近代史" },
+  { id: "food", label: "食い倒れ" },
+  { id: "sightseeing", label: "観光" },
+];
+
 describe("listView groups", () => {
-  const mixed = [a("castle", [135.5262, 34.6873]), a("takoyaki", [135.5017, 34.6689], "food"), a("tram", [135.5057, 34.6556], "transport"), a("shop", [135.5014, 34.6720])];
+  const mixed = [a("castle", [135.5262, 34.6873]), a("takoyaki", [135.5017, 34.6689], "food"), a("museum", [135.5057, 34.6556], "modern-history"), a("shop", [135.5014, 34.6720])];
 
   it("groups by category in a fixed order and skips empty categories", () => {
-    const v = listView(mixed.filter((x) => x.category !== "transport"), [], null);
-    expect(v.groups.map((g) => g.category)).toEqual(["sightseeing", "food"]);
-    expect(v.groups[0].label).toBe("観光");
+    const v = listView(mixed.filter((x) => x.category !== "modern-history"), [], null, CATS);
+    expect(v.groups.map((g) => g.category)).toEqual(["food", "sightseeing"]);
+    expect(v.groups[0].label).toBe("食い倒れ");
   });
 
   it("keeps the nearest-first order inside each group and counts each group", () => {
-    const v = listView(mixed, [{ achievementId: "castle", unlockedAt: "2026-11-13T03:00:00.000Z", synced: true }], here);
+    const v = listView(mixed, [{ achievementId: "castle", unlockedAt: "2026-11-13T03:00:00.000Z", synced: true }], here, CATS);
     expect(v.groups.map((g) => [g.label, g.items.map((i) => i.achievement.id), g.unlocked, g.total])).toEqual([
+      ["近代史", ["museum"], 0, 1],
+      ["食い倒れ", ["takoyaki"], 0, 1],
       ["観光", ["shop", "castle"], 1, 2],
-      ["交通", ["tram"], 0, 1],
-      ["食", ["takoyaki"], 0, 1],
     ]);
   });
 });

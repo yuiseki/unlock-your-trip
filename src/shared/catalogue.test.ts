@@ -5,6 +5,10 @@ const ok: Catalogue = {
   region: "osaka",
   name: "大阪",
   bbox: [135.3, 34.5, 135.7, 34.8],
+  categories: [
+    { id: "sightseeing", label: "観光" },
+    { id: "kuidaore", label: "食い倒れ" },
+  ],
   achievements: [
     {
       id: "osaka-castle",
@@ -16,7 +20,7 @@ const ok: Catalogue = {
       wikidata: "Q194155",
       image: { url: "https://upload.wikimedia.org/x.jpg", page: "https://commons.wikimedia.org/wiki/File:X.jpg", credit: "Someone", license: "CC BY-SA 4.0" },
     },
-    { id: "eat-takoyaki", title: "たこ焼きを食べる", kind: "eat", category: "food", place: "道頓堀", lngLat: [135.5013, 34.6687] },
+    { id: "eat-takoyaki", title: "たこ焼きを食べる", kind: "eat", category: "kuidaore", place: "道頓堀", lngLat: [135.5013, 34.6687] },
   ],
 };
 
@@ -47,9 +51,14 @@ describe("validateCatalogue", () => {
     expect(errors).toContain("unknown kind: eat-takoyaki");
   });
 
-  it("rejects a missing or unknown category", () => {
-    const bad = { ...ok, achievements: [{ ...ok.achievements[1], category: "nightlife" as never }] };
+  it("rejects a category the catalogue does not define", () => {
+    const bad = { ...ok, achievements: [{ ...ok.achievements[1], category: "transport" }] };
     expect(validateCatalogue(bad)).toContain("unknown category: eat-takoyaki");
+  });
+
+  it("rejects duplicate category ids", () => {
+    const bad = { ...ok, categories: [...ok.categories, { id: "kuidaore", label: "食" }] };
+    expect(validateCatalogue(bad)).toContain("duplicate category: kuidaore");
   });
 
   it("rejects an image without credit or licence", () => {

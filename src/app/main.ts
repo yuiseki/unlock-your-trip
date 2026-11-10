@@ -47,7 +47,7 @@ function time(iso: string) {
 }
 
 function render() {
-  const view = listView(catalogue.achievements, unlocks, here);
+  const view = listView(catalogue.achievements, unlocks, here, catalogue.categories);
   const p = view.progress;
   $("progress").textContent =
     `${p.unlocked} / ${p.total} 解除` + (p.pending ? `(未送信 ${p.pending})` : "") + (publicUser ? ` ・ ${publicUser} さんの記録` : "");

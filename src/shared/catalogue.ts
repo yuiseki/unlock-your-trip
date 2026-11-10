@@ -3,11 +3,10 @@ import type { LngLat } from "./geo";
 export const KINDS = ["visit", "eat", "ride", "see", "do"] as const;
 export type Kind = (typeof KINDS)[number];
 
-// The genres the Scrapbox pages used (Hiroshima 2026: 観光, 交通, 食), in
-// the order the list shows them.
-export const CATEGORIES = ["sightseeing", "transport", "food"] as const;
-export type Category = (typeof CATEGORIES)[number];
-export const CATEGORY_LABEL: Record<Category, string> = { sightseeing: "観光", transport: "交通", food: "食" };
+// Each region defines its own genres, the way each Scrapbox trip page had
+// its own headings (Hiroshima had 交通 for its trams; Osaka has 食い倒れ).
+// The array order is the order the list shows them.
+export type Category = { id: string; label: string };
 
 export type Image = {
   url: string; // the file itself
@@ -20,7 +19,7 @@ export type Achievement = {
   id: string;
   title: string;
   kind: Kind;
-  category: Category;
+  category: string; // a Category id of the same catalogue
   place: string;
   lngLat: LngLat;
   wikidata?: string;
@@ -32,6 +31,7 @@ export type Catalogue = {
   region: string;
   name: string;
   bbox: [number, number, number, number]; // west, south, east, north
+  categories: Category[];
   achievements: Achievement[];
 };
 
@@ -45,13 +45,18 @@ export function validateCatalogue(c: Catalogue): string[] {
   const errors: string[] = [];
   const seen = new Set<string>();
   const [w, s, e, n] = c.bbox;
+  const categoryIds = new Set<string>();
+  for (const cat of c.categories) {
+    if (categoryIds.has(cat.id)) errors.push(`duplicate category: ${cat.id}`);
+    categoryIds.add(cat.id);
+  }
   for (const a of c.achievements) {
     if (seen.has(a.id)) errors.push(`duplicate id: ${a.id}`);
     seen.add(a.id);
     if (!SLUG.test(a.id)) errors.push(`bad id: ${a.id}`);
     if (!a.title?.trim()) errors.push(`missing title: ${a.id}`);
     if (!(KINDS as readonly string[]).includes(a.kind)) errors.push(`unknown kind: ${a.id}`);
-    if (!(CATEGORIES as readonly string[]).includes(a.category)) errors.push(`unknown category: ${a.id}`);
+    if (!categoryIds.has(a.category)) errors.push(`unknown category: ${a.id}`);
     const [lng, lat] = a.lngLat ?? [NaN, NaN];
     if (!(lng >= w && lng <= e && lat >= s && lat <= n)) errors.push(`outside region: ${a.id}`);
     if (a.image) {

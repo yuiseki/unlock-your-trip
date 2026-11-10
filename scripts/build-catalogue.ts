@@ -9,7 +9,7 @@ const region = process.argv[2];
 const meta = META[region];
 if (!meta) throw new Error(`unknown region: ${region}`);
 const read = (kind: string) => readFileSync(`data/${region}.${kind}.tsv`, "utf8");
-const { catalogue, errors } = buildCatalogue({ region, ...meta }, read("seed"), read("places"), read("images"));
+const { catalogue, errors } = buildCatalogue({ region, ...meta }, read("categories"), read("seed"), read("places"), read("images"));
 if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);

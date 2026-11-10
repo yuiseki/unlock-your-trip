@@ -1,4 +1,4 @@
-import { validateCatalogue, type Achievement, type Catalogue, type Category, type Kind } from "./catalogue";
+import { validateCatalogue, type Achievement, type Catalogue, type Kind } from "./catalogue";
 
 export function parseTsv(text: string): Record<string, string>[] {
   const [head, ...lines] = text.replace(/\r/g, "").split("\n").filter((l) => l.length > 0);
@@ -9,11 +9,11 @@ export function parseTsv(text: string): Record<string, string>[] {
   });
 }
 
-type Meta = Omit<Catalogue, "achievements">;
+type Meta = Omit<Catalogue, "achievements" | "categories">;
 
 // Joins the hand-written seed with the pinned places and image credits.
 // Every row that cannot be joined is an error, never a silent omission.
-export function buildCatalogue(meta: Meta, seedTsv: string, placesTsv: string, imagesTsv: string) {
+export function buildCatalogue(meta: Meta, categoriesTsv: string, seedTsv: string, placesTsv: string, imagesTsv: string) {
   const errors: string[] = [];
   const places = new Map(parseTsv(placesTsv).map((r) => [r.id, r]));
   const images = new Map(parseTsv(imagesTsv).map((r) => [r.file, r]));
@@ -28,7 +28,7 @@ export function buildCatalogue(meta: Meta, seedTsv: string, placesTsv: string, i
       id: s.id,
       title: s.title,
       kind: s.kind as Kind,
-      category: s.category as Category,
+      category: s.category,
       place: s.place,
       lngLat: [Number(p.lng), Number(p.lat)],
       source: p.source,
@@ -41,7 +41,8 @@ export function buildCatalogue(meta: Meta, seedTsv: string, placesTsv: string, i
     }
     achievements.push(a);
   }
-  const catalogue: Catalogue = { ...meta, achievements };
+  const categories = parseTsv(categoriesTsv).map((r) => ({ id: r.id, label: r.label }));
+  const catalogue: Catalogue = { ...meta, categories, achievements };
   errors.push(...validateCatalogue(catalogue));
   return { catalogue, errors };
 }
