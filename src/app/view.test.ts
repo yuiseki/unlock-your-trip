@@ -48,3 +48,19 @@ describe("formatDistance", () => {
     expect(formatDistance(null)).toBe("");
   });
 });
+
+describe("creditText", () => {
+  it("shows the author and licence", async () => {
+    const { creditText } = await import("./view");
+    expect(creditText({ url: "", page: "p", credit: "Takesi0705", license: "CC BY-SA 4.0" })).toBe("写真: Takesi0705 / CC BY-SA 4.0");
+  });
+  it("points to the photo page when Commons has no machine-readable author", async () => {
+    const { creditText } = await import("./view");
+    const credit = "No machine-readable author provided. Someone assumed (based on copyright claims).";
+    expect(creditText({ url: "", page: "p", credit, license: "CC BY-SA 3.0" })).toBe("写真: 作者はリンク先 / CC BY-SA 3.0");
+  });
+  it("says so when a public-domain photo has no author", async () => {
+    const { creditText } = await import("./view");
+    expect(creditText({ url: "", page: "p", credit: "", license: "Public domain" })).toBe("写真: 作者不明 / Public domain");
+  });
+});

@@ -4,8 +4,9 @@
   "scripts": {
     "test": "vitest run",
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "catalogue": "vite-node scripts/build-catalogue.ts osaka"
+    "build": "npm run catalogue && tsc --noEmit && vite build",
+    "catalogue": "vite-node scripts/build-catalogue.ts osaka",
+    "dev:worker": "wrangler dev --port 8820 --ip 127.0.0.1"
   },
   "type": "module",
   "private": true,
