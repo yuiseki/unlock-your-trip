@@ -9,6 +9,6 @@
     "run_worker_first": ["/api/*"]
   },
   "d1_databases": [
-    { "binding": "DB", "database_name": "unlock-your-trip", "database_id": "00000000-0000-0000-0000-000000000000", "migrations_dir": "migrations" }
+    { "binding": "DB", "database_name": "unlock-your-trip", "database_id": "1a03f1c2-33be-4f6d-a89c-ae1ae41aeaf4", "migrations_dir": "migrations" }
   ]
 }
