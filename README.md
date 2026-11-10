@@ -74,3 +74,7 @@ echo "https://unlock-your-trip.yuiseki.workers.dev/#token=$T&user=<id>"
 - 背景の地図: OpenFreeMap、© OpenMapTiles、© OpenStreetMap contributors
 - 実績の場所: Wikidata (CC0)、© OpenStreetMap contributors (ODbL)
 - 名所の写真: Wikimedia Commons。写真ごとの作者とライセンスは、一覧の写真の下と `data/osaka.images.tsv` にある
+
+## ライセンス
+
+コードは [Apache License 2.0](LICENSE)。実績の一覧のデータ (`data/`、`public/catalogues/`) は、元のデータのライセンスと出典表示に従う (Wikidata は CC0、OpenStreetMap は ODbL、写真は写真ごとの Commons のライセンス)。
