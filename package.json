@@ -1,0 +1,27 @@
+{
+  "name": "unlock-your-trip",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "private": "true",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261110.1",
+    "fake-indexeddb": "^6.2.8",
+    "typescript": "^7.0.2",
+    "vite": "^7.3.8",
+    "vitest": "^3.2.7",
+    "wrangler": "^4.160.0"
+  },
+  "dependencies": {
+    "maplibre-gl": "^6.17.0"
+  }
+}
