@@ -5,6 +5,7 @@ import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
 import { sync } from "./sync";
 import { creditText, formatDistance, listView, type ListItem } from "./view";
+import { loadPrefs, orderCategories, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
 
 const REGION = "osaka";
 const KIND_LABEL = { visit: "行く", eat: "食べる", ride: "乗る", see: "見る", do: "する" } as const;
@@ -31,6 +32,7 @@ let store: Store;
 let unlocks: Unlock[] = [];
 let here: LngLat | null = null;
 let mapView: MapView | null = null;
+let prefs: Prefs = { stars: {}, collapsed: [] };
 const { token, user } = readCredentials();
 const canWrite = !publicUser && !!token;
 
@@ -47,7 +49,9 @@ function time(iso: string) {
 }
 
 function render() {
-  const view = listView(catalogue.achievements, unlocks, here, catalogue.categories);
+  const ranked = orderCategories(catalogue.categories, prefs);
+  const rank = new Map(ranked.map((c) => [c.id, c]));
+  const view = listView(catalogue.achievements, unlocks, here, ranked);
   const p = view.progress;
   $("progress").textContent =
     `${p.unlocked} / ${p.total} 解除` + (p.pending ? `(未送信 ${p.pending})` : "") + (publicUser ? ` ・ ${publicUser} さんの記録` : "");
@@ -70,13 +74,24 @@ function render() {
   };
   list.replaceChildren(
     ...view.groups.flatMap((g) => {
+      const r = rank.get(g.category)!;
       const head = document.createElement("li");
       head.className = "group";
-      head.innerHTML = `<h2>${escape(g.label)}</h2><span>${g.unlocked} / ${g.total}</span>`;
-      return [head, ...g.items.map(itemLi)];
+      const stars = [1, 2, 3, 4, 5]
+        .map((n) => `<button class="star" data-cat="${g.category}" data-stars="${n}" aria-label="優先度 ${n}" aria-pressed="${n <= r.stars}">${n <= r.stars ? "★" : "☆"}</button>`)
+        .join("");
+      head.innerHTML = `<button class="fold" data-cat="${g.category}" aria-expanded="${!r.collapsed}"><span class="chev">${r.collapsed ? "▸" : "▾"}</span><h2>${escape(g.label)}</h2></button>
+        <span class="stars" role="group" aria-label="${escape(g.label)}の優先度">${stars}</span><span class="count">${g.unlocked} / ${g.total}</span>`;
+      return r.collapsed ? [head] : [head, ...g.items.map(itemLi)];
     }),
   );
   mapView?.update();
+}
+
+function updatePrefs(next: Prefs) {
+  prefs = next;
+  savePrefs(localStorage, catalogue.region, prefs);
+  render();
 }
 
 function escape(s: string) {
@@ -160,10 +175,16 @@ async function main() {
     if (res.ok) await store.mergeRemote(((await res.json()) as { unlocks: Unlock[] }).unlocks);
   }
   unlocks = await store.all();
+  prefs = loadPrefs(localStorage, catalogue.region);
   render();
   document.addEventListener("click", (ev) => {
-    const b = (ev.target as HTMLElement).closest<HTMLButtonElement>("button.unlock");
+    const t = ev.target as HTMLElement;
+    const b = t.closest<HTMLButtonElement>("button.unlock");
     if (b?.dataset.id) void unlock(b.dataset.id);
+    const star = t.closest<HTMLButtonElement>("button.star");
+    if (star?.dataset.cat) updatePrefs(setStars(prefs, star.dataset.cat, Number(star.dataset.stars)));
+    const fold = t.closest<HTMLButtonElement>("button.fold");
+    if (fold?.dataset.cat) updatePrefs(toggleCollapsed(prefs, fold.dataset.cat));
   });
   $("tab-list").addEventListener("click", () => showTab("list"));
   $("tab-map").addEventListener("click", () => showTab("map"));

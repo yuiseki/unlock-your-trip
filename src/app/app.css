@@ -42,6 +42,10 @@ main { flex: 1; min-height: 0; position: relative; }
 footer { font-size: 10px; color: var(--muted); padding: 6px 12px; background: #fff; border-top: 1px solid #f3e8d8; }
 footer a, .credit { color: inherit; }
 .maplibregl-popup-content .unlock { margin-top: 6px; }
-.group { display: flex; align-items: baseline; justify-content: space-between; padding: 14px 0 4px; border-bottom: 2px solid var(--accent); }
-.group h2 { margin: 0; font-size: 16px; color: var(--accent); }
-.group span { font-size: 13px; color: var(--muted); }
+.group { display: flex; align-items: center; gap: 6px; padding: 12px 0 4px; border-bottom: 2px solid var(--accent); }
+.fold { flex: 1; display: flex; align-items: center; gap: 6px; border: 0; background: none; padding: 6px 0; text-align: left; color: var(--accent); }
+.fold .chev { width: 1em; font-size: 14px; }
+.group h2 { margin: 0; font-size: 16px; }
+.stars { display: flex; }
+.star { border: 0; background: none; padding: 4px 2px; font-size: 20px; line-height: 1; color: #f59e0b; min-width: 28px; min-height: 36px; }
+.count { font-size: 13px; color: var(--muted); min-width: 44px; text-align: right; }
