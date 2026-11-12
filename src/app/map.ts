@@ -11,7 +11,7 @@ setWorkerUrl(workerUrl);
 
 const STYLE_URL = "https://tiles.openfreemap.org/styles/liberty";
 
-export type MapView = { update(): void; flyTo(lngLat: LngLat): void; resize(): void };
+export type MapView = { update(): void; fit(): void; flyTo(lngLat: LngLat): void; resize(): void };
 
 type Context = {
   container: string;
@@ -80,6 +80,12 @@ export async function createMap(ctx: Context): Promise<MapView> {
   return {
     update() {
       (map.getSource("achievements") as GeoJSONSource | undefined)?.setData(ctx.achievements());
+    },
+    // Frame what is shown now, e.g. after the list switches between the
+    // unlocked achievements only and all of them.
+    fit() {
+      const b = boundsOf(points(), null);
+      if (b) map.fitBounds(b, { padding: PADDING, maxZoom: 16 });
     },
     flyTo: (lngLat) => map.flyTo({ center: lngLat, zoom: 16 }),
     resize: () => map.resize(),

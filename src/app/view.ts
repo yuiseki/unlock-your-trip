@@ -52,6 +52,13 @@ export function listView(
   };
 }
 
+// The achievements the list and the map show, under the same options.
+export function shownAchievements(achievements: Achievement[], unlocks: Unlock[], { lookingBack = false, showLocked = true }: ListOptions): Achievement[] {
+  if (!lookingBack || showLocked) return achievements;
+  const done = new Set(unlocks.map((u) => u.achievementId));
+  return achievements.filter((a) => done.has(a.id));
+}
+
 export function formatDistance(m: number | null): string {
   if (m === null) return "";
   return m < 1000 ? `${Math.round(m)} m` : `${(m / 1000).toFixed(1)} km`;

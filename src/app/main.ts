@@ -5,7 +5,7 @@ import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
 import { createSyncer } from "./syncer";
 import { loadClerk, whoAmI, type Clerk } from "./auth";
-import { creditText, formatDistance, listView, type ListItem } from "./view";
+import { creditText, formatDistance, listView, shownAchievements, type ListItem } from "./view";
 import { REGIONS, isPast, regionById, route } from "../shared/regions";
 import { tripSummaries } from "./trips";
 import { gyazoImage, gyazoPage, photosByAchievement, type Photo } from "./photos";
@@ -122,6 +122,12 @@ function render() {
       return collapsed ? [head] : [head, ...g.items.map(itemLi)];
     }),
   );
+  if (!view.groups.length) {
+    const li = document.createElement("li");
+    li.className = "empty";
+    li.textContent = "この旅で解除した実績は、まだありません。「未解除の実績も表示」で全部を見られます。";
+    list.replaceChildren(li);
+  }
   $("sync-status").textContent = syncText();
   mapView?.update();
 }
@@ -162,7 +168,7 @@ function geojson() {
   const done = new Set(unlocks.map((u) => u.achievementId));
   return {
     type: "FeatureCollection" as const,
-    features: catalogue.achievements.map((a: Achievement) => ({
+    features: shownAchievements(catalogue.achievements, unlocks, { lookingBack, showLocked }).map((a: Achievement) => ({
       type: "Feature" as const,
       geometry: { type: "Point" as const, coordinates: a.lngLat },
       properties: { id: a.id, title: a.title, unlocked: done.has(a.id) },
@@ -285,6 +291,7 @@ async function main() {
         // the choice then lasts only for this visit
       }
       render();
+      mapView?.fit();
     });
   }
   syncer = createSyncer({

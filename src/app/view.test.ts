@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { listView } from "./view";
+import { listView, shownAchievements } from "./view";
 import type { Achievement } from "../shared/catalogue";
 
 const a = (id: string, lngLat: [number, number], category = "sightseeing"): Achievement => ({ id, title: id, kind: "visit", category, place: id, lngLat });
@@ -140,5 +140,14 @@ describe("listView looking back at a past trip", () => {
     const list = [...achievements, a("soba", [135.5, 34.67], "food")];
     expect(listView(list, done, null, cats, {}, { lookingBack: true, showLocked: false }).groups.map((g) => g.category)).toEqual(["sightseeing"]);
     expect(listView(list, done, null, cats, {}, { lookingBack: true, showLocked: true }).groups.map((g) => g.category)).toEqual(["sightseeing", "food"]);
+  });
+});
+
+describe("shownAchievements", () => {
+  const done = [{ achievementId: "mid", unlockedAt: "2026-11-13T05:00:00.000Z", synced: true }];
+  it("gives the map the same achievements as the list", () => {
+    expect(shownAchievements(achievements, done, { lookingBack: true, showLocked: false }).map((a) => a.id)).toEqual(["mid"]);
+    expect(shownAchievements(achievements, done, { lookingBack: true, showLocked: true })).toHaveLength(3);
+    expect(shownAchievements(achievements, done, {})).toHaveLength(3);
   });
 });
