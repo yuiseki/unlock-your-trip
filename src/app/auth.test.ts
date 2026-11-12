@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { whoAmI } from "./auth";
+import { userMenuItems, whoAmI } from "./auth";
 
 const reply = (status: number, body: unknown) => async () => new Response(JSON.stringify(body), { status });
 
@@ -20,5 +20,15 @@ describe("whoAmI", () => {
     expect(await whoAmI("t", reply(401, { error: "unauthorized" }))).toEqual({ kind: "rejected" });
     expect(await whoAmI("t", reply(500, {}))).toEqual({ kind: "unreachable" });
     expect(await whoAmI("t", async () => Promise.reject(new TypeError("offline")))).toEqual({ kind: "unreachable" });
+  });
+});
+
+describe("userMenuItems", () => {
+  it("adds a link to the writer's own record to Clerk's user menu", () => {
+    expect(userMenuItems("yuiseki")).toEqual([{ label: "自分の実績", href: "/u/yuiseki/" }]);
+  });
+
+  it("adds nothing before the writer is known", () => {
+    expect(userMenuItems(null)).toEqual([]);
   });
 });

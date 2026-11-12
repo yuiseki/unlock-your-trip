@@ -24,13 +24,24 @@ export async function whoAmI(token: string, fetcher: typeof fetch = fetch): Prom
   return { kind: "unreachable" };
 }
 
+// Items for Clerk's user button menu (customMenuItems), before the page
+// adds their icons. The record is public, so it is a plain link.
+export function userMenuItems(writer: string | null): { label: string; href: string }[] {
+  return writer ? [{ label: "自分の実績", href: `/u/${writer}/` }] : [];
+}
+
+export type UserButtonOptions = {
+  customMenuItems?: { label: string; href?: string; onClick?: () => void; mountIcon?: (el: HTMLDivElement) => void; unmountIcon?: (el: HTMLDivElement) => void }[];
+};
+
 // The few parts of clerk-js this page uses.
 export type Clerk = {
   load(options: { ui: { ClerkUI: unknown } }): Promise<void>;
   user: { id: string } | null | undefined;
   session: { getToken(): Promise<string | null> } | null | undefined;
   openSignIn(options?: Record<string, unknown>): void;
-  mountUserButton(el: HTMLDivElement): void;
+  mountUserButton(el: HTMLDivElement, options?: UserButtonOptions): void;
+  unmountUserButton(el: HTMLDivElement): void;
   addListener(fn: (state: { user?: unknown }) => void): () => void;
 };
 

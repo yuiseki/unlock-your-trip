@@ -4,7 +4,7 @@ import type { LngLat } from "../shared/geo";
 import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
 import { createSyncer } from "./syncer";
-import { loadClerk, whoAmI, type Clerk } from "./auth";
+import { loadClerk, userMenuItems, whoAmI, type Clerk } from "./auth";
 import { creditText, formatDistance, listView, shownAchievements, type ListItem } from "./view";
 import { REGIONS, isPast, regionById, route } from "../shared/regions";
 import { tripSummaries } from "./trips";
@@ -381,10 +381,11 @@ function setWriter(name: string | null) {
   showMyPage();
 }
 
-// The way from the top page to the writer's own public page.
+// The way from the top page to the writer's own public page, for a device
+// on a setup link. With Clerk it is in the user button's menu instead.
 function showMyPage() {
   const a = $<HTMLAnchorElement>("my-page");
-  const name = where.kind === "trips" && !publicUser ? writerName() : null;
+  const name = where.kind === "trips" && !publicUser && token ? writerName() : null;
   a.hidden = !name;
   if (name) {
     a.href = `/u/${name}/`;
@@ -408,6 +409,17 @@ async function setupClerk() {
   void trySync();
 }
 
+function mountUserButton(box: HTMLDivElement, writer: string | null) {
+  clerk?.unmountUserButton(box);
+  clerk?.mountUserButton(box, {
+    customMenuItems: userMenuItems(writer).map((item) => ({
+      ...item,
+      mountIcon: (el: HTMLDivElement) => (el.textContent = "🏆"),
+      unmountIcon: () => {},
+    })),
+  });
+}
+
 let shownUser: string | null | undefined;
 async function showAccount() {
   if (!clerk) return;
@@ -427,12 +439,16 @@ async function showAccount() {
     box.replaceChildren(b);
     return;
   }
-  clerk.mountUserButton(box);
+  // Mount with what this device already knows, so the button shows at once;
+  // remount once the server names the writer if that changes the menu.
+  let mountedFor = writerName();
+  mountUserButton(box, mountedFor);
   const t = await currentToken();
   const me = t ? await whoAmI(t) : { kind: "rejected" as const };
   if (me.kind === "writer") {
     note(null);
     setWriter(me.user);
+    if (mountedFor !== me.user) mountUserButton(box, (mountedFor = me.user));
   } else if (me.kind === "unregistered") {
     setWriter(null);
     note(`このアカウントは、まだ記録先に登録されていません。管理者に次の ID を伝えてください: ${me.clerkUserId}`);
