@@ -4,21 +4,21 @@ kosovo-greet-gsi	国土地理院関係者に挨拶する	do	foss4g	FOSS4G 2023 �
 kosovo-greet-academic	GIS アカデミック関係者に挨拶する	do	foss4g	FOSS4G 2023 会場 (ITP プリズレン / Innovation and Training Park Prizren)	Innovation and Training Park Prizren
 kosovo-greet-startup	GIS スタートアップ関係者に挨拶する	do	foss4g	FOSS4G 2023 会場 (ITP プリズレン / Innovation and Training Park Prizren)	Innovation and Training Park Prizren
 kosovo-beer	コソボのビールを飲む	eat	beer-wine	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
-kosovo-peja-beer	ペーヤ (PEJA) ビールを飲む	eat	beer-wine	ペーヤ醸造所 (Birra Peja)	Birra Peja
-kosovo-wine	コソボ産ワインを飲む	eat	beer-wine	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
-kosovo-stone-castle-wine	ストーンキャッスル醸造所のワインを飲む	eat	beer-wine	ストーンキャッスル醸造所 (Stone Castle Winery)	Stone Castle Winery
+kosovo-peja-beer	ペーヤ (PEJA) ビールを飲む	eat	beer-wine	プリシュティナ (Liburnia 付近)	Birra Peja
+kosovo-wine	コソボ産ワインを飲む	eat	beer-wine	プリズレン (Marashi 付近)	Sheshi Shadërvan
+kosovo-stone-castle-wine	ストーンキャッスル醸造所のワインを飲む	eat	beer-wine	プリズレン (Marashi 付近)	Stone Castle Winery
 kosovo-steak	コソボでステーキを食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
 kosovo-kebab	コソボでケバブを食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
 kosovo-meatball	コソボのミートボールを食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
-kosovo-burek	ブレク (Byrek) を食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
+kosovo-burek	ブレク (Byrek) を食べる	eat	kosovo-food	プリズレン (E851 沿い)	Sheshi Shadërvan
 kosovo-flija	フリヤ (Flija) を食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
 kosovo-sarma	サルマ (Sarma) を食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
-kosovo-tave	タヴェ (Tavë) を食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
+kosovo-tave	タヴェ (Tavë) を食べる	eat	kosovo-food	プリズレン (Marashi 付近)	Sheshi Shadërvan
 kosovo-cevapi	チェヴァピ (Qebapa) を食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
 kosovo-gjuvec	グジュヴェチ (Gjuveç) を食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
 kosovo-pita	ピタ (Pita) を食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
-kosovo-pljeskavica	プレスコヴァツ (Pljeskavica) を食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
+kosovo-pljeskavica	プレスコヴァツ (Pljeskavica) を食べる	eat	kosovo-food	プリシュティナ (Liburnia 付近)	Sheshi Shadërvan
 kosovo-piroshki	ピロシキを食べる	eat	kosovo-food	プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)	Sheshi Shadërvan
 kosovo-mingei	コソボの民藝に触れる	see	mingei	プリズレン民族学博物館 (Muzeu Etnologjik i Prizrenit)	Muzeu Etnologjik i Prizrenit
-kosovo-pottery	コソボの陶器を見る	see	mingei	プリズレン民族学博物館 (Muzeu Etnologjik i Prizrenit)	Muzeu Etnologjik i Prizrenit
-kosovo-folk-costume	コソボの民族衣装を見る	see	mingei	プリズレン民族学博物館 (Muzeu Etnologjik i Prizrenit)	Muzeu Etnologjik i Prizrenit
+kosovo-pottery	コソボの陶器を見る	see	mingei	コソボ博物館 (Muzeu i Kosovës、プリシュティナ)	Muzeu Etnologjik i Prizrenit
+kosovo-folk-costume	コソボの民族衣装を見る	see	mingei	コソボ博物館 (Muzeu i Kosovës、プリシュティナ)	Muzeu Etnologjik i Prizrenit

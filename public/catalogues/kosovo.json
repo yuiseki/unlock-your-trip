@@ -33,10 +33,10 @@
    "category": "foss4g",
    "place": "FOSS4G 2023 会場 (ITP プリズレン / Innovation and Training Park Prizren)",
    "lngLat": [
-    20.75158,
-    42.22105
+    20.75173,
+    42.21977
    ],
-   "source": "osm:way/29292346",
+   "source": "gyazo:04ffc20055f21b0d39b361043d502978",
    "wikidata": "Q122609841",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg/960px-Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -109,10 +109,10 @@
    "category": "beer-wine",
    "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
    "lngLat": [
-    20.74052,
-    42.20905
+    20.7396,
+    42.20936
    ],
-   "source": "osm:way/472720148",
+   "source": "gyazo:32c8e134a73d050c69e5d237302f0c18",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
@@ -125,24 +125,24 @@
    "title": "ペーヤ (PEJA) ビールを飲む",
    "kind": "eat",
    "category": "beer-wine",
-   "place": "ペーヤ醸造所 (Birra Peja)",
+   "place": "プリシュティナ (Liburnia 付近)",
    "lngLat": [
-    20.31465,
-    42.65819
+    21.16326,
+    42.66669
    ],
-   "source": "osm:way/299104204"
+   "source": "gyazo:fc167c2396006cf083afeff070261fd1"
   },
   {
    "id": "kosovo-wine",
    "title": "コソボ産ワインを飲む",
    "kind": "eat",
    "category": "beer-wine",
-   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "place": "プリズレン (Marashi 付近)",
    "lngLat": [
-    20.74052,
-    42.20905
+    20.74629,
+    42.21227
    ],
-   "source": "osm:way/472720148",
+   "source": "gyazo:fd1e43e91be972b95d87e4e5bf95a047",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
@@ -155,12 +155,12 @@
    "title": "ストーンキャッスル醸造所のワインを飲む",
    "kind": "eat",
    "category": "beer-wine",
-   "place": "ストーンキャッスル醸造所 (Stone Castle Winery)",
+   "place": "プリズレン (Marashi 付近)",
    "lngLat": [
-    20.61551,
-    42.36697
+    20.7458,
+    42.21184
    ],
-   "source": "osm:way/275261271"
+   "source": "gyazo:5524289cfb6fe9badb1d8974a6e3af6b"
   },
   {
    "id": "kosovo-steak",
@@ -187,10 +187,10 @@
    "category": "kosovo-food",
    "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
    "lngLat": [
-    20.74052,
-    42.20905
+    20.74241,
+    42.21669
    ],
-   "source": "osm:way/472720148",
+   "source": "gyazo:9bf3fe833c45abcddd938d6a25ab107c",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
@@ -221,12 +221,12 @@
    "title": "ブレク (Byrek) を食べる",
    "kind": "eat",
    "category": "kosovo-food",
-   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "place": "プリズレン (E851 沿い)",
    "lngLat": [
-    20.74052,
-    42.20905
+    20.75303,
+    42.22609
    ],
-   "source": "osm:way/472720148",
+   "source": "gyazo:61a0682a1dd54e2d77e4e00f4fd8ca84",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
@@ -275,12 +275,12 @@
    "title": "タヴェ (Tavë) を食べる",
    "kind": "eat",
    "category": "kosovo-food",
-   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "place": "プリズレン (Marashi 付近)",
    "lngLat": [
-    20.74052,
-    42.20905
+    20.74591,
+    42.21206
    ],
-   "source": "osm:way/472720148",
+   "source": "gyazo:888da6320c925020040b5f108fca2964",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
@@ -347,18 +347,12 @@
    "title": "プレスコヴァツ (Pljeskavica) を食べる",
    "kind": "eat",
    "category": "kosovo-food",
-   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "place": "プリシュティナ (Liburnia 付近)",
    "lngLat": [
-    20.74052,
-    42.20905
+    21.16327,
+    42.6667
    ],
-   "source": "osm:way/472720148",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
-    "credit": "GentiBehramaj",
-    "license": "CC BY-SA 4.0"
-   }
+   "source": "gyazo:1f396c73048f00bcda2e0292b1ed8e7e"
   },
   {
    "id": "kosovo-piroshki",
@@ -395,24 +389,24 @@
    "title": "コソボの陶器を見る",
    "kind": "see",
    "category": "mingei",
-   "place": "プリズレン民族学博物館 (Muzeu Etnologjik i Prizrenit)",
+   "place": "コソボ博物館 (Muzeu i Kosovës、プリシュティナ)",
    "lngLat": [
-    20.73927,
-    42.21153
+    21.16624,
+    42.66543
    ],
-   "source": "osm:way/489644517"
+   "source": "gyazo:3147a9907a73058d5f65c633b7f3e463"
   },
   {
    "id": "kosovo-folk-costume",
    "title": "コソボの民族衣装を見る",
    "kind": "see",
    "category": "mingei",
-   "place": "プリズレン民族学博物館 (Muzeu Etnologjik i Prizrenit)",
+   "place": "コソボ博物館 (Muzeu i Kosovës、プリシュティナ)",
    "lngLat": [
-    20.73927,
-    42.21153
+    21.1662,
+    42.66548
    ],
-   "source": "osm:way/489644517"
+   "source": "gyazo:0d88d632f39de98abc92dab2ffcba5c1"
   }
  ]
 }
