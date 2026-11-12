@@ -75,4 +75,5 @@ footer a, .credit { color: inherit; }
 .group h2 { margin: 0; font-size: 16px; }
 .stars { display: flex; margin: 2px 0 0 -4px; }
 .star { border: 0; background: none; padding: 2px 4px; font-size: 18px; line-height: 1; color: #f59e0b; min-width: 30px; min-height: 30px; }
+.star:disabled { color: #d1d5db; cursor: default; }
 .count { font-size: 13px; color: var(--muted); min-width: 44px; text-align: right; }

@@ -121,7 +121,7 @@ function render() {
           ? `<button class="unlock" data-id="${a.id}">解除！</button>`
           : "";
       const starButtons = [1, 2, 3, 4, 5]
-        .map((n) => `<button class="star" data-id="${a.id}" data-stars="${n}" aria-label="優先度 ${n}" aria-pressed="${n <= stars}">${n <= stars ? "★" : "☆"}</button>`)
+        .map((n) => `<button class="star" data-id="${a.id}" data-stars="${n}" aria-label="優先度 ${n}" aria-pressed="${n <= stars}"${canWrite ? "" : " disabled"}>${n <= stars ? "★" : "☆"}</button>`)
         .join("");
       li.innerHTML = `${img}<div class="body"><div class="title">${escape(a.title)}</div>
         <div class="stars" role="group" aria-label="${escape(a.title)}の優先度">${starButtons}</div>
@@ -356,7 +356,9 @@ async function main() {
     const b = t.closest<HTMLButtonElement>("button.unlock");
     if (b?.dataset.id) void unlock(b.dataset.id);
     const star = t.closest<HTMLButtonElement>("button.star");
-    if (star?.dataset.id) {
+    // Stars are the writer's, synced across their devices; without a
+    // record (signed out, or someone's public page) they only show.
+    if (star?.dataset.id && canWrite) {
       updatePrefs(setStars(prefs, star.dataset.id, Number(star.dataset.stars)));
       void trySync();
     }
