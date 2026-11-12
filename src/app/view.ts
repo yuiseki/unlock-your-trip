@@ -59,6 +59,14 @@ export function shownAchievements(achievements: Achievement[], unlocks: Unlock[]
   return achievements.filter((a) => done.has(a.id));
 }
 
+// The line under the title, the same shape on every page: whose, what, how many.
+export type HeaderFacts = { whose: string | null } & ({ trips: number } | { unlocked: number; total: number; pending: number });
+export function headerLine(f: HeaderFacts): string {
+  const whose = f.whose ? `${f.whose} さんの${"trips" in f ? "旅" : "記録"} ・ ` : "";
+  if ("trips" in f) return f.whose ? `${whose}${f.trips} 件` : `旅 ${f.trips} 件`;
+  return `${whose}${f.unlocked} / ${f.total} 解除${f.pending ? ` (未送信 ${f.pending})` : ""}`;
+}
+
 export function formatDistance(m: number | null): string {
   if (m === null) return "";
   return m < 1000 ? `${Math.round(m)} m` : `${(m / 1000).toFixed(1)} km`;

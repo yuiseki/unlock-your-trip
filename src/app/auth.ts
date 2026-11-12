@@ -24,6 +24,12 @@ export async function whoAmI(token: string, fetcher: typeof fetch = fetch): Prom
   return { kind: "unreachable" };
 }
 
+// Someone's public page (/u/<id>/...) is read-only for everyone, its owner
+// included; writing happens on one's own pages.
+export function writesHere(publicUser: string | null, writer: string | null): boolean {
+  return !publicUser && !!writer;
+}
+
 // Items for Clerk's user button menu (customMenuItems), before the page
 // adds their icons. The record is public, so it is a plain link.
 export function userMenuItems(writer: string | null): { label: string; href: string }[] {

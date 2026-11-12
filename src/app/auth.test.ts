@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { userMenuItems, whoAmI } from "./auth";
+import { userMenuItems, whoAmI, writesHere } from "./auth";
 
 const reply = (status: number, body: unknown) => async () => new Response(JSON.stringify(body), { status });
 
@@ -30,5 +30,14 @@ describe("userMenuItems", () => {
 
   it("adds nothing before the writer is known", () => {
     expect(userMenuItems(null)).toEqual([]);
+  });
+});
+
+describe("writesHere", () => {
+  it("lets a known writer write on their own pages only, never on someone's public page", () => {
+    expect(writesHere(null, "yuiseki")).toBe(true);
+    expect(writesHere(null, null)).toBe(false);
+    expect(writesHere("yuiseki", "yuiseki")).toBe(false);
+    expect(writesHere("someone", "yuiseki")).toBe(false);
   });
 });

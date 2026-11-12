@@ -4,8 +4,8 @@ import type { LngLat } from "../shared/geo";
 import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
 import { createSyncer } from "./syncer";
-import { loadClerk, userMenuItems, whoAmI, type Clerk } from "./auth";
-import { creditText, formatDistance, listView, shownAchievements, type ListItem } from "./view";
+import { loadClerk, userMenuItems, whoAmI, writesHere, type Clerk } from "./auth";
+import { creditText, formatDistance, headerLine, listView, shownAchievements, type ListItem } from "./view";
 import { REGIONS, isPast, regionById, route } from "../shared/regions";
 import { tripSummaries } from "./trips";
 import { gyazoImage, gyazoPage, photosByAchievement, type Photo } from "./photos";
@@ -59,7 +59,7 @@ let clerk: Clerk | null = null;
 const CLERK_WRITER = "clerkWriter";
 const clerkWriter = () => localStorage.getItem(CLERK_WRITER);
 const writerName = () => (token ? user : clerkWriter());
-let canWrite = !publicUser && !!writerName();
+let canWrite = writesHere(publicUser, writerName());
 
 async function currentToken(): Promise<string | null> {
   if (token) return token;
@@ -83,7 +83,7 @@ function render() {
   const view = listView(catalogue.achievements, unlocks, here, catalogue.categories, prefs.stars, { lookingBack, showLocked });
   const p = view.progress;
   $("progress").textContent =
-    `${p.unlocked} / ${p.total} 解除` + (p.pending ? `(未送信 ${p.pending})` : "") + (publicUser ? ` ・ ${publicUser} さんの記録` : "");
+    headerLine({ whose: publicUser, unlocked: p.unlocked, total: p.total, pending: p.pending });
   const list = $("list");
   const itemLi = ({ achievement: a, unlocked, unlockedAt, meters, stars }: ListItem) => {
       const li = document.createElement("li");
@@ -244,7 +244,7 @@ async function showTrips() {
   );
   const ids = (id: string) => catalogues.find((c) => c?.region === id)?.achievements.map((a) => a.id) ?? null;
   const trips = tripSummaries(REGIONS, ids, done, publicUser);
-  $("progress").textContent = publicUser ? `${publicUser} さんの旅` : `旅 ${trips.length} 件`;
+  $("progress").textContent = headerLine({ whose: publicUser, trips: trips.length });
   const list = $("list");
   list.className = "trips";
   list.replaceChildren(
@@ -257,8 +257,7 @@ async function showTrips() {
       return li;
     }),
   );
-  showMyPage();
-  if (!publicUser && !token) void setupClerk();
+  showAccountSlot();
   // Each card's map is drawn when the card comes into view; the map library
   // is loaded only then, as on a trip's map tab.
   const byId = new Map(catalogues.filter((c): c is Catalogue => !!c).map((c) => [c.region, c]));
@@ -279,7 +278,12 @@ async function main() {
   if (where.kind === "trips") return showTrips();
   if (where.kind !== "region") {
     document.querySelector("nav")?.remove();
-    $("progress").innerHTML = `この旅はまだありません。<a href="${home}">旅の一覧へ</a>`;
+    $("progress").textContent = publicUser ? `${publicUser} さんの旅` : "旅";
+    const li = document.createElement("li");
+    li.className = "empty";
+    li.innerHTML = `この旅は、まだ一覧にありません。<a href="${home}">旅の一覧</a>から選んでください。`;
+    $("list").replaceChildren(li);
+    showAccountSlot();
     return;
   }
   catalogue = await (await fetch(`/catalogues/${where.region}.json`)).json();
@@ -353,7 +357,7 @@ async function main() {
   void trySync();
   if ("serviceWorker" in navigator && import.meta.env.PROD) void navigator.serviceWorker.register("/sw.js");
   showWriter();
-  if (!publicUser && !token) void setupClerk();
+  showAccountSlot();
 }
 
 function showWriter() {
@@ -371,26 +375,30 @@ function setWriter(name: string | null) {
   if (name) localStorage.setItem(CLERK_WRITER, name);
   else localStorage.removeItem(CLERK_WRITER);
   const was = canWrite;
-  canWrite = !!writerName();
+  canWrite = writesHere(publicUser, writerName());
   showWriter();
   if (canWrite && !was && catalogue) {
     watchLocation();
     void trySync();
   }
   if (canWrite !== was) render();
-  showMyPage();
 }
 
-// The way from the top page to the writer's own public page, for a device
-// on a setup link. With Clerk it is in the user button's menu instead.
-function showMyPage() {
-  const a = $<HTMLAnchorElement>("my-page");
-  const name = where.kind === "trips" && !publicUser && token ? writerName() : null;
-  a.hidden = !name;
-  if (name) {
-    a.href = `/u/${name}/`;
-    a.textContent = `自分の公開ページ (/u/${name}/) を開く`;
+// The right end of the header, the same on every page: Clerk's sign-in
+// button or user button (whose menu has 自分の実績). A device on a setup link
+// has no Clerk, so the slot holds a button of the same look leading there.
+function showAccountSlot() {
+  if (!token) {
+    void setupClerk();
+    return;
   }
+  const name = writerName();
+  if (!name) return;
+  const a = document.createElement("a");
+  a.className = "signin";
+  a.href = `/u/${name}/`;
+  a.textContent = "自分の実績";
+  $("account").replaceChildren(a);
 }
 
 // A device with a setup link never needs Clerk. Every other writer's page

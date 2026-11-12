@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { listView, shownAchievements } from "./view";
+import { headerLine, listView, shownAchievements } from "./view";
 import type { Achievement } from "../shared/catalogue";
 
 const a = (id: string, lngLat: [number, number], category = "sightseeing"): Achievement => ({ id, title: id, kind: "visit", category, place: id, lngLat });
@@ -149,5 +149,15 @@ describe("shownAchievements", () => {
     expect(shownAchievements(achievements, done, { lookingBack: true, showLocked: false }).map((a) => a.id)).toEqual(["mid"]);
     expect(shownAchievements(achievements, done, { lookingBack: true, showLocked: true })).toHaveLength(3);
     expect(shownAchievements(achievements, done, {})).toHaveLength(3);
+  });
+});
+
+describe("headerLine", () => {
+  it("says whose, what and how many, in that order, on every page", () => {
+    expect(headerLine({ whose: null, trips: 6 })).toBe("旅 6 件");
+    expect(headerLine({ whose: "yuiseki", trips: 6 })).toBe("yuiseki さんの旅 ・ 6 件");
+    expect(headerLine({ whose: null, unlocked: 40, total: 54, pending: 0 })).toBe("40 / 54 解除");
+    expect(headerLine({ whose: null, unlocked: 40, total: 54, pending: 2 })).toBe("40 / 54 解除 (未送信 2)");
+    expect(headerLine({ whose: "yuiseki", unlocked: 40, total: 54, pending: 0 })).toBe("yuiseki さんの記録 ・ 40 / 54 解除");
   });
 });
