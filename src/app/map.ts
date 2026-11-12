@@ -4,6 +4,7 @@ import { GeolocateControl, Map as MapLibreMap, NavigationControl, Popup, setWork
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { FeatureCollection, Point } from "geojson";
+import type { Catalogue } from "../shared/catalogue";
 import { boundsOf, type LngLat } from "../shared/geo";
 import { japaneseLabels } from "./style";
 
@@ -23,8 +24,49 @@ type Context = {
 
 const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
+// One fetch of the style for every map on the page (the trips page has one per card).
+let styleOnce: Promise<StyleSpecification> | null = null;
+const loadStyle = () =>
+  (styleOnce ??= fetch(STYLE_URL)
+    .then((r) => r.json())
+    .then((s) => japaneseLabels(s as StyleSpecification)));
+
+const UNLOCKED = "#16a34a"; // green
+const TO_DO = "#d97706"; // amber
+
+// A trip's card on the top page: its achievements on a map that only shows,
+// so a tap anywhere on the card opens the trip.
+export async function createMiniMap(container: HTMLElement, c: Catalogue, done: Set<string>): Promise<void> {
+  const pts = c.achievements.map((a) => a.lngLat);
+  const map = new MapLibreMap({
+    container,
+    style: await loadStyle(),
+    bounds: boundsOf(pts, null) ?? c.bbox,
+    fitBoundsOptions: { padding: 16, maxZoom: 15 },
+    interactive: false,
+    // MapLibre's attribution opens over a small map and, with no interaction,
+    // can never be closed; the card prints the same credit in its corner.
+    attributionControl: false,
+  });
+  map.on("load", () => {
+    map.addSource("achievements", {
+      type: "geojson",
+      data: {
+        type: "FeatureCollection",
+        features: c.achievements.map((a) => ({ type: "Feature", geometry: { type: "Point", coordinates: a.lngLat }, properties: { unlocked: done.has(a.id) } })),
+      },
+    });
+    map.addLayer({
+      id: "achievements",
+      type: "circle",
+      source: "achievements",
+      paint: { "circle-radius": 4, "circle-color": ["case", ["get", "unlocked"], UNLOCKED, TO_DO], "circle-stroke-width": 1, "circle-stroke-color": "#ffffff" },
+    });
+  });
+}
+
 export async function createMap(ctx: Context): Promise<MapView> {
-  const style = japaneseLabels((await (await fetch(STYLE_URL)).json()) as StyleSpecification);
+  const style = await loadStyle();
   const points = () => ctx.achievements().features.map((f) => (f.geometry as Point).coordinates as LngLat);
   const PADDING = { top: 60, bottom: 60, left: 40, right: 60 };
   const map = new MapLibreMap({
@@ -53,7 +95,7 @@ export async function createMap(ctx: Context): Promise<MapView> {
       source: "achievements",
       paint: {
         "circle-radius": 9,
-        "circle-color": ["case", ["get", "unlocked"], "#16a34a", "#d97706"], // unlocked: green, still to do: amber
+        "circle-color": ["case", ["get", "unlocked"], UNLOCKED, TO_DO],
         "circle-stroke-width": 2,
         "circle-stroke-color": "#ffffff",
       },

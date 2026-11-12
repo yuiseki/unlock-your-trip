@@ -79,6 +79,7 @@ function time(iso: string) {
 }
 
 function render() {
+  if (!catalogue) return; // the trips page draws itself
   const view = listView(catalogue.achievements, unlocks, here, catalogue.categories, prefs.stars, { lookingBack, showLocked });
   const p = view.progress;
   $("progress").textContent =
@@ -154,7 +155,8 @@ async function unlock(id: string) {
 }
 
 let syncer: ReturnType<typeof createSyncer>;
-const trySync = () => syncer.trySync();
+// The trips page has no syncer: it only reads.
+const trySync = () => syncer?.trySync() ?? Promise.resolve();
 
 function syncText(): string {
   const st = syncer?.status();
@@ -243,15 +245,32 @@ async function showTrips() {
   const ids = (id: string) => catalogues.find((c) => c?.region === id)?.achievements.map((a) => a.id) ?? null;
   const trips = tripSummaries(REGIONS, ids, done, publicUser);
   $("progress").textContent = publicUser ? `${publicUser} さんの旅` : `旅 ${trips.length} 件`;
-  $("list").replaceChildren(
+  const list = $("list");
+  list.className = "trips";
+  list.replaceChildren(
     ...trips.map((t) => {
       const li = document.createElement("li");
       li.className = "trip";
-      const count = t.total === null ? "" : `${t.unlocked} / ${t.total} 解除`;
-      li.innerHTML = `<a href="${t.href}"><span class="name">${escape(t.name)}</span><span class="year">${t.year}</span><span class="count">${count}</span></a>`;
+      const count = t.total === null ? "" : `<span class="count">✅ ${t.unlocked} / 目標 ${t.total} 実績</span>`;
+      li.innerHTML = `<a href="${t.href}"><div class="mini-wrap"><div class="mini" data-region="${t.id}"></div><span class="attr">© OpenFreeMap © OpenMapTiles © OpenStreetMap contributors</span></div>
+        <div class="info"><span class="name">${escape(t.name)}</span><span class="year">${t.year}</span>${count}</div></a>`;
       return li;
     }),
   );
+  showMyPage();
+  if (!publicUser && !token) void setupClerk();
+  // Each card's map is drawn when the card comes into view; the map library
+  // is loaded only then, as on a trip's map tab.
+  const byId = new Map(catalogues.filter((c): c is Catalogue => !!c).map((c) => [c.region, c]));
+  const seen = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      seen.unobserve(e.target);
+      const c = byId.get((e.target as HTMLElement).dataset.region!);
+      if (c) void import("./map").then(({ createMiniMap }) => createMiniMap(e.target as HTMLElement, c, done));
+    }
+  });
+  list.querySelectorAll<HTMLElement>(".mini").forEach((el) => seen.observe(el));
   if ("serviceWorker" in navigator && import.meta.env.PROD) void navigator.serviceWorker.register("/sw.js");
 }
 
@@ -354,11 +373,23 @@ function setWriter(name: string | null) {
   const was = canWrite;
   canWrite = !!writerName();
   showWriter();
-  if (canWrite && !was) {
+  if (canWrite && !was && catalogue) {
     watchLocation();
     void trySync();
   }
   if (canWrite !== was) render();
+  showMyPage();
+}
+
+// The way from the top page to the writer's own public page.
+function showMyPage() {
+  const a = $<HTMLAnchorElement>("my-page");
+  const name = where.kind === "trips" && !publicUser ? writerName() : null;
+  a.hidden = !name;
+  if (name) {
+    a.href = `/u/${name}/`;
+    a.textContent = `自分の公開ページ (/u/${name}/) を開く`;
+  }
 }
 
 // A device with a setup link never needs Clerk. Every other writer's page
