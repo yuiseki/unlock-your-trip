@@ -118,6 +118,17 @@ async function getUnlocks(user: string, env: Env): Promise<Response> {
   return json({ user, unlocks: await unlocksOf(env, user) });
 }
 
+async function getPhotos(user: string, env: Env): Promise<Response> {
+  const exists = await env.DB.prepare("SELECT 1 FROM users WHERE id = ?").bind(user).first();
+  if (!exists) return json({ error: "not found" }, 404);
+  const { results } = await env.DB.prepare(
+    "SELECT achievement_id AS achievementId, gyazo_id AS gyazoId, taken_at AS takenAt FROM photos WHERE user_id = ? ORDER BY achievement_id, taken_at",
+  )
+    .bind(user)
+    .all();
+  return json({ user, photos: results });
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
@@ -130,6 +141,8 @@ export default {
     if (url.pathname === "/api/config" && request.method === "GET") return json({ clerkPublishableKey: env.CLERK_PUBLISHABLE_KEY });
     const m = /^\/api\/users\/([a-z0-9-]{1,40})\/unlocks$/.exec(url.pathname);
     if (m && request.method === "GET") return getUnlocks(m[1], env);
+    const ph = /^\/api\/users\/([a-z0-9-]{1,40})\/photos$/.exec(url.pathname);
+    if (ph && request.method === "GET") return getPhotos(ph[1], env);
     return json({ error: "not found" }, 404);
   },
 } satisfies ExportedHandler<Env>;

@@ -17,6 +17,7 @@ async function post(body: unknown, token: string | null = TOKEN) {
 beforeEach(async () => {
   await env.DB.prepare("DELETE FROM unlocks").run();
   await env.DB.prepare("DELETE FROM stars").run();
+  await env.DB.prepare("DELETE FROM photos").run();
   await env.DB.prepare("DELETE FROM users").run();
   await env.DB.prepare("INSERT INTO users (id, token_sha256, created_at) VALUES (?, ?, ?)")
     .bind("yuiseki", await sha256Hex(TOKEN), "2026-11-10T00:00:00.000Z")
@@ -171,5 +172,27 @@ describe("POST /api/stars", () => {
   it("is not part of the public page", async () => {
     await send([{ achievementId: "suito", stars: 4, updatedAt: T1 }]);
     expect(await (await SELF.fetch(`${BASE}/api/users/yuiseki/unlocks`)).json()).not.toHaveProperty("stars");
+  });
+});
+
+describe("GET /api/users/:id/photos", () => {
+  const G1 = "a".repeat(32);
+  const G2 = "b".repeat(32);
+  it("is readable by anyone, oldest photo first per achievement", async () => {
+    const add = env.DB.prepare("INSERT INTO photos (user_id, achievement_id, gyazo_id, taken_at) VALUES ('yuiseki', ?, ?, ?)");
+    await env.DB.batch([add.bind("okinawa-soba", G2, "2023-03-12T05:00:00.000Z"), add.bind("okinawa-soba", G1, "2023-03-12T04:00:00.000Z")]);
+    const res = await SELF.fetch(`${BASE}/api/users/yuiseki/photos`);
+    expect(res.status).toBe(200);
+    expect(await res.json()).toEqual({
+      user: "yuiseki",
+      photos: [
+        { achievementId: "okinawa-soba", gyazoId: G1, takenAt: "2023-03-12T04:00:00.000Z" },
+        { achievementId: "okinawa-soba", gyazoId: G2, takenAt: "2023-03-12T05:00:00.000Z" },
+      ],
+    });
+  });
+
+  it("returns 404 for someone who does not exist", async () => {
+    expect((await SELF.fetch(`${BASE}/api/users/nobody/photos`)).status).toBe(404);
   });
 });

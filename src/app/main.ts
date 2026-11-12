@@ -8,6 +8,7 @@ import { loadClerk, whoAmI, type Clerk } from "./auth";
 import { creditText, formatDistance, listView, type ListItem } from "./view";
 import { REGIONS, route } from "../shared/regions";
 import { tripSummaries } from "./trips";
+import { gyazoImage, gyazoPage, photosByAchievement, type Photo } from "./photos";
 import { loadPrefs, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
 
 const KIND_LABEL = { visit: "行く", eat: "食べる", ride: "乗る", see: "見る", do: "する" } as const;
@@ -35,6 +36,7 @@ const home = publicUser ? `/u/${publicUser}/` : "/";
 let catalogue: Catalogue;
 let store: Store;
 let unlocks: Unlock[] = [];
+let photos = new Map<string, string[]>();
 let here: LngLat | null = null;
 let mapView: MapView | null = null;
 let prefs: Prefs = { stars: {}, collapsed: [], starTimes: {}, starPending: [] };
@@ -73,10 +75,18 @@ function render() {
   const itemLi = ({ achievement: a, unlocked, unlockedAt, meters, stars }: ListItem) => {
       const li = document.createElement("li");
       li.className = unlocked ? "item unlocked" : "item";
-      const img = a.image ? `<img src="${a.image.url}" alt="" loading="lazy" width="72" height="72">` : `<div class="noimg">${KIND_LABEL[a.kind]}</div>`;
-      const credit = a.image
-        ? `<a class="credit" href="${a.image.page}" target="_blank" rel="noopener">${escape(creditText(a.image))}</a>`
-        : "";
+      // The person's own photo, when there is one, stands in for the stock one.
+      const own = photos.get(a.id);
+      const img = own
+        ? `<a class="own" href="${gyazoPage(own[0])}" target="_blank" rel="noopener"><img src="${gyazoImage(own[0], 200)}" alt="" loading="lazy" width="72" height="72"></a>`
+        : a.image
+          ? `<img src="${a.image.url}" alt="" loading="lazy" width="72" height="72">`
+          : `<div class="noimg">${KIND_LABEL[a.kind]}</div>`;
+      const credit = own
+        ? `<a class="credit" href="${gyazoPage(own[0])}" target="_blank" rel="noopener">📷 ${escape(photoOwner() ?? "")}の写真${own.length > 1 ? ` ほか ${own.length - 1} 枚` : ""} (Gyazo)</a>`
+        : a.image
+          ? `<a class="credit" href="${a.image.page}" target="_blank" rel="noopener">${escape(creditText(a.image))}</a>`
+          : "";
       const action = unlocked
         ? `<span class="done">🏆 ${time(unlockedAt!)}</span>`
         : canWrite
@@ -182,6 +192,18 @@ function watchLocation() {
   );
 }
 
+// Whose photos to show: the public page's person, or the writer.
+const photoOwner = () => publicUser ?? (canWrite ? writerName() : null);
+
+async function loadPhotos() {
+  const who = photoOwner();
+  if (!who) return;
+  const res = await fetch(`/api/users/${who}/photos`).catch(() => null);
+  if (!res?.ok) return;
+  photos = photosByAchievement(((await res.json()) as { photos: Photo[] }).photos);
+  render();
+}
+
 async function showTrips() {
   document.querySelector("nav")?.remove();
   store = await openStore(publicUser ? `public-${publicUser}` : "unlock-your-trip");
@@ -234,6 +256,7 @@ async function main() {
     if (res.ok) await store.mergeRemote(((await res.json()) as { unlocks: Unlock[] }).unlocks);
   }
   unlocks = await store.all();
+  void loadPhotos();
   prefs = loadPrefs(localStorage, catalogue.region);
   syncer = createSyncer({
     canWrite: () => canWrite,

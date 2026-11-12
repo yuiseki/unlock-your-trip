@@ -26,6 +26,7 @@
 - 「解除！」を押すと、端末に先に記録し、つながればサーバーに送る。電波が弱い場所でも記録は消えず、あとで送り直す。同じ実績は二重に記録されず、最初に解除した時刻が残る
 - 地域は URL の `/<国>/<地方>/<場所>/` で決まる (大阪は `/japan/kansai/osaka/`、表は `src/shared/regions.ts`)。前からの `/` と `/u/<id>` は、画面の中で大阪の URL に置き換える
 - 解除の記録は `/u/<id>/japan/kansai/osaka/` で誰でも見られる
+- 自分が撮った写真 (Gyazo) を実績に結びつけると、名所の写真の代わりにその写真が出て、Gyazo のページにつながる。D1 には Gyazo の画像 ID だけを置き、画面は Gyazo の縮小版 (`i.gyazo.com/thumb/<幅>/<ID>-jpg.jpg`) を読む。撮影地点などのメタデータは出さない
 
 まだ無いもの: 解除の瞬間の演出、撮った写真への差し替え、他の人が自分で登録すること。
 
@@ -56,6 +57,7 @@ API:
 - `GET /api/users/<id>/unlocks`: 誰でも読める
 - `POST /api/stars`: 同じ `Authorization` で `{ "stars": [{ "achievementId", "stars", "updatedAt" }] }` を送る。実績ごとに新しいほうを残し、その人の全部の星を返す。星は公開ページには出さない
 - `GET /api/me`: 同じ `Authorization` で、記録先の ID を返す。Clerk にログインしていても登録が無ければ 403 と Clerk の ID を返す
+- `GET /api/users/<id>/photos`: その人が実績に結びつけた Gyazo の写真。誰でも読める
 - `GET /api/config`: 画面が使う Clerk の公開キー
 
 合言葉は D1 に SHA-256 のハッシュだけを置く。Clerk のトークンは、署名、発行元、期限、`azp` (トークンを求めたオリジン) を確かめる。許すオリジンは `wrangler.jsonc` の `CLERK_AUTHORIZED_PARTIES` にある。
