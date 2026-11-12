@@ -12,8 +12,12 @@
   // the parties are the origins allowed to ask Clerk for a session token.
   "vars": {
     "CLERK_PUBLISHABLE_KEY": "pk_test_bm92ZWwtd2FydGhvZy0zMTAuY2xlcmsuYWNjb3VudHMuZGV2JA",
-    "CLERK_AUTHORIZED_PARTIES": "https://unlock-your-trip.yuiseki.workers.dev,http://127.0.0.1:8820,http://localhost:8820,http://localhost:5173"
+    "CLERK_AUTHORIZED_PARTIES": "https://trip.yuiseki.net,https://unlock-your-trip.yuiseki.workers.dev,http://127.0.0.1:8820,http://localhost:8820,http://localhost:5173"
   },
+  // The app's own address. workers.dev stays on beside it (it is turned off
+  // by default once routes are set), since installed apps still open it.
+  "routes": [{ "pattern": "trip.yuiseki.net", "custom_domain": true }],
+  "workers_dev": true,
   "d1_databases": [
     { "binding": "DB", "database_name": "unlock-your-trip", "database_id": "1a03f1c2-33be-4f6d-a89c-ae1ae41aeaf4", "migrations_dir": "migrations" }
   ]

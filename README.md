@@ -2,9 +2,9 @@
 
 旅先で、定番の名所や体験を自分から取りに行く行動を、ゲームの「実績解除！」として支える Web アプリ (PWA)。解除すべき実績が簡潔な一覧になっていて、眺めて、状況に応じて好きに選んで解除する。
 
-- 公開中: https://unlock-your-trip.yuiseki.workers.dev
-- 大阪: https://unlock-your-trip.yuiseki.workers.dev/japan/kansai/osaka/
-- 公開の記録の例: https://unlock-your-trip.yuiseki.workers.dev/u/yuiseki/japan/kansai/osaka/
+- 公開中: https://trip.yuiseki.net (Workers のカスタムドメイン。前からの https://unlock-your-trip.yuiseki.workers.dev も同じものを返す)
+- 大阪: https://trip.yuiseki.net/japan/kansai/osaka/
+- 公開の記録の例: https://trip.yuiseki.net/u/yuiseki/japan/kansai/osaka/
 
 旅は 6 つ。トップページ (`/`) が旅の一覧で、旅ごとに `/<国>/<地方>/<都道府県>/` のページがある。
 
@@ -38,7 +38,7 @@
 
 一度登録を確かめた端末は、電波が無くても解除を端末に記録でき、つながったときに送る。
 
-ログインの代わりに、管理者から受け取った設定用のリンク (`https://unlock-your-trip.yuiseki.workers.dev/#token=...&user=...`) を端末で 1 回開いてもよい。合言葉はその端末の中にだけ保存され、アドレス欄からは消える。設定用のリンクは合言葉そのものなので、人に見せない。
+ログインの代わりに、管理者から受け取った設定用のリンク (`https://trip.yuiseki.net/#token=...&user=...`) を端末で 1 回開いてもよい。合言葉はその端末の中にだけ保存され、アドレス欄からは消える。設定用のリンクは合言葉そのものなので、人に見せない。
 
 ## 作り
 
@@ -109,7 +109,7 @@ npx wrangler d1 execute unlock-your-trip --remote --command \
 T=$(openssl rand -hex 24)
 npx wrangler d1 execute unlock-your-trip --remote --command \
   "INSERT INTO users (id, token_sha256, created_at) VALUES ('<id>', '$(printf %s "$T" | sha256sum | cut -d' ' -f1)', '$(date -u +%FT%TZ)')"
-echo "https://unlock-your-trip.yuiseki.workers.dev/#token=$T&user=<id>"
+echo "https://trip.yuiseki.net/#token=$T&user=<id>"
 ```
 
 ## 出典
