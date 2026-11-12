@@ -186,8 +186,11 @@ function watchLocation() {
 async function showTrips() {
   document.querySelector("nav")?.remove();
   store = await openStore(publicUser ? `public-${publicUser}` : "unlock-your-trip");
-  if (publicUser) {
-    const res = await fetch(`/api/users/${publicUser}/unlocks`).catch(() => null);
+  // A writer's own unlocks are public too, so the top page can count every
+  // device's unlocks without signing in first.
+  const whose = publicUser ?? (canWrite ? writerName() : null);
+  if (whose) {
+    const res = await fetch(`/api/users/${whose}/unlocks`).catch(() => null);
     if (res?.ok) await store.mergeRemote(((await res.json()) as { unlocks: Unlock[] }).unlocks);
   }
   const done = new Set((await store.all()).map((u) => u.achievementId));
