@@ -42,7 +42,8 @@ export async function createMiniMap(container: HTMLElement, c: Catalogue, done: 
     container,
     style: await loadStyle(),
     bounds: boundsOf(pts, null) ?? c.bbox,
-    fitBoundsOptions: { padding: 16, maxZoom: 15 },
+    // Room around the points, so the ones at the edge are not cut by the card.
+    fitBoundsOptions: { padding: { top: 28, bottom: 28, left: 36, right: 36 }, maxZoom: 15 },
     interactive: false,
     // MapLibre's attribution opens over a small map and, with no interaction,
     // can never be closed; the card prints the same credit in its corner.
