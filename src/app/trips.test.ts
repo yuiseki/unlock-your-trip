@@ -3,9 +3,9 @@ import type { Region } from "../shared/regions";
 import { tripSummaries } from "./trips";
 
 const regions: Region[] = [
-  { id: "osaka", path: ["japan", "kansai", "osaka"], name: "大阪", year: 2026, bbox: [0, 0, 1, 1] },
-  { id: "okinawa", path: ["japan", "kyushu", "okinawa"], name: "沖縄", year: 2023, bbox: [0, 0, 1, 1] },
-  { id: "hiroshima", path: ["japan", "chugoku", "hiroshima"], name: "広島", year: 2026, bbox: [0, 0, 1, 1] },
+  { id: "osaka", path: ["japan", "kansai", "osaka"], name: "大阪", year: 2026, end: "2026-11-14", bbox: [0, 0, 1, 1] },
+  { id: "okinawa", path: ["japan", "kyushu", "okinawa"], name: "沖縄", year: 2023, end: "2023-03-17", bbox: [0, 0, 1, 1] },
+  { id: "hiroshima", path: ["japan", "chugoku", "hiroshima"], name: "広島", year: 2026, end: "2026-09-03", bbox: [0, 0, 1, 1] },
 ];
 const ids = { osaka: ["osaka-castle", "tsutenkaku"], okinawa: ["okinawa-a", "okinawa-b", "okinawa-c"], hiroshima: ["hiroshima-a"] };
 

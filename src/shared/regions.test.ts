@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { REGIONS, regionPath, route } from "./regions";
+import { REGIONS, isPast, regionPath, route } from "./regions";
 
 describe("route", () => {
   it("opens a region by its place in the world", () => {
@@ -67,5 +67,13 @@ describe("every region", () => {
         if (r.id !== "osaka") expect(a.id.startsWith(`${r.id}-`), a.id).toBe(true);
       }
     }
+  });
+});
+
+describe("isPast", () => {
+  const osaka = REGIONS.find((r) => r.id === "osaka")!;
+  it("is a past trip from the day after it ended", () => {
+    expect(isPast(osaka, new Date("2026-11-14T23:00:00+09:00"))).toBe(false);
+    expect(isPast(osaka, new Date("2026-11-15T00:00:00+09:00"))).toBe(true);
   });
 });

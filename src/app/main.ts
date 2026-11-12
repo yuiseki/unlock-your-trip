@@ -6,7 +6,7 @@ import { openStore, type Store, type Unlock } from "./store";
 import { createSyncer } from "./syncer";
 import { loadClerk, whoAmI, type Clerk } from "./auth";
 import { creditText, formatDistance, listView, type ListItem } from "./view";
-import { REGIONS, route } from "../shared/regions";
+import { REGIONS, isPast, regionById, route } from "../shared/regions";
 import { tripSummaries } from "./trips";
 import { gyazoImage, gyazoPage, photosByAchievement, type Photo } from "./photos";
 import { loadPrefs, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
@@ -37,6 +37,18 @@ let catalogue: Catalogue;
 let store: Store;
 let unlocks: Unlock[] = [];
 let photos = new Map<string, string[]>();
+// A trip that is over opens on what was unlocked; the rest is one tick away.
+// The tick is remembered per trip on this device.
+let lookingBack = false;
+let showLocked = true;
+const showLockedKey = () => `showLocked:${catalogue.region}`;
+function readShowLocked(): boolean {
+  try {
+    return localStorage.getItem(showLockedKey()) === "1";
+  } catch {
+    return false;
+  }
+}
 let here: LngLat | null = null;
 let mapView: MapView | null = null;
 let prefs: Prefs = { stars: {}, collapsed: [], starTimes: {}, starPending: [] };
@@ -67,7 +79,7 @@ function time(iso: string) {
 }
 
 function render() {
-  const view = listView(catalogue.achievements, unlocks, here, catalogue.categories, prefs.stars);
+  const view = listView(catalogue.achievements, unlocks, here, catalogue.categories, prefs.stars, { lookingBack, showLocked });
   const p = view.progress;
   $("progress").textContent =
     `${p.unlocked} / ${p.total} 解除` + (p.pending ? `(未送信 ${p.pending})` : "") + (publicUser ? ` ・ ${publicUser} さんの記録` : "");
@@ -258,6 +270,23 @@ async function main() {
   unlocks = await store.all();
   void loadPhotos();
   prefs = loadPrefs(localStorage, catalogue.region);
+  const region = regionById(catalogue.region);
+  lookingBack = !!region && isPast(region);
+  if (lookingBack) {
+    showLocked = readShowLocked();
+    const box = $<HTMLInputElement>("show-locked");
+    box.checked = showLocked;
+    box.closest("label")!.hidden = false;
+    box.addEventListener("change", () => {
+      showLocked = box.checked;
+      try {
+        localStorage.setItem(showLockedKey(), showLocked ? "1" : "0");
+      } catch {
+        // the choice then lasts only for this visit
+      }
+      render();
+    });
+  }
   syncer = createSyncer({
     canWrite: () => canWrite,
     getToken: currentToken,

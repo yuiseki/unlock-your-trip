@@ -115,3 +115,30 @@ describe("creditText", () => {
     expect(creditText({ url: "", page: "p", credit: "", license: "Public domain" })).toBe("写真: 作者不明 / Public domain");
   });
 });
+
+describe("listView looking back at a past trip", () => {
+  const u = (achievementId: string, unlockedAt: string) => ({ achievementId, unlockedAt, synced: true });
+  const done = [u("mid", "2026-11-13T05:00:00.000Z"), u("far", "2026-11-13T03:00:00.000Z")];
+
+  it("shows only the unlocked achievements, in the order they were unlocked", () => {
+    const v = listView(achievements, done, here, [{ id: "sightseeing", label: "観光" }], {}, { lookingBack: true, showLocked: false });
+    expect(v.groups[0].items.map((i) => i.achievement.id)).toEqual(["far", "mid"]);
+    expect(v.groups[0]).toMatchObject({ unlocked: 2, total: 3 });
+  });
+
+  it("shows the rest below them when asked", () => {
+    const v = listView(achievements, done, here, [{ id: "sightseeing", label: "観光" }], {}, { lookingBack: true, showLocked: true });
+    expect(v.groups[0].items.map((i) => [i.achievement.id, i.unlocked])).toEqual([
+      ["far", true],
+      ["mid", true],
+      ["near", false],
+    ]);
+  });
+
+  it("leaves out a category with nothing unlocked unless the rest is shown", () => {
+    const cats = [{ id: "sightseeing", label: "観光" }, { id: "food", label: "食" }];
+    const list = [...achievements, a("soba", [135.5, 34.67], "food")];
+    expect(listView(list, done, null, cats, {}, { lookingBack: true, showLocked: false }).groups.map((g) => g.category)).toEqual(["sightseeing"]);
+    expect(listView(list, done, null, cats, {}, { lookingBack: true, showLocked: true }).groups.map((g) => g.category)).toEqual(["sightseeing", "food"]);
+  });
+});

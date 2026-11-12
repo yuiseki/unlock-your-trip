@@ -7,15 +7,21 @@ export type ListItem = { achievement: Achievement; unlocked: boolean; unlockedAt
 export type Group = { category: string; label: string; items: ListItem[]; unlocked: number; total: number };
 export type ListView = { items: ListItem[]; groups: Group[]; progress: { unlocked: number; total: number; pending: number } };
 
-// What the list shows: the achievements still to unlock come first, then
-// the ones the person starred higher, then the nearest (or, without a
-// position, the catalogue order).
+// lookingBack: a trip that is over. What was done matters then, so the
+// unlocked achievements come first in the order they were unlocked, and the
+// rest is shown only on request.
+export type ListOptions = { lookingBack?: boolean; showLocked?: boolean };
+
+// What the list shows during a trip: the achievements still to unlock come
+// first, then the ones the person starred higher, then the nearest (or,
+// without a position, the catalogue order).
 export function listView(
   achievements: Achievement[],
   unlocks: Unlock[],
   here: LngLat | null,
   categories: Category[] = [],
   stars: Record<string, number> = {},
+  { lookingBack = false, showLocked = true }: ListOptions = {},
 ): ListView {
   const byId = new Map(unlocks.map((u) => [u.achievementId, u]));
   const items: ListItem[] = achievements.map((achievement) => {
@@ -29,12 +35,16 @@ export function listView(
     };
   });
   // Array.prototype.sort is stable, so equal items keep the catalogue order.
-  items.sort((x, y) => Number(x.unlocked) - Number(y.unlocked) || y.stars - x.stars || (here ? x.meters! - y.meters! : 0));
+  const byStarsThenNear = (x: ListItem, y: ListItem) => y.stars - x.stars || (here ? x.meters! - y.meters! : 0);
+  if (lookingBack)
+    items.sort((x, y) => Number(y.unlocked) - Number(x.unlocked) || (x.unlocked ? x.unlockedAt!.localeCompare(y.unlockedAt!) : byStarsThenNear(x, y)));
+  else items.sort((x, y) => Number(x.unlocked) - Number(y.unlocked) || byStarsThenNear(x, y));
+  const shown = (i: ListItem) => !lookingBack || showLocked || i.unlocked;
   const mine = achievements.filter((a) => byId.has(a.id)).map((a) => byId.get(a.id)!);
   const groups = categories.map(({ id, label }) => {
     const inGroup = items.filter((i) => i.achievement.category === id);
-    return { category: id, label, items: inGroup, unlocked: inGroup.filter((i) => i.unlocked).length, total: inGroup.length };
-  }).filter((g) => g.total > 0);
+    return { category: id, label, items: inGroup.filter(shown), unlocked: inGroup.filter((i) => i.unlocked).length, total: inGroup.length };
+  }).filter((g) => g.items.length > 0);
   return {
     items,
     groups,
