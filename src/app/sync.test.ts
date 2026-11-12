@@ -1,7 +1,7 @@
 import "fake-indexeddb/auto";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { openStore, type Store } from "./store";
-import { sync } from "./sync";
+import { sync, syncStars } from "./sync";
 
 let store: Store;
 let n = 0;
@@ -52,5 +52,23 @@ describe("sync", () => {
     const fetcher = vi.fn();
     expect(await sync(store, { token: null, fetcher })).toEqual({ ok: false, error: "no token" });
     expect(fetcher).not.toHaveBeenCalled();
+  });
+});
+
+describe("syncStars", () => {
+  const star = { achievementId: "suito", stars: 4, updatedAt: "2026-11-12T01:00:00.000Z" };
+
+  it("sends the unsent ratings and returns what the server has", async () => {
+    const fetcher = vi.fn(async () => ok({ user: "yuiseki", stars: [star] }));
+    expect(await syncStars([star], { token: "t", fetcher })).toEqual({ ok: true, remote: [star] });
+    const [url, init] = fetcher.mock.calls[0] as unknown as [string, RequestInit];
+    expect(url).toBe("/api/stars");
+    expect((init.headers as Record<string, string>).authorization).toBe("Bearer t");
+    expect(JSON.parse(init.body as string)).toEqual({ stars: [star] });
+  });
+
+  it("reports failure without throwing", async () => {
+    expect(await syncStars([star], { token: "t", fetcher: async () => { throw new TypeError("offline"); } })).toMatchObject({ ok: false });
+    expect(await syncStars([star], { token: "t", fetcher: async () => new Response("{}", { status: 403 }) })).toEqual({ ok: false, error: "HTTP 403" });
   });
 });

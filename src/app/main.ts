@@ -3,10 +3,10 @@ import type { Achievement, Catalogue } from "../shared/catalogue";
 import type { LngLat } from "../shared/geo";
 import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
-import { sync } from "./sync";
+import { sync, syncStars } from "./sync";
 import { loadClerk, whoAmI, type Clerk } from "./auth";
 import { creditText, formatDistance, listView, type ListItem } from "./view";
-import { loadPrefs, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
+import { applyStarSync, loadPrefs, pendingStars, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
 
 const REGION = "osaka";
 const KIND_LABEL = { visit: "行く", eat: "食べる", ride: "乗る", see: "見る", do: "する" } as const;
@@ -33,7 +33,7 @@ let store: Store;
 let unlocks: Unlock[] = [];
 let here: LngLat | null = null;
 let mapView: MapView | null = null;
-let prefs: Prefs = { stars: {}, collapsed: [] };
+let prefs: Prefs = { stars: {}, collapsed: [], starTimes: {}, starPending: [] };
 const { token, user } = readCredentials();
 let clerk: Clerk | null = null;
 // Set once the server has said this Clerk account may write, so the device
@@ -120,15 +120,37 @@ async function unlock(id: string) {
   void trySync();
 }
 
-async function trySync() {
+// One sync at a time; a request made meanwhile runs once the current one ends.
+let syncing: Promise<void> | null = null;
+let again = false;
+function trySync(): Promise<void> {
+  if (syncing) {
+    again = true;
+    return syncing;
+  }
+  syncing = (async () => {
+    do {
+      again = false;
+      await syncOnce();
+    } while (again);
+  })().finally(() => (syncing = null));
+  return syncing;
+}
+
+async function syncOnce() {
   if (!canWrite) return;
   const t = await currentToken();
   if (!t) return;
   const r = await sync(store, { token: t });
-  if (r.ok) {
-    unlocks = await store.all();
-    render();
+  if (r.ok) unlocks = await store.all();
+  const sent = pendingStars(prefs);
+  const s = await syncStars(sent, { token: t });
+  if (s.ok) {
+    const known = new Set(catalogue.achievements.map((a) => a.id));
+    prefs = applyStarSync(prefs, sent, s.remote.filter((x) => known.has(x.achievementId)));
+    savePrefs(localStorage, catalogue.region, prefs);
   }
+  if (r.ok || s.ok) render();
 }
 
 function geojson() {
@@ -197,7 +219,10 @@ async function main() {
     const b = t.closest<HTMLButtonElement>("button.unlock");
     if (b?.dataset.id) void unlock(b.dataset.id);
     const star = t.closest<HTMLButtonElement>("button.star");
-    if (star?.dataset.id) updatePrefs(setStars(prefs, star.dataset.id, Number(star.dataset.stars)));
+    if (star?.dataset.id) {
+      updatePrefs(setStars(prefs, star.dataset.id, Number(star.dataset.stars)));
+      void trySync();
+    }
     const fold = t.closest<HTMLButtonElement>("button.fold");
     if (fold?.dataset.cat) updatePrefs(toggleCollapsed(prefs, fold.dataset.cat));
   });
@@ -207,6 +232,8 @@ async function main() {
   // are never asked for their position.
   if (canWrite) watchLocation();
   window.addEventListener("online", () => void trySync());
+  // Coming back to the app (switching from another device) picks up changes.
+  document.addEventListener("visibilitychange", () => document.visibilityState === "visible" && void trySync());
   setInterval(() => void trySync(), 60_000);
   void trySync();
   if ("serviceWorker" in navigator && import.meta.env.PROD) void navigator.serviceWorker.register("/sw.js");

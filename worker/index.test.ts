@@ -16,6 +16,7 @@ async function post(body: unknown, token: string | null = TOKEN) {
 
 beforeEach(async () => {
   await env.DB.prepare("DELETE FROM unlocks").run();
+  await env.DB.prepare("DELETE FROM stars").run();
   await env.DB.prepare("DELETE FROM users").run();
   await env.DB.prepare("INSERT INTO users (id, token_sha256, created_at) VALUES (?, ?, ?)")
     .bind("yuiseki", await sha256Hex(TOKEN), "2026-11-10T00:00:00.000Z")
@@ -127,5 +128,48 @@ describe("Clerk sign-in", () => {
   it("still accepts the setup-link token", async () => {
     expect(await (await me(TOKEN)).json()).toEqual({ user: "yuiseki" });
     expect((await post({ unlocks: [] })).status).toBe(200);
+  });
+});
+
+describe("POST /api/stars", () => {
+  const T1 = "2026-11-10T01:00:00.000Z";
+  const T2 = "2026-11-10T02:00:00.000Z";
+  const send = (stars: unknown, token: string | null = TOKEN) =>
+    SELF.fetch(`${BASE}/api/stars`, {
+      method: "POST",
+      headers: { "content-type": "application/json", ...(token ? { authorization: `Bearer ${token}` } : {}) },
+      body: JSON.stringify({ stars }),
+    });
+  const starsOf = async (res: Response) => ((await res.json()) as { stars: unknown[] }).stars;
+
+  it("needs a writer", async () => {
+    expect((await send([], null)).status).toBe(401);
+  });
+
+  it("keeps the newest rating per achievement and returns them all", async () => {
+    await send([{ achievementId: "suito", stars: 2, updatedAt: T1 }]);
+    await send([{ achievementId: "suito", stars: 5, updatedAt: T2 }, { achievementId: "tekijuku", stars: 4, updatedAt: T1 }]);
+    const res = await send([{ achievementId: "suito", stars: 1, updatedAt: T1 }]);
+    expect(await starsOf(res)).toEqual([
+      { achievementId: "suito", stars: 5, updatedAt: T2 },
+      { achievementId: "tekijuku", stars: 4, updatedAt: T1 },
+    ]);
+  });
+
+  it("does not let a clock in the future win forever", async () => {
+    const res = await send([{ achievementId: "suito", stars: 5, updatedAt: "2099-01-01T00:00:00.000Z" }]);
+    const [row] = (await starsOf(res)) as { updatedAt: string }[];
+    expect(Date.parse(row.updatedAt)).toBeLessThanOrEqual(Date.now());
+  });
+
+  it("rejects malformed ratings without saving any of the batch", async () => {
+    const res = await send([{ achievementId: "suito", stars: 4, updatedAt: T1 }, { achievementId: "suito", stars: 9, updatedAt: T1 }]);
+    expect(res.status).toBe(400);
+    expect(await env.DB.prepare("SELECT count(*) AS n FROM stars").first<{ n: number }>()).toEqual({ n: 0 });
+  });
+
+  it("is not part of the public page", async () => {
+    await send([{ achievementId: "suito", stars: 4, updatedAt: T1 }]);
+    expect(await (await SELF.fetch(`${BASE}/api/users/yuiseki/unlocks`)).json()).not.toHaveProperty("stars");
   });
 });

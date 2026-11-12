@@ -77,6 +77,41 @@ async function postUnlocks(request: Request, env: Env): Promise<Response> {
   return json({ user, unlocks: await unlocksOf(env, user) });
 }
 
+type Star = { achievementId: string; stars: number; updatedAt: string };
+
+function parseStars(body: unknown): Star[] | null {
+  const list = (body as { stars?: unknown })?.stars;
+  if (!Array.isArray(list) || list.length > MAX_BATCH) return null;
+  for (const s of list) {
+    if (typeof s?.achievementId !== "string" || !SLUG.test(s.achievementId)) return null;
+    if (!Number.isInteger(s?.stars) || s.stars < 1 || s.stars > 5) return null;
+    if (typeof s?.updatedAt !== "string" || !ISO.test(s.updatedAt) || Number.isNaN(Date.parse(s.updatedAt))) return null;
+  }
+  // A device whose clock runs ahead would otherwise win every later change.
+  const now = Date.now();
+  return list.map((s) => ({ achievementId: s.achievementId, stars: s.stars, updatedAt: new Date(Math.min(Date.parse(s.updatedAt), now)).toISOString() }));
+}
+
+// Ratings are the writer's own and are not on the public page.
+async function postStars(request: Request, env: Env): Promise<Response> {
+  const w = await writer(request, env);
+  if ("error" in w) return w.error;
+  const stars = parseStars(await request.json().catch(() => null));
+  if (!stars) return json({ error: "bad request" }, 400);
+  const stmt = env.DB.prepare(
+    `INSERT INTO stars (user_id, achievement_id, stars, updated_at) VALUES (?, ?, ?, ?)
+     ON CONFLICT (user_id, achievement_id) DO UPDATE SET stars = excluded.stars, updated_at = excluded.updated_at
+     WHERE excluded.updated_at > stars.updated_at`,
+  );
+  if (stars.length) await env.DB.batch(stars.map((s) => stmt.bind(w.user, s.achievementId, s.stars, s.updatedAt)));
+  const { results } = await env.DB.prepare(
+    "SELECT achievement_id AS achievementId, stars, updated_at AS updatedAt FROM stars WHERE user_id = ? ORDER BY achievement_id",
+  )
+    .bind(w.user)
+    .all<Star>();
+  return json({ user: w.user, stars: results });
+}
+
 async function getUnlocks(user: string, env: Env): Promise<Response> {
   const exists = await env.DB.prepare("SELECT 1 FROM users WHERE id = ?").bind(user).first();
   if (!exists) return json({ error: "not found" }, 404);
@@ -87,6 +122,7 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname === "/api/unlocks" && request.method === "POST") return postUnlocks(request, env);
+    if (url.pathname === "/api/stars" && request.method === "POST") return postStars(request, env);
     if (url.pathname === "/api/me" && request.method === "GET") {
       const w = await writer(request, env);
       return "error" in w ? w.error : json({ user: w.user });

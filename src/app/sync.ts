@@ -1,3 +1,4 @@
+import type { StarRating } from "./prefs";
 import type { RemoteUnlock, Store } from "./store";
 
 export type SyncResult = { ok: true; sent: number } | { ok: false; error: string };
@@ -24,4 +25,27 @@ export async function sync(store: Store, { token, fetcher = fetch, endpoint = "/
   await store.markSynced(pending.map((u) => u.achievementId));
   await store.mergeRemote(body.unlocks);
   return { ok: true, sent: pending.length };
+}
+
+export type StarSyncResult = { ok: true; remote: StarRating[] } | { ok: false; error: string };
+
+// Sends the ratings not yet sent (possibly none, which just reads) and
+// returns every rating the server keeps for this writer.
+export async function syncStars(
+  pending: StarRating[],
+  { token, fetcher = fetch, endpoint = "/api/stars" }: Options,
+): Promise<StarSyncResult> {
+  if (!token) return { ok: false, error: "no token" };
+  let res: Response;
+  try {
+    res = await fetcher(endpoint, {
+      method: "POST",
+      headers: { "content-type": "application/json", authorization: `Bearer ${token}` },
+      body: JSON.stringify({ stars: pending }),
+    });
+  } catch (e) {
+    return { ok: false, error: String(e) };
+  }
+  if (!res.ok) return { ok: false, error: `HTTP ${res.status}` };
+  return { ok: true, remote: ((await res.json()) as { stars: StarRating[] }).stars };
 }
