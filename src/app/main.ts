@@ -3,10 +3,10 @@ import type { Achievement, Catalogue } from "../shared/catalogue";
 import type { LngLat } from "../shared/geo";
 import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
-import { sync, syncStars } from "./sync";
+import { createSyncer } from "./syncer";
 import { loadClerk, whoAmI, type Clerk } from "./auth";
 import { creditText, formatDistance, listView, type ListItem } from "./view";
-import { applyStarSync, loadPrefs, pendingStars, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
+import { loadPrefs, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
 
 const REGION = "osaka";
 const KIND_LABEL = { visit: "行く", eat: "食べる", ride: "乗る", see: "見る", do: "する" } as const;
@@ -96,6 +96,7 @@ function render() {
       return collapsed ? [head] : [head, ...g.items.map(itemLi)];
     }),
   );
+  $("sync-status").textContent = syncText();
   mapView?.update();
 }
 
@@ -120,37 +121,15 @@ async function unlock(id: string) {
   void trySync();
 }
 
-// One sync at a time; a request made meanwhile runs once the current one ends.
-let syncing: Promise<void> | null = null;
-let again = false;
-function trySync(): Promise<void> {
-  if (syncing) {
-    again = true;
-    return syncing;
-  }
-  syncing = (async () => {
-    do {
-      again = false;
-      await syncOnce();
-    } while (again);
-  })().finally(() => (syncing = null));
-  return syncing;
-}
+let syncer: ReturnType<typeof createSyncer>;
+const trySync = () => syncer.trySync();
 
-async function syncOnce() {
-  if (!canWrite) return;
-  const t = await currentToken();
-  if (!t) return;
-  const r = await sync(store, { token: t });
-  if (r.ok) unlocks = await store.all();
-  const sent = pendingStars(prefs);
-  const s = await syncStars(sent, { token: t });
-  if (s.ok) {
-    const known = new Set(catalogue.achievements.map((a) => a.id));
-    prefs = applyStarSync(prefs, sent, s.remote.filter((x) => known.has(x.achievementId)));
-    savePrefs(localStorage, catalogue.region, prefs);
-  }
-  if (r.ok || s.ok) render();
+function syncText(): string {
+  const st = syncer?.status();
+  if (!canWrite || publicUser || !st) return "";
+  if (st.ok) return `同期済み ${time(st.at)}`;
+  if (st.error === "no token") return "同期: ログインの確認を待っています";
+  return `同期できませんでした (${st.error})。未送信の記録は端末に残っています`;
 }
 
 function geojson() {
@@ -213,6 +192,21 @@ async function main() {
   }
   unlocks = await store.all();
   prefs = loadPrefs(localStorage, catalogue.region);
+  syncer = createSyncer({
+    canWrite: () => canWrite,
+    getToken: currentToken,
+    store,
+    getPrefs: () => prefs,
+    setPrefs: (p) => {
+      prefs = p;
+      savePrefs(localStorage, catalogue.region, prefs);
+    },
+    knownIds: () => new Set(catalogue.achievements.map((a) => a.id)),
+    onChange: async () => {
+      unlocks = await store.all();
+      render();
+    },
+  });
   render();
   document.addEventListener("click", (ev) => {
     const t = ev.target as HTMLElement;
@@ -277,6 +271,8 @@ async function setupClerk() {
   }
   clerk.addListener(() => void showAccount());
   await showAccount();
+  // The sync at start ran before Clerk had a token; run it now that it does.
+  void trySync();
 }
 
 let shownUser: string | null | undefined;
