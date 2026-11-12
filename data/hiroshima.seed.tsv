@@ -1,0 +1,61 @@
+id	title	kind	category	place	search
+hiroshima-hypocenter	島病院前の爆心地説明の碑を見る	see	sightseeing	島病院	広島原子爆弾 爆心地説明の碑
+hiroshima-genbaku-dome	原爆ドームを自分の目で見る	see	sightseeing	原爆ドーム	原爆ドーム
+hiroshima-peace-park	平和記念公園から現在の広島の街を見る	see	sightseeing	平和記念公園	広島平和記念公園
+hiroshima-peace-museum	広島平和記念資料館を見る	visit	sightseeing	広島平和記念資料館	広島平和記念資料館
+hiroshima-peace-memorial-hall	国立広島原爆死没者追悼平和祈念館に行く	visit	sightseeing	国立広島原爆死没者追悼平和祈念館	国立広島原爆死没者追悼平和祈念館
+hiroshima-memorial-mound	原爆供養塔に参る	visit	sightseeing	原爆供養塔	原爆供養塔
+hiroshima-children-peace	原爆の子の像を見る	see	sightseeing	原爆の子の像	原爆の子の像
+hiroshima-cenotaph	原爆死没者慰霊碑と平和の灯に参る	visit	sightseeing	原爆死没者慰霊碑	広島平和都市記念碑
+hiroshima-orizuru-tower	おりづるタワーから原爆ドームを見る	see	sightseeing	おりづるタワー	おりづるタワー
+hiroshima-castle	広島城の外観と二の丸を見る	see	sightseeing	広島城	広島城
+hiroshima-shukkeien	縮景園を歩く	visit	sightseeing	縮景園	縮景園
+hiroshima-prefectural-art-museum	広島県立美術館に行く	visit	sightseeing	広島県立美術館	広島県立美術館
+hiroshima-museum-of-art	ひろしま美術館に行く	visit	sightseeing	ひろしま美術館	ひろしま美術館
+hiroshima-miyajima-deer	宮島で鹿を見る	see	sightseeing	宮島	厳島
+hiroshima-itsukushima-torii	厳島神社の大鳥居を見る	see	sightseeing	厳島神社	厳島神社
+hiroshima-daishoin	大聖院に参る	visit	sightseeing	大聖院	大聖院
+hiroshima-misen	弥山に登る	visit	sightseeing	弥山	弥山
+hiroshima-hiroden	広島電鉄の路面電車に乗る	ride	transport	広島駅電停	広島駅
+hiroshima-tram-city	路面電車で広島市内を移動する	ride	transport	紙屋町東電停	紙屋町東
+hiroshima-tram-genbaku-dome	路面電車で原爆ドームに行く	ride	transport	原爆ドーム前電停	原爆ドーム前
+hiroshima-tram-port	路面電車で広島港に行く	ride	transport	広島港電停	広島港
+hiroshima-ferry-miyajima	フェリーで宮島に行く	ride	transport	宮島口桟橋	宮島口
+hiroshima-okonomiyaki	広島でお好み焼きを食べる	eat	food	お好み村	お好み村
+hiroshima-okonomiyaki-teppan	お好み焼きを鉄板の前で食べる	eat	food	お好み村	お好み村
+hiroshima-okonomiyaki-compare	お好み焼きを複数店舗で食べ比べる	eat	food	お好み村	お好み村
+hiroshima-oyster	広島で牡蠣を食べる	eat	food	かき船 かなわ	かなわ
+hiroshima-oyster-grilled	焼き牡蠣を食べる	eat	food	宮島表参道商店街	宮島表参道商店街
+hiroshima-oyster-raw	生牡蠣を食べる	eat	food	かき船 かなわ	かなわ
+hiroshima-oyster-fry	カキフライを食べる	eat	food	広島駅	広島駅
+hiroshima-oyster-dotenabe	牡蠣の土手鍋を食べる	eat	food	かき船 かなわ	かなわ
+hiroshima-oyster-rice	牡蠣飯を食べる	eat	food	宮島表参道商店街	宮島表参道商店街
+hiroshima-anagomeshi	宮島であなごめしを食べる	eat	food	宮島表参道商店街	宮島表参道商店街
+hiroshima-shirunashi-tantanmen	広島で汁なし担担麺を食べる	eat	food	キング軒	キング軒
+hiroshima-tsukemen	広島つけ麺を食べる	eat	food	ばくだん屋	ばくだん屋
+hiroshima-koune	コウネを食べる	eat	food	流川	流川
+hiroshima-koiwashi	小イワシを食べる	eat	food	流川	流川
+hiroshima-gansu	がんすを食べる	eat	food	広島駅	広島駅
+hiroshima-horumon-tempura	ホルモン天ぷらを食べる	eat	food	流川	流川
+hiroshima-momiji-manju	もみじ饅頭を食べる	eat	food	宮島表参道商店街	宮島表参道商店街
+hiroshima-age-momiji	宮島で揚げもみじを食べる	eat	food	紅葉堂	紅葉堂
+hiroshima-lemon	広島レモンを味わう	eat	food	広島駅	広島駅
+hiroshima-sake	広島の日本酒を飲む	eat	food	流川	流川
+hiroshima-arrive	広島に到着する	do	foss4g	広島駅	広島駅
+hiroshima-slides-done	登壇スライドを完成させる	do	foss4g	広島国際会議場	広島国際会議場
+hiroshima-foss4g	FOSS4G Hiroshima 2026 に参加する	do	foss4g	広島国際会議場	広島国際会議場
+hiroshima-rcc	RCC文化センターに行く	visit	foss4g	RCC文化センター	RCC文化センター
+hiroshima-icc	広島国際会議場に行く	visit	foss4g	広島国際会議場	広島国際会議場
+hiroshima-ice-breaker	HIROSHIMA GATE PARK の Ice Breaker に参加する	do	foss4g	HIROSHIMA GATE PARK	HIROSHIMA GATE PARK
+hiroshima-gala-dinner	グランドプリンスホテル広島の Gala Dinner に参加する	do	foss4g	グランドプリンスホテル広島	グランドプリンスホテル広島
+hiroshima-talk	「Building an AI Map Agent with Self-Hosted Planet-Scale OSM and Tiny LLMs」で登壇する	do	foss4g	広島国際会議場	広島国際会議場
+hiroshima-trident-demo	TRIDENT を広島でライブデモする	do	foss4g	広島国際会議場	広島国際会議場
+hiroshima-community-sprint	Community Sprint に参加する	do	foss4g	JMSアステールプラザ	JMSアステールプラザ
+hiroshima-astel-plaza	JMSアステールプラザに行く	visit	foss4g	JMSアステールプラザ	JMSアステールプラザ
+hiroshima-okonomiyaki-with-foss4g	海外の FOSS4G 参加者とお好み焼きを食べる	eat	foss4g	お好み村	お好み村
+hiroshima-tram-with-foss4g	海外の FOSS4G 参加者と路面電車に乗る	ride	foss4g	原爆ドーム前電停	原爆ドーム前
+hiroshima-osm-view	広島について OpenStreetMap を見る	do	foss4g	広島駅	広島駅
+hiroshima-osm-edit	広島で OpenStreetMap を編集する	do	foss4g	広島国際会議場	広島国際会議場
+hiroshima-tiny-map	広島の地物を自分の Tiny Map で見る	do	foss4g	広島国際会議場	広島国際会議場
+hiroshima-geoai-search	広島を自分の GeoAI で検索する	do	foss4g	広島国際会議場	広島国際会議場
+hiroshima-cafes-query	「Show me cafes in Hiroshima City」を実際に広島で実行する	do	foss4g	広島国際会議場	広島国際会議場

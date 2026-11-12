@@ -1,0 +1,372 @@
+{
+ "region": "kobe",
+ "name": "神戸",
+ "bbox": [
+  134.95,
+  34.55,
+  135.35,
+  34.9
+ ],
+ "categories": [
+  {
+   "id": "port-exotic",
+   "label": "港と異国"
+  },
+  {
+   "id": "museum",
+   "label": "博物館"
+  },
+  {
+   "id": "kobe-food",
+   "label": "神戸の食と酒"
+  },
+  {
+   "id": "kobe-bread",
+   "label": "神戸パン"
+  }
+ ],
+ "achievements": [
+  {
+   "id": "kobe-city-museum",
+   "title": "神戸市立博物館に行く",
+   "kind": "visit",
+   "category": "museum",
+   "place": "神戸市立博物館",
+   "lngLat": [
+    135.19306,
+    34.68722
+   ],
+   "source": "wikidata:Q3330666",
+   "wikidata": "Q3330666",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Kobe_city_museum02s3200.jpg/960px-Kobe_city_museum02s3200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Kobe_city_museum02s3200.jpg",
+    "credit": "663highland",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "kobe-overseas-chinese-museum",
+   "title": "神戸華僑歴史博物館に行く",
+   "kind": "visit",
+   "category": "museum",
+   "place": "神戸華僑歴史博物館",
+   "lngLat": [
+    135.18717,
+    34.68598
+   ],
+   "source": "wikidata:Q17219226",
+   "wikidata": "Q17219226",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Kobe_Overseas_Chinese_History_Museum.JPG/960px-Kobe_Overseas_Chinese_History_Museum.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Kobe_Overseas_Chinese_History_Museum.JPG",
+    "credit": "Abasaa",
+    "license": "Public domain"
+   }
+  },
+  {
+   "id": "kobe-tombodama-museum",
+   "title": "KOBEとんぼ玉ミュージアムに行く",
+   "kind": "visit",
+   "category": "museum",
+   "place": "KOBEとんぼ玉ミュージアム",
+   "lngLat": [
+    135.19372,
+    34.68861
+   ],
+   "source": "wikidata:Q11228060",
+   "wikidata": "Q11228060",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Nihon_Building_Kobe02n4272.jpg/960px-Nihon_Building_Kobe02n4272.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Nihon_Building_Kobe02n4272.jpg",
+    "credit": "663highland",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "kobe-port-tower",
+   "title": "神戸ポートタワーに上る",
+   "kind": "visit",
+   "category": "port-exotic",
+   "place": "神戸ポートタワー",
+   "lngLat": [
+    135.18667,
+    34.6825
+   ],
+   "source": "wikidata:Q798766",
+   "wikidata": "Q798766",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Kobe_port_tower12s3200.jpg/960px-Kobe_port_tower12s3200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Kobe_port_tower12s3200.jpg",
+    "credit": "663highland",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "kobe-kitano-ijinkan",
+   "title": "北野異人館街を歩く",
+   "kind": "visit",
+   "category": "port-exotic",
+   "place": "北野異人館街",
+   "lngLat": [
+    135.18973,
+    34.70126
+   ],
+   "source": "osm:node/4409743589"
+  },
+  {
+   "id": "kobe-beef",
+   "title": "神戸牛を食べる",
+   "kind": "eat",
+   "category": "kobe-food",
+   "place": "元町",
+   "lngLat": [
+    135.18739,
+    34.68956
+   ],
+   "source": "wikidata:Q59520",
+   "wikidata": "Q59520",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Kobe_motomachi_st01s3200.jpg/960px-Kobe_motomachi_st01s3200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Kobe_motomachi_st01s3200.jpg",
+    "credit": "663highland",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "kobe-sobameshi",
+   "title": "そばめしを食べる",
+   "kind": "eat",
+   "category": "kobe-food",
+   "place": "新長田",
+   "lngLat": [
+    135.14361,
+    34.65667
+   ],
+   "source": "wikidata:Q1066558",
+   "wikidata": "Q1066558",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/JR_Shin-Nagata_Station.jpg/960px-JR_Shin-Nagata_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:JR_Shin-Nagata_Station.jpg",
+    "credit": "KishujiRapid",
+    "license": "CC BY 4.0"
+   }
+  },
+  {
+   "id": "kobe-bokkake",
+   "title": "ぼっかけを食べる",
+   "kind": "eat",
+   "category": "kobe-food",
+   "place": "新長田",
+   "lngLat": [
+    135.14361,
+    34.65667
+   ],
+   "source": "wikidata:Q1066558",
+   "wikidata": "Q1066558",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/JR_Shin-Nagata_Station.jpg/960px-JR_Shin-Nagata_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:JR_Shin-Nagata_Station.jpg",
+    "credit": "KishujiRapid",
+    "license": "CC BY 4.0"
+   }
+  },
+  {
+   "id": "kobe-bokkake-sobameshi",
+   "title": "ぼっかけそばめしを食べる",
+   "kind": "eat",
+   "category": "kobe-food",
+   "place": "新長田",
+   "lngLat": [
+    135.14361,
+    34.65667
+   ],
+   "source": "wikidata:Q1066558",
+   "wikidata": "Q1066558",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/JR_Shin-Nagata_Station.jpg/960px-JR_Shin-Nagata_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:JR_Shin-Nagata_Station.jpg",
+    "credit": "KishujiRapid",
+    "license": "CC BY 4.0"
+   }
+  },
+  {
+   "id": "kobe-akashiyaki",
+   "title": "明石焼きを食べる",
+   "kind": "eat",
+   "category": "kobe-food",
+   "place": "魚の棚商店街",
+   "lngLat": [
+    134.99213,
+    34.647
+   ],
+   "source": "osm:way/171592947",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Uonotana_shopping_arcade%2C_Akashi%2C_Hyogo_2021-11-28.jpg/960px-Uonotana_shopping_arcade%2C_Akashi%2C_Hyogo_2021-11-28.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Uonotana_shopping_arcade,_Akashi,_Hyogo_2021-11-28.jpg",
+    "credit": "m-louis .®",
+    "license": "CC BY-SA 2.0"
+   }
+  },
+  {
+   "id": "kobe-miso-gyoza",
+   "title": "味噌だれ餃子を食べる",
+   "kind": "eat",
+   "category": "kobe-food",
+   "place": "元祖ぎょうざ苑",
+   "lngLat": [
+    135.18766,
+    34.68787
+   ],
+   "source": "osm:node/6325451890"
+  },
+  {
+   "id": "kobe-croquette",
+   "title": "神戸コロッケを食べる",
+   "kind": "eat",
+   "category": "kobe-food",
+   "place": "神戸コロッケ (南京町)",
+   "lngLat": [
+    135.18722,
+    34.68791
+   ],
+   "source": "osm:node/10600380921"
+  },
+  {
+   "id": "kobe-bread",
+   "title": "神戸パンを食べ歩く",
+   "kind": "eat",
+   "category": "kobe-bread",
+   "place": "元町",
+   "lngLat": [
+    135.18739,
+    34.68956
+   ],
+   "source": "wikidata:Q59520",
+   "wikidata": "Q59520",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Kobe_motomachi_st01s3200.jpg/960px-Kobe_motomachi_st01s3200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Kobe_motomachi_st01s3200.jpg",
+    "credit": "663highland",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "kobe-comme-chinois",
+   "title": "ブランジェリー・コム・シノワでパンを買う",
+   "kind": "eat",
+   "category": "kobe-bread",
+   "place": "ブランジェリー・コム・シノワ",
+   "lngLat": [
+    135.19651,
+    34.69242
+   ],
+   "source": "osm:node/2022388381"
+  },
+  {
+   "id": "kobe-sa-masse",
+   "title": "サ・マーシュでパンを買う",
+   "kind": "eat",
+   "category": "kobe-bread",
+   "place": "北野 (サ・マーシュの位置は未確認)",
+   "lngLat": [
+    135.18973,
+    34.70126
+   ],
+   "source": "osm:node/4409743589"
+  },
+  {
+   "id": "kobe-isuzu-motomachi",
+   "title": "イスズベーカリー元町店でパンを買う",
+   "kind": "eat",
+   "category": "kobe-bread",
+   "place": "イスズベーカリー 元町店",
+   "lngLat": [
+    135.18909,
+    34.68956
+   ],
+   "source": "osm:node/5350221328"
+  },
+  {
+   "id": "kobe-recolte",
+   "title": "ブーランジェリー・レコルトでパンを買う",
+   "kind": "eat",
+   "category": "kobe-bread",
+   "place": "ブーランジェリー・レコルト",
+   "lngLat": [
+    135.16224,
+    34.67124
+   ],
+   "source": "osm:node/4191601743"
+  },
+  {
+   "id": "kobe-nankinmachi",
+   "title": "南京町を歩く",
+   "kind": "visit",
+   "category": "port-exotic",
+   "place": "南京町",
+   "lngLat": [
+    135.18806,
+    34.68806
+   ],
+   "source": "wikidata:Q912392",
+   "wikidata": "Q912392",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Kobe-Nankinmachi.JPG/960px-Kobe-Nankinmachi.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Kobe-Nankinmachi.JPG",
+    "credit": "Tomomarusan",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "kobe-be-kobe",
+   "title": "BE KOBE のモニュメントを見る",
+   "kind": "see",
+   "category": "port-exotic",
+   "place": "メリケンパーク",
+   "lngLat": [
+    135.18925,
+    34.68128
+   ],
+   "source": "wikidata:Q116944054",
+   "wikidata": "Q116944054",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/BE_KOBE_20190216.jpg/960px-BE_KOBE_20190216.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:BE_KOBE_20190216.jpg",
+    "credit": "Kazuyuki N",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kobe-oyster-bar",
+   "title": "オイスターバーで牡蠣を食べる",
+   "kind": "eat",
+   "category": "kobe-food",
+   "place": "The Oyster Bar Kobe",
+   "lngLat": [
+    135.18451,
+    34.68041
+   ],
+   "source": "osm:node/12627937463"
+  },
+  {
+   "id": "kobe-oriental-hotel-bar",
+   "title": "メリケンパークオリエンタルホテルのバーで飲む",
+   "kind": "eat",
+   "category": "kobe-food",
+   "place": "神戸メリケンパークオリエンタルホテル",
+   "lngLat": [
+    135.18861,
+    34.68
+   ],
+   "source": "wikidata:Q5363534",
+   "wikidata": "Q5363534",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Kobe_Meriken_Park_Oriental_Hotel_20201114.jpg/960px-Kobe_Meriken_Park_Oriental_Hotel_20201114.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Kobe_Meriken_Park_Oriental_Hotel_20201114.jpg",
+    "credit": "KishujiRapid",
+    "license": "CC BY-SA 4.0"
+   }
+  }
+ ]
+}

@@ -1,0 +1,1080 @@
+{
+ "region": "hiroshima",
+ "name": "広島",
+ "bbox": [
+  132.2,
+  34.2,
+  132.6,
+  34.55
+ ],
+ "categories": [
+  {
+   "id": "sightseeing",
+   "label": "観光"
+  },
+  {
+   "id": "transport",
+   "label": "交通"
+  },
+  {
+   "id": "food",
+   "label": "食"
+  },
+  {
+   "id": "foss4g",
+   "label": "FOSS4G"
+  }
+ ],
+ "achievements": [
+  {
+   "id": "hiroshima-hypocenter",
+   "title": "島病院前の爆心地説明の碑を見る",
+   "kind": "see",
+   "category": "sightseeing",
+   "place": "島病院",
+   "lngLat": [
+    132.45469,
+    34.39479
+   ],
+   "source": "osm:node/2479173821"
+  },
+  {
+   "id": "hiroshima-genbaku-dome",
+   "title": "原爆ドームを自分の目で見る",
+   "kind": "see",
+   "category": "sightseeing",
+   "place": "原爆ドーム",
+   "lngLat": [
+    132.45361,
+    34.39556
+   ],
+   "source": "wikidata:Q231140",
+   "wikidata": "Q231140",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Genbaku_Dome04-r.JPG/960px-Genbaku_Dome04-r.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Genbaku_Dome04-r.JPG",
+    "credit": "Oilstreet",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "hiroshima-peace-park",
+   "title": "平和記念公園から現在の広島の街を見る",
+   "kind": "see",
+   "category": "sightseeing",
+   "place": "平和記念公園",
+   "lngLat": [
+    132.45237,
+    34.39273
+   ],
+   "source": "wikidata:Q1207208",
+   "wikidata": "Q1207208",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/20181111_Hiroshima_Memorial_Cenotaph-1.jpg/960px-20181111_Hiroshima_Memorial_Cenotaph-1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:20181111_Hiroshima_Memorial_Cenotaph-1.jpg",
+    "credit": "Balon Greyjoy",
+    "license": "CC0"
+   }
+  },
+  {
+   "id": "hiroshima-peace-museum",
+   "title": "広島平和記念資料館を見る",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "広島平和記念資料館",
+   "lngLat": [
+    132.45306,
+    34.39147
+   ],
+   "source": "wikidata:Q1200076",
+   "wikidata": "Q1200076",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Hiroshima_Peace_Memorial_Museum_2008_01.JPG/960px-Hiroshima_Peace_Memorial_Museum_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_Peace_Memorial_Museum_2008_01.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-peace-memorial-hall",
+   "title": "国立広島原爆死没者追悼平和祈念館に行く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "国立広島原爆死没者追悼平和祈念館",
+   "lngLat": [
+    132.45349,
+    34.39333
+   ],
+   "source": "wikidata:Q114067",
+   "wikidata": "Q114067",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Hiroshima_National_Peace_Memorial_Hall_for_the_Atomic_Bomb_Victims_2008_01.JPG/960px-Hiroshima_National_Peace_Memorial_Hall_for_the_Atomic_Bomb_Victims_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_National_Peace_Memorial_Hall_for_the_Atomic_Bomb_Victims_2008_01.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-memorial-mound",
+   "title": "原爆供養塔に参る",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "原爆供養塔",
+   "lngLat": [
+    132.45194,
+    34.39472
+   ],
+   "source": "wikidata:Q11409709",
+   "wikidata": "Q11409709",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/HiroshimaGembakuKuyoTo7093.jpg/960px-HiroshimaGembakuKuyoTo7093.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:HiroshimaGembakuKuyoTo7093.jpg",
+    "credit": "No machine-readable author provided. Fg2 assumed (based on copyright claims).",
+    "license": "Public domain"
+   }
+  },
+  {
+   "id": "hiroshima-children-peace",
+   "title": "原爆の子の像を見る",
+   "kind": "see",
+   "category": "sightseeing",
+   "place": "原爆の子の像",
+   "lngLat": [
+    132.45278,
+    34.39414
+   ],
+   "source": "wikidata:Q114718",
+   "wikidata": "Q114718",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Hiroshima_Peace_Memorial_park_hdsr_Childrens_for_peace_S5_08.jpg/960px-Hiroshima_Peace_Memorial_park_hdsr_Childrens_for_peace_S5_08.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_Peace_Memorial_park_hdsr_Childrens_for_peace_S5_08.jpg",
+    "credit": "Hyppolyte de Saint-Rambert",
+    "license": "CC BY 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-cenotaph",
+   "title": "原爆死没者慰霊碑と平和の灯に参る",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "原爆死没者慰霊碑",
+   "lngLat": [
+    132.45256,
+    34.39297
+   ],
+   "source": "wikidata:Q11409718",
+   "wikidata": "Q11409718",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Cenotaph_for_A-Bomb_Victims.JPG/960px-Cenotaph_for_A-Bomb_Victims.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Cenotaph_for_A-Bomb_Victims.JPG",
+    "credit": "j. Miers - User: (WT-shared) Jtesla16 at wts wikivoyage",
+    "license": "Public domain"
+   }
+  },
+  {
+   "id": "hiroshima-orizuru-tower",
+   "title": "おりづるタワーから原爆ドームを見る",
+   "kind": "see",
+   "category": "sightseeing",
+   "place": "おりづるタワー",
+   "lngLat": [
+    132.45469,
+    34.39569
+   ],
+   "source": "wikidata:Q27103981",
+   "wikidata": "Q27103981",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Hiroshima_MAZDA_Otemachi_BLD_20160717-1.JPG/960px-Hiroshima_MAZDA_Otemachi_BLD_20160717-1.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_MAZDA_Otemachi_BLD_20160717-1.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-castle",
+   "title": "広島城の外観と二の丸を見る",
+   "kind": "see",
+   "category": "sightseeing",
+   "place": "広島城",
+   "lngLat": [
+    132.45903,
+    34.40275
+   ],
+   "source": "wikidata:Q41977",
+   "wikidata": "Q41977",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/HiroshimaCastle.jpg/960px-HiroshimaCastle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:HiroshimaCastle.jpg",
+    "credit": "",
+    "license": "Public domain"
+   }
+  },
+  {
+   "id": "hiroshima-shukkeien",
+   "title": "縮景園を歩く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "縮景園",
+   "lngLat": [
+    132.4675,
+    34.40028
+   ],
+   "source": "wikidata:Q2576732",
+   "wikidata": "Q2576732",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Hiroshima_Shukkei-en_Pond.jpg/960px-Hiroshima_Shukkei-en_Pond.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_Shukkei-en_Pond.jpg",
+    "credit": "No machine-readable author provided. Fg2 assumed (based on copyright claims).",
+    "license": "Public domain"
+   }
+  },
+  {
+   "id": "hiroshima-prefectural-art-museum",
+   "title": "広島県立美術館に行く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "広島県立美術館",
+   "lngLat": [
+    132.46627,
+    34.39991
+   ],
+   "source": "wikidata:Q3330773",
+   "wikidata": "Q3330773",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Hiroshima_Prefectural_Art_Museum_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_Prefectural_Art_Museum_01.jpg",
+    "credit": "Taisyo at Japanese Wikipedia",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-museum-of-art",
+   "title": "ひろしま美術館に行く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "ひろしま美術館",
+   "lngLat": [
+    132.45806,
+    34.39867
+   ],
+   "source": "wikidata:Q63828",
+   "wikidata": "Q63828",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/04/Hiroshima_Museum_of_Art.jpg/960px-Hiroshima_Museum_of_Art.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_Museum_of_Art.jpg",
+    "credit": "Taisyo at Japanese Wikipedia",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-miyajima-deer",
+   "title": "宮島で鹿を見る",
+   "kind": "see",
+   "category": "sightseeing",
+   "place": "宮島",
+   "lngLat": [
+    132.322,
+    34.3021
+   ],
+   "source": "wikidata:Q11454145",
+   "wikidata": "Q11454145",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Miyajima_Sta.JPG/960px-Miyajima_Sta.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Miyajima_Sta.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-itsukushima-torii",
+   "title": "厳島神社の大鳥居を見る",
+   "kind": "see",
+   "category": "sightseeing",
+   "place": "厳島神社",
+   "lngLat": [
+    132.3182,
+    34.2973
+   ],
+   "source": "wikidata:Q97940130",
+   "wikidata": "Q97940130",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Itsukushima_shrine_01.jpg/960px-Itsukushima_shrine_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Itsukushima_shrine_01.jpg",
+    "credit": "Butch",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-daishoin",
+   "title": "大聖院に参る",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "大聖院",
+   "lngLat": [
+    132.31848,
+    34.29195
+   ],
+   "source": "wikidata:Q3012169",
+   "wikidata": "Q3012169",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/Miyajima%2C_daisho-in%2C_05.jpg/960px-Miyajima%2C_daisho-in%2C_05.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Miyajima,_daisho-in,_05.jpg",
+    "credit": "Sailko",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-misen",
+   "title": "弥山に登る",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "弥山",
+   "lngLat": [
+    132.31972,
+    34.27972
+   ],
+   "source": "wikidata:Q3109237",
+   "wikidata": "Q3109237",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Mt.Misen.jpg/960px-Mt.Misen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Mt.Misen.jpg",
+    "credit": "As6022014",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-hiroden",
+   "title": "広島電鉄の路面電車に乗る",
+   "kind": "ride",
+   "category": "transport",
+   "place": "広島駅電停",
+   "lngLat": [
+    132.47521,
+    34.39677
+   ],
+   "source": "osm:node/13043288314"
+  },
+  {
+   "id": "hiroshima-tram-city",
+   "title": "路面電車で広島市内を移動する",
+   "kind": "ride",
+   "category": "transport",
+   "place": "紙屋町東電停",
+   "lngLat": [
+    132.45829,
+    34.39501
+   ],
+   "source": "wikidata:Q6358609",
+   "wikidata": "Q6358609",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Hiroden_type3950_20080309.jpg/960px-Hiroden_type3950_20080309.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroden_type3950_20080309.jpg",
+    "credit": "User:MioUzaki",
+    "license": "Public domain"
+   }
+  },
+  {
+   "id": "hiroshima-tram-genbaku-dome",
+   "title": "路面電車で原爆ドームに行く",
+   "kind": "ride",
+   "category": "transport",
+   "place": "原爆ドーム前電停",
+   "lngLat": [
+    132.4541,
+    34.3961
+   ],
+   "source": "wikidata:Q850997",
+   "wikidata": "Q850997",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Genbaku_Dome_Mae_Station_20120729-1.JPG/960px-Genbaku_Dome_Mae_Station_20120729-1.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Genbaku_Dome_Mae_Station_20120729-1.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-tram-port",
+   "title": "路面電車で広島港に行く",
+   "kind": "ride",
+   "category": "transport",
+   "place": "広島港電停",
+   "lngLat": [
+    132.45526,
+    34.35269
+   ],
+   "source": "wikidata:Q11484705",
+   "wikidata": "Q11484705",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/HiroshimaPortStation01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "page": "https://commons.wikimedia.org/wiki/File:HiroshimaPortStation01.jpg",
+    "credit": "Taisyo at Japanese Wikipedia",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-ferry-miyajima",
+   "title": "フェリーで宮島に行く",
+   "kind": "ride",
+   "category": "transport",
+   "place": "宮島口桟橋",
+   "lngLat": [
+    132.30523,
+    34.3111
+   ],
+   "source": "osm:way/930789199"
+  },
+  {
+   "id": "hiroshima-okonomiyaki",
+   "title": "広島でお好み焼きを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "お好み村",
+   "lngLat": [
+    132.46193,
+    34.39131
+   ],
+   "source": "wikidata:Q11263021",
+   "wikidata": "Q11263021",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg/960px-%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg",
+    "credit": "Taisyo; Uploaded to Commons by Nihonjoe",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-okonomiyaki-teppan",
+   "title": "お好み焼きを鉄板の前で食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "お好み村",
+   "lngLat": [
+    132.46193,
+    34.39131
+   ],
+   "source": "wikidata:Q11263021",
+   "wikidata": "Q11263021",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg/960px-%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg",
+    "credit": "Taisyo; Uploaded to Commons by Nihonjoe",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-okonomiyaki-compare",
+   "title": "お好み焼きを複数店舗で食べ比べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "お好み村",
+   "lngLat": [
+    132.46193,
+    34.39131
+   ],
+   "source": "wikidata:Q11263021",
+   "wikidata": "Q11263021",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg/960px-%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg",
+    "credit": "Taisyo; Uploaded to Commons by Nihonjoe",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-oyster",
+   "title": "広島で牡蠣を食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "かき船 かなわ",
+   "lngLat": [
+    132.46915,
+    34.39321
+   ],
+   "source": "osm:node/12954139157"
+  },
+  {
+   "id": "hiroshima-oyster-grilled",
+   "title": "焼き牡蠣を食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "宮島表参道商店街",
+   "lngLat": [
+    132.32159,
+    34.29839
+   ],
+   "source": "osm:node/4576829492"
+  },
+  {
+   "id": "hiroshima-oyster-raw",
+   "title": "生牡蠣を食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "かき船 かなわ",
+   "lngLat": [
+    132.4585,
+    34.39245
+   ],
+   "source": "osm:node/12401601611"
+  },
+  {
+   "id": "hiroshima-oyster-fry",
+   "title": "カキフライを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "広島駅",
+   "lngLat": [
+    132.47583,
+    34.39833
+   ],
+   "source": "wikidata:Q576459",
+   "wikidata": "Q576459",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Hiroshima_Station_South_04.jpg/960px-Hiroshima_Station_South_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_Station_South_04.jpg",
+    "credit": "ノボホショコロトソ",
+    "license": "CC BY 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-oyster-dotenabe",
+   "title": "牡蠣の土手鍋を食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "かき船 かなわ",
+   "lngLat": [
+    132.46372,
+    34.39031
+   ],
+   "source": "wikidata:Q11556677",
+   "wikidata": "Q11556677",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Night_Nagarekawa-cho_in_Hiroshima.jpg/960px-Night_Nagarekawa-cho_in_Hiroshima.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Night_Nagarekawa-cho_in_Hiroshima.jpg",
+    "credit": "Miyuki Meinaka",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-oyster-rice",
+   "title": "牡蠣飯を食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "宮島表参道商店街",
+   "lngLat": [
+    132.3217,
+    34.29856
+   ],
+   "source": "osm:node/4185145252"
+  },
+  {
+   "id": "hiroshima-anagomeshi",
+   "title": "宮島であなごめしを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "宮島表参道商店街",
+   "lngLat": [
+    132.322,
+    34.3021
+   ],
+   "source": "wikidata:Q11454145",
+   "wikidata": "Q11454145",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Miyajima_Sta.JPG/960px-Miyajima_Sta.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Miyajima_Sta.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-shirunashi-tantanmen",
+   "title": "広島で汁なし担担麺を食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "キング軒",
+   "lngLat": [
+    132.45467,
+    34.40108
+   ],
+   "source": "osm:node/12259090151"
+  },
+  {
+   "id": "hiroshima-tsukemen",
+   "title": "広島つけ麺を食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "ばくだん屋",
+   "lngLat": [
+    132.46252,
+    34.39144
+   ],
+   "source": "osm:node/4544825594"
+  },
+  {
+   "id": "hiroshima-koune",
+   "title": "コウネを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "流川",
+   "lngLat": [
+    132.46372,
+    34.39031
+   ],
+   "source": "wikidata:Q11556677",
+   "wikidata": "Q11556677",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Night_Nagarekawa-cho_in_Hiroshima.jpg/960px-Night_Nagarekawa-cho_in_Hiroshima.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Night_Nagarekawa-cho_in_Hiroshima.jpg",
+    "credit": "Miyuki Meinaka",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-koiwashi",
+   "title": "小イワシを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "流川",
+   "lngLat": [
+    132.46372,
+    34.39031
+   ],
+   "source": "wikidata:Q11556677",
+   "wikidata": "Q11556677",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Night_Nagarekawa-cho_in_Hiroshima.jpg/960px-Night_Nagarekawa-cho_in_Hiroshima.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Night_Nagarekawa-cho_in_Hiroshima.jpg",
+    "credit": "Miyuki Meinaka",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-gansu",
+   "title": "がんすを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "広島駅",
+   "lngLat": [
+    132.47583,
+    34.39833
+   ],
+   "source": "wikidata:Q576459",
+   "wikidata": "Q576459",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Hiroshima_Station_South_04.jpg/960px-Hiroshima_Station_South_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_Station_South_04.jpg",
+    "credit": "ノボホショコロトソ",
+    "license": "CC BY 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-horumon-tempura",
+   "title": "ホルモン天ぷらを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "流川",
+   "lngLat": [
+    132.46372,
+    34.39031
+   ],
+   "source": "wikidata:Q11556677",
+   "wikidata": "Q11556677",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Night_Nagarekawa-cho_in_Hiroshima.jpg/960px-Night_Nagarekawa-cho_in_Hiroshima.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Night_Nagarekawa-cho_in_Hiroshima.jpg",
+    "credit": "Miyuki Meinaka",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-momiji-manju",
+   "title": "もみじ饅頭を食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "宮島表参道商店街",
+   "lngLat": [
+    132.32195,
+    34.29989
+   ],
+   "source": "osm:node/4874316723"
+  },
+  {
+   "id": "hiroshima-age-momiji",
+   "title": "宮島で揚げもみじを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "紅葉堂",
+   "lngLat": [
+    132.32172,
+    34.29856
+   ],
+   "source": "wikidata:Q55532077",
+   "wikidata": "Q55532077"
+  },
+  {
+   "id": "hiroshima-lemon",
+   "title": "広島レモンを味わう",
+   "kind": "eat",
+   "category": "food",
+   "place": "広島駅",
+   "lngLat": [
+    132.4585,
+    34.39245
+   ],
+   "source": "osm:node/12401601611"
+  },
+  {
+   "id": "hiroshima-sake",
+   "title": "広島の日本酒を飲む",
+   "kind": "eat",
+   "category": "food",
+   "place": "流川",
+   "lngLat": [
+    132.46372,
+    34.39031
+   ],
+   "source": "wikidata:Q11556677",
+   "wikidata": "Q11556677",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Night_Nagarekawa-cho_in_Hiroshima.jpg/960px-Night_Nagarekawa-cho_in_Hiroshima.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Night_Nagarekawa-cho_in_Hiroshima.jpg",
+    "credit": "Miyuki Meinaka",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-arrive",
+   "title": "広島に到着する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "広島駅",
+   "lngLat": [
+    132.47583,
+    34.39833
+   ],
+   "source": "wikidata:Q576459",
+   "wikidata": "Q576459",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Hiroshima_Station_South_04.jpg/960px-Hiroshima_Station_South_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_Station_South_04.jpg",
+    "credit": "ノボホショコロトソ",
+    "license": "CC BY 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-slides-done",
+   "title": "登壇スライドを完成させる",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "広島国際会議場",
+   "lngLat": [
+    132.45103,
+    34.39208
+   ],
+   "source": "wikidata:Q11484485",
+   "wikidata": "Q11484485",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/International_Conference_Center_Hiroshima_2008_01.JPG/960px-International_Conference_Center_Hiroshima_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:International_Conference_Center_Hiroshima_2008_01.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-foss4g",
+   "title": "FOSS4G Hiroshima 2026 に参加する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "広島国際会議場",
+   "lngLat": [
+    132.45103,
+    34.39208
+   ],
+   "source": "wikidata:Q11484485",
+   "wikidata": "Q11484485",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/International_Conference_Center_Hiroshima_2008_01.JPG/960px-International_Conference_Center_Hiroshima_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:International_Conference_Center_Hiroshima_2008_01.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-rcc",
+   "title": "RCC文化センターに行く",
+   "kind": "visit",
+   "category": "foss4g",
+   "place": "RCC文化センター",
+   "lngLat": [
+    132.46937,
+    34.39499
+   ],
+   "source": "osm:way/139493323"
+  },
+  {
+   "id": "hiroshima-icc",
+   "title": "広島国際会議場に行く",
+   "kind": "visit",
+   "category": "foss4g",
+   "place": "広島国際会議場",
+   "lngLat": [
+    132.45103,
+    34.39208
+   ],
+   "source": "wikidata:Q11484485",
+   "wikidata": "Q11484485",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/International_Conference_Center_Hiroshima_2008_01.JPG/960px-International_Conference_Center_Hiroshima_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:International_Conference_Center_Hiroshima_2008_01.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-ice-breaker",
+   "title": "HIROSHIMA GATE PARK の Ice Breaker に参加する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "HIROSHIMA GATE PARK",
+   "lngLat": [
+    132.45492,
+    34.39701
+   ],
+   "source": "osm:way/105823434",
+   "wikidata": "Q138707848",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Hiroshima_Gate_Park_2024-0326-01.jpg/960px-Hiroshima_Gate_Park_2024-0326-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_Gate_Park_2024-0326-01.jpg",
+    "credit": "Wish.F",
+    "license": "CC BY 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-gala-dinner",
+   "title": "グランドプリンスホテル広島の Gala Dinner に参加する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "グランドプリンスホテル広島",
+   "lngLat": [
+    132.464,
+    34.34347
+   ],
+   "source": "wikidata:Q111328168",
+   "wikidata": "Q111328168",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Grand_Prince_Hotel_Hiroshima_20190614-002.jpg/960px-Grand_Prince_Hotel_Hiroshima_20190614-002.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Grand_Prince_Hotel_Hiroshima_20190614-002.jpg",
+    "credit": "J o",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-talk",
+   "title": "「Building an AI Map Agent with Self-Hosted Planet-Scale OSM and Tiny LLMs」で登壇する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "広島国際会議場",
+   "lngLat": [
+    132.45103,
+    34.39208
+   ],
+   "source": "wikidata:Q11484485",
+   "wikidata": "Q11484485",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/International_Conference_Center_Hiroshima_2008_01.JPG/960px-International_Conference_Center_Hiroshima_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:International_Conference_Center_Hiroshima_2008_01.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-trident-demo",
+   "title": "TRIDENT を広島でライブデモする",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "広島国際会議場",
+   "lngLat": [
+    132.45103,
+    34.39208
+   ],
+   "source": "wikidata:Q11484485",
+   "wikidata": "Q11484485",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/International_Conference_Center_Hiroshima_2008_01.JPG/960px-International_Conference_Center_Hiroshima_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:International_Conference_Center_Hiroshima_2008_01.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-community-sprint",
+   "title": "Community Sprint に参加する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "JMSアステールプラザ",
+   "lngLat": [
+    132.44778,
+    34.38778
+   ],
+   "source": "wikidata:Q11283506",
+   "wikidata": "Q11283506",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/JMS_Aster_Plaza.jpg/960px-JMS_Aster_Plaza.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:JMS_Aster_Plaza.jpg",
+    "credit": "Syced",
+    "license": "CC0"
+   }
+  },
+  {
+   "id": "hiroshima-astel-plaza",
+   "title": "JMSアステールプラザに行く",
+   "kind": "visit",
+   "category": "foss4g",
+   "place": "JMSアステールプラザ",
+   "lngLat": [
+    132.44778,
+    34.38778
+   ],
+   "source": "wikidata:Q11283506",
+   "wikidata": "Q11283506",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/JMS_Aster_Plaza.jpg/960px-JMS_Aster_Plaza.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:JMS_Aster_Plaza.jpg",
+    "credit": "Syced",
+    "license": "CC0"
+   }
+  },
+  {
+   "id": "hiroshima-okonomiyaki-with-foss4g",
+   "title": "海外の FOSS4G 参加者とお好み焼きを食べる",
+   "kind": "eat",
+   "category": "foss4g",
+   "place": "お好み村",
+   "lngLat": [
+    132.46193,
+    34.39131
+   ],
+   "source": "wikidata:Q11263021",
+   "wikidata": "Q11263021",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg/960px-%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg",
+    "credit": "Taisyo; Uploaded to Commons by Nihonjoe",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-tram-with-foss4g",
+   "title": "海外の FOSS4G 参加者と路面電車に乗る",
+   "kind": "ride",
+   "category": "foss4g",
+   "place": "原爆ドーム前電停",
+   "lngLat": [
+    132.4541,
+    34.3961
+   ],
+   "source": "wikidata:Q850997",
+   "wikidata": "Q850997",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Genbaku_Dome_Mae_Station_20120729-1.JPG/960px-Genbaku_Dome_Mae_Station_20120729-1.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Genbaku_Dome_Mae_Station_20120729-1.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-osm-view",
+   "title": "広島について OpenStreetMap を見る",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "広島駅",
+   "lngLat": [
+    132.47583,
+    34.39833
+   ],
+   "source": "wikidata:Q576459",
+   "wikidata": "Q576459",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Hiroshima_Station_South_04.jpg/960px-Hiroshima_Station_South_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_Station_South_04.jpg",
+    "credit": "ノボホショコロトソ",
+    "license": "CC BY 4.0"
+   }
+  },
+  {
+   "id": "hiroshima-osm-edit",
+   "title": "広島で OpenStreetMap を編集する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "広島国際会議場",
+   "lngLat": [
+    132.45103,
+    34.39208
+   ],
+   "source": "wikidata:Q11484485",
+   "wikidata": "Q11484485",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/International_Conference_Center_Hiroshima_2008_01.JPG/960px-International_Conference_Center_Hiroshima_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:International_Conference_Center_Hiroshima_2008_01.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-tiny-map",
+   "title": "広島の地物を自分の Tiny Map で見る",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "広島国際会議場",
+   "lngLat": [
+    132.45103,
+    34.39208
+   ],
+   "source": "wikidata:Q11484485",
+   "wikidata": "Q11484485",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/International_Conference_Center_Hiroshima_2008_01.JPG/960px-International_Conference_Center_Hiroshima_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:International_Conference_Center_Hiroshima_2008_01.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-geoai-search",
+   "title": "広島を自分の GeoAI で検索する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "広島国際会議場",
+   "lngLat": [
+    132.45103,
+    34.39208
+   ],
+   "source": "wikidata:Q11484485",
+   "wikidata": "Q11484485",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/International_Conference_Center_Hiroshima_2008_01.JPG/960px-International_Conference_Center_Hiroshima_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:International_Conference_Center_Hiroshima_2008_01.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "hiroshima-cafes-query",
+   "title": "「Show me cafes in Hiroshima City」を実際に広島で実行する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "広島国際会議場",
+   "lngLat": [
+    132.45103,
+    34.39208
+   ],
+   "source": "wikidata:Q11484485",
+   "wikidata": "Q11484485",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/International_Conference_Center_Hiroshima_2008_01.JPG/960px-International_Conference_Center_Hiroshima_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:International_Conference_Center_Hiroshima_2008_01.JPG",
+    "credit": "Taisyo",
+    "license": "CC BY-SA 3.0"
+   }
+  }
+ ]
+}

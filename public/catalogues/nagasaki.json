@@ -1,0 +1,549 @@
+{
+ "region": "nagasaki",
+ "name": "長崎",
+ "bbox": [
+  129.6,
+  32.5,
+  130.05,
+  33
+ ],
+ "categories": [
+  {
+   "id": "sightseeing",
+   "label": "観光"
+  },
+  {
+   "id": "peace",
+   "label": "平和"
+  },
+  {
+   "id": "food",
+   "label": "食"
+  },
+  {
+   "id": "ramen",
+   "label": "ラーメン"
+  }
+ ],
+ "achievements": [
+  {
+   "id": "nagasaki-history-museum",
+   "title": "長崎歴史文化博物館に行く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "長崎歴史文化博物館",
+   "lngLat": [
+    129.87956,
+    32.75281
+   ],
+   "source": "wikidata:Q73613",
+   "wikidata": "Q73613",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Nagasaki_Museum_of_History_and_Culture_ac_%281%29.jpg/960px-Nagasaki_Museum_of_History_and_Culture_ac_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Nagasaki_Museum_of_History_and_Culture_ac_(1).jpg",
+    "credit": "Asturio Cantabrio",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "nagasaki-atomic-bomb-museum",
+   "title": "長崎原爆資料館で学ぶ",
+   "kind": "visit",
+   "category": "peace",
+   "place": "長崎原爆資料館",
+   "lngLat": [
+    129.86451,
+    32.77265
+   ],
+   "source": "wikidata:Q1099077",
+   "wikidata": "Q1099077",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Nagasakigenbaku.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "page": "https://commons.wikimedia.org/wiki/File:Nagasakigenbaku.jpg",
+    "credit": "Japanbird at Japanese Wikipedia (:ja:User:海人)",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "nagasaki-hypocenter",
+   "title": "原子爆弾落下中心地碑に参る",
+   "kind": "visit",
+   "category": "peace",
+   "place": "原子爆弾落下中心地碑",
+   "lngLat": [
+    129.86328,
+    32.77374
+   ],
+   "source": "osm:way/375933470"
+  },
+  {
+   "id": "nagasaki-peace-park",
+   "title": "長崎平和公園を歩く",
+   "kind": "visit",
+   "category": "peace",
+   "place": "長崎平和公園",
+   "lngLat": [
+    129.86312,
+    32.77558
+   ],
+   "source": "wikidata:Q93490",
+   "wikidata": "Q93490",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Fountain_at_Nagasaki_Peace_Park.jpg/960px-Fountain_at_Nagasaki_Peace_Park.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Fountain_at_Nagasaki_Peace_Park.jpg",
+    "credit": "STA3816",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "nagasaki-peace-statue",
+   "title": "平和祈念像を見る",
+   "kind": "see",
+   "category": "peace",
+   "place": "平和祈念像",
+   "lngLat": [
+    129.86397,
+    32.77692
+   ],
+   "source": "wikidata:Q11482256",
+   "wikidata": "Q11482256",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/20190202_Nagasaki_Peace_Park_Peace_Statue-1.jpg/960px-20190202_Nagasaki_Peace_Park_Peace_Statue-1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:20190202_Nagasaki_Peace_Park_Peace_Statue-1.jpg",
+    "credit": "Balon Greyjoy",
+    "license": "CC0"
+   }
+  },
+  {
+   "id": "nagasaki-chinatown",
+   "title": "長崎新地中華街を歩く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "長崎新地中華街",
+   "lngLat": [
+    129.87528,
+    32.74147
+   ],
+   "source": "wikidata:Q63229",
+   "wikidata": "Q63229",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG/960px-Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG",
+    "credit": "そらみみ (Soramimi)",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "nagasaki-dejima",
+   "title": "出島を歩く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "出島",
+   "lngLat": [
+    129.87302,
+    32.74352
+   ],
+   "source": "wikidata:Q640267",
+   "wikidata": "Q640267",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/View_of_Dejima_in_Nagasaki_Bay_Folding_Screen_by_Kawahara_Keiga_c1836.jpg/960px-View_of_Dejima_in_Nagasaki_Bay_Folding_Screen_by_Kawahara_Keiga_c1836.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:View_of_Dejima_in_Nagasaki_Bay_Folding_Screen_by_Kawahara_Keiga_c1836.jpg",
+    "credit": "Kawahara Keiga",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "nagasaki-meganebashi",
+   "title": "眼鏡橋を見る",
+   "kind": "see",
+   "category": "sightseeing",
+   "place": "眼鏡橋",
+   "lngLat": [
+    129.88009,
+    32.74721
+   ],
+   "source": "wikidata:Q74710",
+   "wikidata": "Q74710",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Meganebashi%2C_Nagasaki_cropped_1.jpg/960px-Meganebashi%2C_Nagasaki_cropped_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Meganebashi,_Nagasaki_cropped_1.jpg",
+    "credit": "LuxTonnerre",
+    "license": "CC BY 2.0"
+   }
+  },
+  {
+   "id": "nagasaki-gunkanjima-museum",
+   "title": "軍艦島デジタルミュージアムに行く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "軍艦島デジタルミュージアム",
+   "lngLat": [
+    129.86914,
+    32.73604
+   ],
+   "source": "osm:way/242947332",
+   "wikidata": "Q24869383",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Gunkanjima_Digital_Museum_02.jpg/960px-Gunkanjima_Digital_Museum_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Gunkanjima_Digital_Museum_02.jpg",
+    "credit": "STA3816",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "nagasaki-glover-garden",
+   "title": "グラバー園を歩く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "グラバー園",
+   "lngLat": [
+    129.86889,
+    32.73444
+   ],
+   "source": "wikidata:Q63465",
+   "wikidata": "Q63465",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Nagasaki-Glover-Garden-5415.jpg/960px-Nagasaki-Glover-Garden-5415.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Nagasaki-Glover-Garden-5415.jpg",
+    "credit": "Fg2",
+    "license": "Public domain"
+   }
+  },
+  {
+   "id": "nagasaki-traditional-arts",
+   "title": "長崎伝統芸能館に行く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "長崎伝統芸能館",
+   "lngLat": [
+    129.86852,
+    32.73387
+   ],
+   "source": "wikidata:Q127806461",
+   "wikidata": "Q127806461",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Glover_Garden_Nagasaki_Japan87s3.jpg/960px-Glover_Garden_Nagasaki_Japan87s3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Glover_Garden_Nagasaki_Japan87s3.jpg",
+    "credit": "663highland",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "nagasaki-cats",
+   "title": "長崎の猫を見る",
+   "kind": "see",
+   "category": "sightseeing",
+   "place": "南山手",
+   "lngLat": [
+    129.86852,
+    32.73302
+   ],
+   "source": "osm:node/8444589541"
+  },
+  {
+   "id": "nagasaki-26-martyrs",
+   "title": "日本二十六聖人記念館に行く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "日本二十六聖人記念館",
+   "lngLat": [
+    129.87167,
+    32.75472
+   ],
+   "source": "wikidata:Q84029",
+   "wikidata": "Q84029",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/26_martyrs_museum.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "page": "https://commons.wikimedia.org/wiki/File:26_martyrs_museum.jpg",
+    "credit": "No machine-readable author provided. Fk assumed (based on copyright claims).",
+    "license": "CC BY-SA 2.5"
+   }
+  },
+  {
+   "id": "nagasaki-pref-art-museum",
+   "title": "長崎県美術館に行く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "長崎県美術館",
+   "lngLat": [
+    129.87106,
+    32.74168
+   ],
+   "source": "wikidata:Q11652770",
+   "wikidata": "Q11652770",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Nagasaki_art_museum_IMG_2093.JPG/960px-Nagasaki_art_museum_IMG_2093.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Nagasaki_art_museum_IMG_2093.JPG",
+    "credit": "No machine-readable author provided. Fusebok assumed (based on copyright claims).",
+    "license": "Public domain"
+   }
+  },
+  {
+   "id": "nagasaki-siebold",
+   "title": "シーボルト記念館に行く",
+   "kind": "visit",
+   "category": "sightseeing",
+   "place": "シーボルト記念館",
+   "lngLat": [
+    129.89221,
+    32.75584
+   ],
+   "source": "wikidata:Q1049762",
+   "wikidata": "Q1049762",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Siebold_Memorial_Museum_002.jpg/960px-Siebold_Memorial_Museum_002.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Siebold_Memorial_Museum_002.jpg",
+    "credit": "Naokijp",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "nagasaki-night-view",
+   "title": "稲佐山から長崎の夜景を見る",
+   "kind": "see",
+   "category": "sightseeing",
+   "place": "稲佐山",
+   "lngLat": [
+    129.8495,
+    32.7527
+   ],
+   "source": "wikidata:Q3031841",
+   "wikidata": "Q3031841",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Mt.Inasa_2010.jpg/960px-Mt.Inasa_2010.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Mt.Inasa_2010.jpg",
+    "credit": "ぱちょぴ",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "nagasaki-champon",
+   "title": "ちゃんぽんを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "四海樓",
+   "lngLat": [
+    129.86981,
+    32.73647
+   ],
+   "source": "wikidata:Q11248844",
+   "wikidata": "Q11248844",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Shikairo_Nagasaki_Japan01n.jpg/960px-Shikairo_Nagasaki_Japan01n.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Shikairo_Nagasaki_Japan01n.jpg",
+    "credit": "663highland",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "nagasaki-sara-udon",
+   "title": "皿うどんを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "長崎新地中華街",
+   "lngLat": [
+    129.87528,
+    32.74147
+   ],
+   "source": "wikidata:Q63229",
+   "wikidata": "Q63229",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG/960px-Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG",
+    "credit": "そらみみ (Soramimi)",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "nagasaki-turkish-rice",
+   "title": "トルコライスを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "ツル茶ん",
+   "lngLat": [
+    129.8807,
+    32.74317
+   ],
+   "source": "osm:node/12177836984"
+  },
+  {
+   "id": "nagasaki-hatoshi",
+   "title": "ハトシを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "長崎新地中華街",
+   "lngLat": [
+    129.87528,
+    32.74147
+   ],
+   "source": "wikidata:Q63229",
+   "wikidata": "Q63229",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG/960px-Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG",
+    "credit": "そらみみ (Soramimi)",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "nagasaki-kakuni-manju",
+   "title": "角煮まんじゅうを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "岩崎本舗",
+   "lngLat": [
+    129.87594,
+    32.74234
+   ],
+   "source": "osm:node/7105972210"
+  },
+  {
+   "id": "nagasaki-aji-fry-sandwich",
+   "title": "アジフライサンドを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "長崎駅",
+   "lngLat": [
+    129.86908,
+    32.75275
+   ],
+   "source": "wikidata:Q1076315",
+   "wikidata": "Q1076315",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Nagasaki_Station_20200407_03.jpg/960px-Nagasaki_Station_20200407_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Nagasaki_Station_20200407_03.jpg",
+    "credit": "Houjyou-Minori",
+    "license": "CC0"
+   }
+  },
+  {
+   "id": "nagasaki-whale-sashimi",
+   "title": "クジラの刺身を食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "思案橋",
+   "lngLat": [
+    129.88,
+    32.7427
+   ],
+   "source": "wikidata:Q11491540",
+   "wikidata": "Q11491540",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Shianbashi_Station_4.JPG/960px-Shianbashi_Station_4.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Shianbashi_Station_4.JPG",
+    "credit": "おんさき at Japanese Wikipedia",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "nagasaki-harihari-nabe",
+   "title": "はりはり鍋を食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "思案橋",
+   "lngLat": [
+    129.88,
+    32.7427
+   ],
+   "source": "wikidata:Q11491540",
+   "wikidata": "Q11491540",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Shianbashi_Station_4.JPG/960px-Shianbashi_Station_4.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Shianbashi_Station_4.JPG",
+    "credit": "おんさき at Japanese Wikipedia",
+    "license": "CC BY-SA 3.0"
+   }
+  },
+  {
+   "id": "nagasaki-castella",
+   "title": "文明堂のカステラを食べる",
+   "kind": "eat",
+   "category": "food",
+   "place": "文明堂総本店",
+   "lngLat": [
+    129.8723,
+    32.74556
+   ],
+   "source": "osm:node/7150986485"
+  },
+  {
+   "id": "nagasaki-airport-whisky",
+   "title": "長崎空港でウイスキーを飲む",
+   "kind": "eat",
+   "category": "food",
+   "place": "長崎空港",
+   "lngLat": [
+    129.92238,
+    32.91413
+   ],
+   "source": "osm:way/553063057",
+   "wikidata": "Q133796",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Nagasaki_Airport_Omura_Nagasaki_pref_Japan06n.jpg/960px-Nagasaki_Airport_Omura_Nagasaki_pref_Japan06n.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Nagasaki_Airport_Omura_Nagasaki_pref_Japan06n.jpg",
+    "credit": "663highland",
+    "license": "CC BY 2.5"
+   }
+  },
+  {
+   "id": "nagasaki-asahiya",
+   "title": "朝日屋でとんこつラーメンを食べる",
+   "kind": "eat",
+   "category": "ramen",
+   "place": "朝日屋",
+   "lngLat": [
+    129.87124,
+    32.75052
+   ],
+   "source": "osm:node/5251190624"
+  },
+  {
+   "id": "nagasaki-menya-always",
+   "title": "麺也オールウェイズでレモンとんこつラーメンを食べる",
+   "kind": "eat",
+   "category": "ramen",
+   "place": "麺也オールウェイズ 万屋町店",
+   "lngLat": [
+    129.87908,
+    32.74512
+   ],
+   "source": "osm:node/8444589604"
+  },
+  {
+   "id": "nagasaki-hiiragi",
+   "title": "らーめん柊でトマトとんこつラーメンを食べる",
+   "kind": "eat",
+   "category": "ramen",
+   "place": "らーめん柊 銅座本店",
+   "lngLat": [
+    129.87766,
+    32.74333
+   ],
+   "source": "osm:node/6150732786"
+  },
+  {
+   "id": "nagasaki-shianbashi-ramen",
+   "title": "思案橋ラーメンで爆弾ラーメンを食べる",
+   "kind": "eat",
+   "category": "ramen",
+   "place": "思案橋ラーメン",
+   "lngLat": [
+    129.8791,
+    32.74313
+   ],
+   "source": "osm:node/3828530363"
+  },
+  {
+   "id": "nagasaki-ichimentei",
+   "title": "一麺亭 長崎浜口店でラーメンを食べる",
+   "kind": "eat",
+   "category": "ramen",
+   "place": "一麺亭 長崎浜口店",
+   "lngLat": [
+    129.86543,
+    32.7692
+   ],
+   "source": "osm:node/8444648239"
+  }
+ ]
+}

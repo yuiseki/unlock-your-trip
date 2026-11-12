@@ -10,6 +10,7 @@ self.addEventListener("fetch", (e) => {
   if (e.request.method !== "GET" || url.origin !== location.origin || url.pathname.startsWith("/api/")) return;
   if (e.request.mode === "navigate") {
     // Network first for the page, so a new release shows up when online.
+    // Every path is the same page, so one copy serves them all offline.
     e.respondWith(
       fetch(e.request)
         .then((res) => {
@@ -21,7 +22,23 @@ self.addEventListener("fetch", (e) => {
     );
     return;
   }
-  // Cache first for hashed assets, catalogues and icons.
+  if (url.pathname.startsWith("/catalogues/")) {
+    // Network first for the lists too: their names do not change when they
+    // are corrected, so a cached copy would hide every correction.
+    e.respondWith(
+      fetch(e.request)
+        .then((res) => {
+          if (res.ok) {
+            const copy = res.clone();
+            caches.open(CACHE).then((c) => c.put(e.request, copy));
+          }
+          return res;
+        })
+        .catch(() => caches.match(e.request)),
+    );
+    return;
+  }
+  // Cache first for hashed assets and icons.
   e.respondWith(
     caches.match(e.request).then(
       (hit) =>

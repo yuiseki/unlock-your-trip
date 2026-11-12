@@ -1,0 +1,55 @@
+id	title	kind	category	place	search
+okinawa-kokusai-dori	国際通りを散策する	visit	naha	国際通り	国際通り
+okinawa-kokusai-dori-drink	国際通りの路上で飲む	do	awamori-sake	国際通り	国際通り
+okinawa-shuri-tenro	首里天楼に行く	visit	ryukyu-culture	首里天楼	首里天楼
+okinawa-ryukyu-buyo	琉球舞踊を鑑賞する	see	ryukyu-culture	首里天楼	首里天楼
+okinawa-awamori	泡盛を飲む	eat	awamori-sake	首里天楼	首里天楼
+okinawa-goya-champuru	ゴーヤチャンプルーを食べる	eat	okinawa-food	首里天楼	首里天楼
+okinawa-umibudo	海ぶどうを食べる	eat	okinawa-food	首里天楼	首里天楼
+okinawa-hikigatari	国際通りの弾き語りで泣く	see	naha	国際通り	国際通り
+okinawa-dontei	どん亭に行く	visit	okinawa-food	どん亭	どん亭
+okinawa-gyudon	沖縄で牛丼を食べる	eat	okinawa-food	どん亭	どん亭
+okinawa-soba	沖縄そばを食べる	eat	okinawa-food	どん亭	どん亭
+okinawa-louis-vuitton	Tギャラリアのルイ・ヴィトン沖縄店に行く	visit	naha	T ギャラリア 沖縄 by DFS	DFSギャラリア沖縄
+okinawa-aw	A&W に行く	visit	okinawa-food	A&W 国際通り松尾店	A&W
+okinawa-root-beer	ルートビアを飲む	eat	okinawa-food	A&W 国際通り松尾店	A&W
+okinawa-prefectural-museum	沖縄県立博物館・美術館に行く	visit	ryukyu-culture	沖縄県立博物館・美術館	沖縄県立博物館・美術館
+okinawa-blue-seal	ブルーシールに行く	visit	okinawa-food	ブルーシール国際通りトレビアン	ブルーシール
+okinawa-blue-wave	ブルーシールでブルーウェーブを食べる	eat	okinawa-food	ブルーシール国際通りトレビアン	ブルーシール
+okinawa-shikuwasa-ice	ブルーシールでシークワーサーを食べる	eat	okinawa-food	ブルーシール国際通りトレビアン	ブルーシール
+okinawa-dento-kogeikan	那覇市伝統工芸館に行く	visit	ryukyu-culture	那覇市伝統工芸館	那覇市伝統工芸館
+okinawa-ryukyu-glass	琉球ガラスの工房を体験する	do	ryukyu-culture	那覇市伝統工芸館	那覇市伝統工芸館
+okinawa-heiwa-dori	平和通りに行く	visit	naha	平和通り	平和通り
+okinawa-shikuwasa-highball	シークワーサーハイボールを飲む	eat	awamori-sake	平和通り	平和通り
+okinawa-agu	アグー豚を食べる	eat	okinawa-food	国際通り	国際通り
+okinawa-ishigaki-beef	石垣牛を食べる	eat	okinawa-food	国際通り	国際通り
+okinawa-sata-andagi	サーターアンダギーを食べる	eat	okinawa-food	第一牧志公設市場	第一牧志公設市場
+okinawa-shugo-densetsu	琉球酒豪伝説を買って飲む	do	awamori-sake	国際通り	国際通り
+okinawa-mystery-plate	謎の皿を買う	do	naha	国際通り	国際通り
+okinawa-mystery-rock	謎の岩を買う	do	naha	国際通り	国際通り
+okinawa-steak	ステーキを食べる	eat	okinawa-food	国際通り	国際通り
+okinawa-eisa	エイサーを鑑賞する	see	ryukyu-culture	国際通り	国際通り
+okinawa-akainko	アカインコに行く	visit	awamori-sake	アカインコ	アカインコ
+okinawa-mozuku-tempura	もずくの天ぷらも食べる	eat	okinawa-food	アカインコ	アカインコ
+okinawa-orion-beer	オリオンビールを飲む	eat	awamori-sake	アカインコ	アカインコ
+okinawa-spam-onigiri	スパムおにぎりを食べる	eat	okinawa-food	ポークたまごおにぎり本店	ポークたまごおにぎり本店
+okinawa-shikuwasa-awamori	シークヮーサー泡盛を飲む	eat	awamori-sake	国際通り	国際通り
+okinawa-chura-tomato	ちゅらとまとを食べる	eat	okinawa-food	国際通り	国際通り
+okinawa-coffee-awamori	コーヒー泡盛を飲む	eat	awamori-sake	国際通り	国際通り
+okinawa-shimabuta-jerky	しま豚ジャーキーを食べる	eat	okinawa-food	国際通り	国際通り
+okinawa-taco-rice	タコライスを食べる	eat	okinawa-food	国際通り	国際通り
+okinawa-chinsuko	ちんすこうを食べる	eat	okinawa-food	国際通り	国際通り
+okinawa-shima-uta	島唄ライブを鑑賞する	see	ryukyu-culture	ライブハウス島唄	ライブハウス 島唄
+okinawa-naminoue-beach	波の上ビーチに行く	visit	sea-nature	波の上ビーチ	波の上ビーチ
+okinawa-churaumi	美ら海水族館に行く	visit	sea-nature	沖縄美ら海水族館	沖縄美ら海水族館
+okinawa-naha-tour	那覇市観光ツアーに参加する	do	naha	那覇バスターミナル	那覇バスターミナル
+okinawa-okinawa-world	おきなわワールドに行く	visit	sea-nature	おきなわワールド	おきなわワールド
+okinawa-gangala	ガンガラーの谷に行く	visit	sea-nature	ガンガラーの谷	ガンガラーの谷
+okinawa-pocket-lunch	ポケットランチを食べる	eat	okinawa-food	第一牧志公設市場	第一牧志公設市場
+okinawa-yachimun-soba	やちむんそばを食べる	eat	okinawa-food	壺屋やちむん通り	壺屋やちむん通り
+okinawa-sea-kayak	シーカヤックを体験する	do	sea-nature	波の上ビーチ	波の上ビーチ
+okinawa-shisa-making	シーサー作りを体験する	do	ryukyu-culture	壺屋やちむん通り	壺屋やちむん通り
+okinawa-ryuso	琉装を体験する	do	ryukyu-culture	守礼門	守礼門
+okinawa-snorkeling	シュノーケリングを体験する	do	sea-nature	真栄田岬	真栄田岬
+okinawa-cooking-class	沖縄料理教室を体験する	do	okinawa-food	第一牧志公設市場	第一牧志公設市場
+okinawa-2000-yen	2000円札を手に入れる	do	naha	守礼門	守礼門

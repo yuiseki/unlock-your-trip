@@ -1,13 +1,12 @@
 // Usage: vite-node scripts/build-catalogue.ts osaka
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { buildCatalogue } from "../src/shared/build";
+import { regionById } from "../src/shared/regions";
 
-const META: Record<string, { name: string; bbox: [number, number, number, number] }> = {
-  osaka: { name: "大阪", bbox: [135.35, 34.55, 135.65, 34.78] },
-};
 const region = process.argv[2];
-const meta = META[region];
-if (!meta) throw new Error(`unknown region: ${region}`);
+const r = regionById(region);
+if (!r) throw new Error(`unknown region: ${region}`);
+const meta = { name: r.name, bbox: r.bbox };
 const read = (kind: string) => readFileSync(`data/${region}.${kind}.tsv`, "utf8");
 const { catalogue, errors } = buildCatalogue({ region, ...meta }, read("categories"), read("seed"), read("places"), read("images"));
 if (errors.length) {

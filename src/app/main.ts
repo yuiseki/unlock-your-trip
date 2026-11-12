@@ -6,7 +6,8 @@ import { openStore, type Store, type Unlock } from "./store";
 import { createSyncer } from "./syncer";
 import { loadClerk, whoAmI, type Clerk } from "./auth";
 import { creditText, formatDistance, listView, type ListItem } from "./view";
-import { DEFAULT_REGION, regionPath, route } from "../shared/regions";
+import { REGIONS, route } from "../shared/regions";
+import { tripSummaries } from "./trips";
 import { loadPrefs, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
 
 const KIND_LABEL = { visit: "行く", eat: "食べる", ride: "乗る", see: "見る", do: "する" } as const;
@@ -25,14 +26,11 @@ function readCredentials() {
   return { token: localStorage.getItem("token"), user: localStorage.getItem("user") };
 }
 
-// The region comes from the path (/japan/kansai/osaka/); /u/<id>/... is
-// somebody's public, read-only record of it. Old addresses are rewritten in
-// place rather than redirected by the server, so the offline copy of the
-// page stays a page.
-const first = route(location.pathname);
-if (first.kind === "redirect") history.replaceState(null, "", first.to + location.hash);
+// The trip comes from the path (/japan/kansai/osaka/); "/" lists the trips.
+// /u/<id>/... is somebody's public, read-only record.
 const where = route(location.pathname);
-const publicUser = where.kind === "region" ? where.publicUser : null;
+const publicUser = where.kind === "unknown" ? null : where.publicUser;
+const home = publicUser ? `/u/${publicUser}/` : "/";
 
 let catalogue: Catalogue;
 let store: Store;
@@ -185,11 +183,42 @@ function watchLocation() {
   );
 }
 
+async function showTrips() {
+  document.querySelector("nav")?.remove();
+  store = await openStore(publicUser ? `public-${publicUser}` : "unlock-your-trip");
+  if (publicUser) {
+    const res = await fetch(`/api/users/${publicUser}/unlocks`).catch(() => null);
+    if (res?.ok) await store.mergeRemote(((await res.json()) as { unlocks: Unlock[] }).unlocks);
+  }
+  const done = new Set((await store.all()).map((u) => u.achievementId));
+  const catalogues = await Promise.all(
+    REGIONS.map((r) =>
+      fetch(`/catalogues/${r.id}.json`)
+        .then((res) => (res.ok ? (res.json() as Promise<Catalogue>) : null))
+        .catch(() => null),
+    ),
+  );
+  const ids = (id: string) => catalogues.find((c) => c?.region === id)?.achievements.map((a) => a.id) ?? null;
+  const trips = tripSummaries(REGIONS, ids, done, publicUser);
+  $("progress").textContent = publicUser ? `${publicUser} さんの旅` : `旅 ${trips.length} 件`;
+  $("list").replaceChildren(
+    ...trips.map((t) => {
+      const li = document.createElement("li");
+      li.className = "trip";
+      const count = t.total === null ? "" : `${t.unlocked} / ${t.total} 解除`;
+      li.innerHTML = `<a href="${t.href}"><span class="name">${escape(t.name)}</span><span class="year">${t.year}</span><span class="count">${count}</span></a>`;
+      return li;
+    }),
+  );
+  if ("serviceWorker" in navigator && import.meta.env.PROD) void navigator.serviceWorker.register("/sw.js");
+}
+
 async function main() {
+  $<HTMLAnchorElement>("home").href = home;
+  if (where.kind === "trips") return showTrips();
   if (where.kind !== "region") {
-    document.title = "旅の実績解除！";
-    $("progress").innerHTML = `この地域はまだありません。<a href="${regionPath(DEFAULT_REGION)}">大阪を開く</a>`;
     document.querySelector("nav")?.remove();
+    $("progress").innerHTML = `この旅はまだありません。<a href="${home}">旅の一覧へ</a>`;
     return;
   }
   catalogue = await (await fetch(`/catalogues/${where.region}.json`)).json();

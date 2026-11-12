@@ -1,0 +1,418 @@
+{
+ "region": "kosovo",
+ "name": "コソボ",
+ "bbox": [
+  20,
+  41.85,
+  21.8,
+  43.3
+ ],
+ "categories": [
+  {
+   "id": "foss4g",
+   "label": "FOSS4G"
+  },
+  {
+   "id": "kosovo-food",
+   "label": "コソボの食"
+  },
+  {
+   "id": "beer-wine",
+   "label": "ビールとワイン"
+  },
+  {
+   "id": "mingei",
+   "label": "民藝"
+  }
+ ],
+ "achievements": [
+  {
+   "id": "kosovo-greet-un",
+   "title": "国連関係者に挨拶する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "FOSS4G 2023 会場 (ITP プリズレン / Innovation and Training Park Prizren)",
+   "lngLat": [
+    20.75158,
+    42.22105
+   ],
+   "source": "osm:way/29292346",
+   "wikidata": "Q122609841",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg/960px-Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg",
+    "credit": "Arianit",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-greet-gsi",
+   "title": "国土地理院関係者に挨拶する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "FOSS4G 2023 会場 (ITP プリズレン / Innovation and Training Park Prizren)",
+   "lngLat": [
+    20.75158,
+    42.22105
+   ],
+   "source": "osm:way/29292346",
+   "wikidata": "Q122609841",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg/960px-Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg",
+    "credit": "Arianit",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-greet-academic",
+   "title": "GIS アカデミック関係者に挨拶する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "FOSS4G 2023 会場 (ITP プリズレン / Innovation and Training Park Prizren)",
+   "lngLat": [
+    20.75158,
+    42.22105
+   ],
+   "source": "osm:way/29292346",
+   "wikidata": "Q122609841",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg/960px-Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg",
+    "credit": "Arianit",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-greet-startup",
+   "title": "GIS スタートアップ関係者に挨拶する",
+   "kind": "do",
+   "category": "foss4g",
+   "place": "FOSS4G 2023 会場 (ITP プリズレン / Innovation and Training Park Prizren)",
+   "lngLat": [
+    20.75158,
+    42.22105
+   ],
+   "source": "osm:way/29292346",
+   "wikidata": "Q122609841",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg/960px-Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Innovation_and_Training_Park_Prizren_from_the_drone_11.jpg",
+    "credit": "Arianit",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-beer",
+   "title": "コソボのビールを飲む",
+   "kind": "eat",
+   "category": "beer-wine",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-peja-beer",
+   "title": "ペーヤ (PEJA) ビールを飲む",
+   "kind": "eat",
+   "category": "beer-wine",
+   "place": "ペーヤ醸造所 (Birra Peja)",
+   "lngLat": [
+    20.31465,
+    42.65819
+   ],
+   "source": "osm:way/299104204"
+  },
+  {
+   "id": "kosovo-wine",
+   "title": "コソボ産ワインを飲む",
+   "kind": "eat",
+   "category": "beer-wine",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-stone-castle-wine",
+   "title": "ストーンキャッスル醸造所のワインを飲む",
+   "kind": "eat",
+   "category": "beer-wine",
+   "place": "ストーンキャッスル醸造所 (Stone Castle Winery)",
+   "lngLat": [
+    20.61551,
+    42.36697
+   ],
+   "source": "osm:way/275261271"
+  },
+  {
+   "id": "kosovo-steak",
+   "title": "コソボでステーキを食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-kebab",
+   "title": "コソボでケバブを食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-meatball",
+   "title": "コソボのミートボールを食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-burek",
+   "title": "ブレク (Byrek) を食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-flija",
+   "title": "フリヤ (Flija) を食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-sarma",
+   "title": "サルマ (Sarma) を食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-tave",
+   "title": "タヴェ (Tavë) を食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-cevapi",
+   "title": "チェヴァピ (Qebapa) を食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-gjuvec",
+   "title": "グジュヴェチ (Gjuveç) を食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-pita",
+   "title": "ピタ (Pita) を食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-pljeskavica",
+   "title": "プレスコヴァツ (Pljeskavica) を食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-piroshki",
+   "title": "ピロシキを食べる",
+   "kind": "eat",
+   "category": "kosovo-food",
+   "place": "プリズレン旧市街 (シャドルヴァン広場 / Sheshi Shadërvan)",
+   "lngLat": [
+    20.74052,
+    42.20905
+   ],
+   "source": "osm:way/472720148",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/Sheshi_Shadervan.jpg/960px-Sheshi_Shadervan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "page": "https://commons.wikimedia.org/wiki/File:Sheshi_Shadervan.jpg",
+    "credit": "GentiBehramaj",
+    "license": "CC BY-SA 4.0"
+   }
+  },
+  {
+   "id": "kosovo-mingei",
+   "title": "コソボの民藝に触れる",
+   "kind": "see",
+   "category": "mingei",
+   "place": "プリズレン民族学博物館 (Muzeu Etnologjik i Prizrenit)",
+   "lngLat": [
+    20.73927,
+    42.21153
+   ],
+   "source": "osm:way/489644517"
+  },
+  {
+   "id": "kosovo-pottery",
+   "title": "コソボの陶器を見る",
+   "kind": "see",
+   "category": "mingei",
+   "place": "プリズレン民族学博物館 (Muzeu Etnologjik i Prizrenit)",
+   "lngLat": [
+    20.73927,
+    42.21153
+   ],
+   "source": "osm:way/489644517"
+  },
+  {
+   "id": "kosovo-folk-costume",
+   "title": "コソボの民族衣装を見る",
+   "kind": "see",
+   "category": "mingei",
+   "place": "プリズレン民族学博物館 (Muzeu Etnologjik i Prizrenit)",
+   "lngLat": [
+    20.73927,
+    42.21153
+   ],
+   "source": "osm:way/489644517"
+  }
+ ]
+}

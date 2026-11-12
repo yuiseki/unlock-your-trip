@@ -6,7 +6,18 @@
 - 大阪: https://unlock-your-trip.yuiseki.workers.dev/japan/kansai/osaka/
 - 公開の記録の例: https://unlock-your-trip.yuiseki.workers.dev/u/yuiseki/japan/kansai/osaka/
 
-最初の対象は大阪市で、実績は 49 件。地域ごとに分類を持ち、大阪は「近代史」「食い倒れ」「水都」「観光」の 4 つ (広島なら路面電車の「交通」のように、その土地らしい見出しを立てる)。
+旅は 6 つ。トップページ (`/`) が旅の一覧で、旅ごとに `/<国>/<地方>/<都道府県>/` のページがある。
+
+| 旅 | URL | 実績 |
+|---|---|---|
+| 大阪 2026 | `/japan/kansai/osaka/` | 49 |
+| 広島 2026 | `/japan/chugoku/hiroshima/` | 60 |
+| 長崎 2025 | `/japan/kyushu/nagasaki/` | 31 |
+| 神戸 2024 | `/japan/kansai/hyogo/` | 21 |
+| 沖縄 2023 | `/japan/kyushu/okinawa/` | 54 |
+| コソボ 2023 | `/kosovo/prizren/prizren/` | 23 |
+
+地域ごとに分類を持ち、大阪は「近代史」「食い倒れ」「水都」「観光」の 4 つ (広島なら路面電車の「交通」のように、その土地らしい見出しを立てる)。
 
 ## できること
 
@@ -34,7 +45,7 @@
 |---|---|
 | 画面 | Vite と TypeScript。地図は MapLibre GL JS 6 系で、地図のタブを開いたときだけ読み込む |
 | 背景の地図 | OpenFreeMap の Liberty スタイル。注記を日本語だけに直して使う (`src/app/style.ts`) |
-| 実績の一覧 | 静的な JSON (`public/catalogues/osaka.json`)。`data/` の TSV からビルドする |
+| 実績の一覧 | 静的な JSON (`public/catalogues/<地域>.json`)。`data/` の TSV からビルドする。旅の表 (名前、年、URL、範囲) は `src/shared/regions.ts` |
 | ログイン | Clerk (Google)。SDK は Clerk の Frontend API から、書き込む人の画面でだけ読み込む (`src/app/auth.ts`)。Worker は Clerk の公開鍵 (JWKS) でセッショントークンを確かめ、Clerk のシークレットキーは持たない (`worker/clerk.ts`) |
 | 解除の記録 | 端末の IndexedDB に先に書き (`src/app/store.ts`)、Cloudflare Workers の API (`worker/index.ts`) を通して D1 に送る |
 | 配信 | Cloudflare Workers の静的アセット。`/api/*` だけを Worker が受ける |
@@ -55,12 +66,14 @@ Clerk は今、開発用インスタンス (`pk_test_`) で動かしている。
 
 元のデータは 1 件 1 行の TSV で、ビルドのときに Web の API は呼ばない。
 
-- `data/osaka.categories.tsv`: その地域の分類と、一覧に出す順
-- `data/osaka.seed.tsv`: 実績の候補 (ID、題名、種類、分類、場所)。AI が出した定番の名所と体験
-- `data/osaka.places.tsv`: 場所の座標と出どころ。Wikidata (CC0) の座標と、Wikidata に無いもの (路線の乗り場、店、商店街) は OpenStreetMap の地物を名前と種類で 1 件ずつ確かめて固定した
-- `data/osaka.images.tsv`: 名所の写真 (Wikimedia Commons) の作者とライセンス
+地域ごとに 4 つの TSV がある (`<地域>` は `osaka`、`hiroshima`、`nagasaki`、`kobe`、`okinawa`、`kosovo`)。
 
-`npm run catalogue` で 3 つをつなぎ、つなげない行や範囲外の座標があれば止まる。
+- `data/<地域>.categories.tsv`: その地域の分類と、一覧に出す順
+- `data/<地域>.seed.tsv`: 実績の候補 (ID、題名、種類、分類、場所)。大阪は AI が出した定番の名所と体験。ほかの 5 つは、作者が旅ごとに Scrapbox に書いた実績解除のページから起こした。店が分からない食べ物などは、代表の場所 (大阪のたこ焼きなら道頓堀) に置いた。大阪より後の地域の ID は地域名で始める (解除と星は ID ごとに記録するため)
+- `data/<地域>.places.tsv`: 場所の座標と出どころ。Wikidata (CC0) の座標と、Wikidata に無いもの (路線の乗り場、店、商店街) は OpenStreetMap の地物を名前と種類で 1 件ずつ確かめて固定した
+- `data/<地域>.images.tsv`: 名所の写真 (Wikimedia Commons) の作者とライセンス
+
+`npm run catalogue` で全地域の TSV をつなぎ、つなげない行や範囲外の座標があれば止まる。
 
 ## 開発
 
@@ -101,7 +114,7 @@ echo "https://unlock-your-trip.yuiseki.workers.dev/#token=$T&user=<id>"
 
 - 背景の地図: OpenFreeMap、© OpenMapTiles、© OpenStreetMap contributors
 - 実績の場所: Wikidata (CC0)、© OpenStreetMap contributors (ODbL)
-- 名所の写真: Wikimedia Commons。写真ごとの作者とライセンスは、一覧の写真の下と `data/osaka.images.tsv` にある
+- 名所の写真: Wikimedia Commons。写真ごとの作者とライセンスは、一覧の写真の下と `data/<地域>.images.tsv` にある
 
 ## ライセンス
 

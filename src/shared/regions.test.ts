@@ -11,10 +11,16 @@ describe("route", () => {
     expect(route("/u/yuiseki/japan/kansai/osaka/")).toEqual({ kind: "region", region: "osaka", publicUser: "yuiseki" });
   });
 
-  it("sends the old addresses to the default region", () => {
-    expect(route("/")).toEqual({ kind: "redirect", to: "/japan/kansai/osaka/" });
-    expect(route("/u/yuiseki")).toEqual({ kind: "redirect", to: "/u/yuiseki/japan/kansai/osaka/" });
-    expect(route("/u/yuiseki/")).toEqual({ kind: "redirect", to: "/u/yuiseki/japan/kansai/osaka/" });
+  it("lists the trips at the top, and someone's trips under /u/<id>/", () => {
+    expect(route("/")).toEqual({ kind: "trips", publicUser: null });
+    expect(route("/u/yuiseki")).toEqual({ kind: "trips", publicUser: "yuiseki" });
+    expect(route("/u/yuiseki/")).toEqual({ kind: "trips", publicUser: "yuiseki" });
+  });
+
+  it("opens the other trips by prefecture", () => {
+    expect(route("/japan/chugoku/hiroshima/")).toMatchObject({ kind: "region", region: "hiroshima" });
+    expect(route("/japan/kansai/hyogo/")).toMatchObject({ kind: "region", region: "kobe" });
+    expect(route("/kosovo/prizren/prizren/")).toMatchObject({ kind: "region", region: "kosovo" });
   });
 
   it("says when a region does not exist yet", () => {
@@ -26,18 +32,40 @@ describe("route", () => {
 });
 
 describe("REGIONS", () => {
-  it("gives every region a lower-case path of country, area and place", () => {
+  it("gives every region a lower-case path of country, area and prefecture", () => {
     for (const r of REGIONS) expect(regionPath(r)).toMatch(/^\/[a-z-]+\/[a-z-]+\/[a-z-]+\/$/);
     expect(new Set(REGIONS.map(regionPath)).size).toBe(REGIONS.length);
+    expect(new Set(REGIONS.map((r) => r.id)).size).toBe(REGIONS.length);
   });
 });
 
+// The built catalogues, read the way Vite reads files (no Node types needed).
+const built = import.meta.glob("../../public/catalogues/*.json", { eager: true, import: "default" }) as Record<string, { region: string; name: string; achievements: { id: string }[] }>;
+const catalogueOf = (id: string) => built[`../../public/catalogues/${id}.json`];
+
 describe("every region", () => {
-  it("has a built catalogue that names the same region", async () => {
-    const { readFileSync } = await import("node:fs");
+  it("has a built catalogue that names the same region", () => {
     for (const r of REGIONS) {
-      const c = JSON.parse(readFileSync(`public/catalogues/${r.id}.json`, "utf8"));
+      const c = catalogueOf(r.id);
+      expect(c, `public/catalogues/${r.id}.json`).toBeDefined();
       expect(c.region).toBe(r.id);
+      expect(c.name).toBe(r.name);
+    }
+  });
+
+  // Unlocks and stars are kept per achievement id, not per region, so an id
+  // used by two regions would share one unlock. Osaka's ids came first and
+  // keep their names; every later region prefixes its own.
+  it("uses achievement ids no other region uses", () => {
+    const owner = new Map<string, string>();
+    for (const r of REGIONS) {
+      const c = catalogueOf(r.id);
+      if (!c) continue; // the test above names the missing file
+      for (const a of c.achievements) {
+        expect(owner.get(a.id), `${a.id} is in ${owner.get(a.id)} and ${r.id}`).toBeUndefined();
+        owner.set(a.id, r.id);
+        if (r.id !== "osaka") expect(a.id.startsWith(`${r.id}-`), a.id).toBe(true);
+      }
     }
   });
 });
