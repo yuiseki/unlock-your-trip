@@ -15,9 +15,9 @@ export const REGIONS: Region[] = [
   { id: "osaka", path: ["japan", "kansai", "osaka"], name: "大阪", year: 2026, end: "2026-11-14", bbox: [135.35, 34.55, 135.65, 34.78] },
   { id: "hiroshima", path: ["japan", "chugoku", "hiroshima"], name: "広島", year: 2026, end: "2026-09-03", bbox: [132.2, 34.2, 132.6, 34.55] },
   { id: "nagasaki", path: ["japan", "kyushu", "nagasaki"], name: "長崎", year: 2025, end: "2025-03-16", bbox: [129.6, 32.5, 130.05, 33.0] },
-  { id: "kobe", path: ["japan", "kansai", "hyogo"], name: "神戸", year: 2024, end: "2024-03-10", bbox: [134.95, 34.55, 135.35, 34.9] },
+  { id: "kobe", path: ["japan", "kansai", "hyogo"], name: "神戸", year: 2024, end: "2024-03-16", bbox: [134.95, 34.55, 135.35, 34.9] },
   { id: "okinawa", path: ["japan", "kyushu", "okinawa"], name: "沖縄", year: 2023, end: "2023-03-17", bbox: [127.6, 26.05, 128.35, 26.95] },
-  { id: "kosovo", path: ["kosovo", "prizren", "prizren"], name: "コソボ", year: 2023, end: "2023-07-02", bbox: [20.0, 41.85, 21.8, 43.3] },
+  { id: "kosovo", path: ["kosovo", "prizren", "prizren"], name: "コソボ", year: 2023, end: "2023-07-04", bbox: [20.0, 41.85, 21.8, 43.3] },
 ];
 
 // Dates are compared in Japan time, the way the trips' ends are written.
