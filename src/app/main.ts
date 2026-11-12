@@ -188,7 +188,7 @@ function geojson() {
     features: shownAchievements(catalogue.achievements, unlocks, { lookingBack, showLocked }).map((a: Achievement) => ({
       type: "Feature" as const,
       geometry: { type: "Point" as const, coordinates: a.lngLat },
-      properties: { id: a.id, title: a.title, unlocked: done.has(a.id) },
+      properties: { id: a.id, title: a.title, unlocked: done.has(a.id), hasPhoto: photos.has(a.id) },
     })),
   };
 }
@@ -202,6 +202,7 @@ async function openMap() {
     achievements: geojson,
     canWrite: () => canWrite,
     toast,
+    photos: () => photos,
   });
 }
 
@@ -367,6 +368,8 @@ async function main() {
   });
   $("tab-list").addEventListener("click", () => showTab("list"));
   $("tab-map").addEventListener("click", () => showTab("map"));
+  // A trip opens on its map, the way its card on the top page shows it.
+  showTab("map");
   // Only the person unlocking needs "near me". Viewers of a public page
   // are never asked for their position.
   if (canWrite) watchLocation();

@@ -1,12 +1,13 @@
 // Loaded only when the map tab is opened, so the list starts without
 // downloading the map library.
-import { GeolocateControl, Map as MapLibreMap, NavigationControl, Popup, setWorkerUrl, type GeoJSONSource, type StyleSpecification } from "maplibre-gl";
+import { GeolocateControl, Map as MapLibreMap, Marker, NavigationControl, Popup, setWorkerUrl, type GeoJSONSource, type StyleSpecification } from "maplibre-gl";
 import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { FeatureCollection, Point } from "geojson";
 import type { Catalogue } from "../shared/catalogue";
 import { boundsOf, type LngLat } from "../shared/geo";
 import { japaneseLabels } from "./style";
+import { gyazoImage, photoMarkers } from "./photos";
 
 setWorkerUrl(workerUrl);
 
@@ -20,6 +21,7 @@ type Context = {
   achievements: () => FeatureCollection;
   canWrite: () => boolean;
   toast: (text: string) => void;
+  photos: () => Map<string, string[]>;
 };
 
 const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
@@ -94,6 +96,8 @@ export async function createMap(ctx: Context): Promise<MapView> {
       id: "achievements",
       type: "circle",
       source: "achievements",
+      // Achievements with the person's photo are drawn as that photo instead.
+      filter: ["!", ["get", "hasPhoto"]],
       paint: {
         "circle-radius": 9,
         "circle-color": ["case", ["get", "unlocked"], UNLOCKED, TO_DO],
@@ -105,24 +109,56 @@ export async function createMap(ctx: Context): Promise<MapView> {
       id: "achievement-labels",
       type: "symbol",
       source: "achievements",
-      layout: { "text-field": ["get", "title"], "text-size": 12, "text-offset": [0, 1.2], "text-anchor": "top", "text-max-width": 10 },
+      layout: {
+        "text-field": ["get", "title"],
+        "text-size": 12,
+        // Below the photo marker (48 px) when there is one, below the dot otherwise.
+        "text-offset": ["case", ["get", "hasPhoto"], ["literal", [0, 2.4]], ["literal", [0, 1.2]]],
+        "text-anchor": "top",
+        "text-max-width": 10,
+      },
       paint: { "text-color": "#7c2d12", "text-halo-color": "#ffffff", "text-halo-width": 1.5 },
     });
   });
+  const popup = (id: string, title: string, unlocked: boolean, at: [number, number]) => {
+    const html = `<strong>${escape(title)}</strong><br>` + (unlocked ? "🏆 解除済み" : ctx.canWrite() ? `<button class="unlock" data-id="${id}">解除！</button>` : "");
+    new Popup({ offset: 14 }).setLngLat(at).setHTML(html).addTo(map);
+  };
   map.on("click", "achievements", (ev) => {
     const f = ev.features?.[0];
     if (!f) return;
     // maplibre-gl v6 returns feature properties as plain values.
     const { id, title, unlocked } = f.properties as { id: string; title: string; unlocked: boolean };
-    const html = `<strong>${escape(title)}</strong><br>` + (unlocked ? "🏆 解除済み" : ctx.canWrite() ? `<button class="unlock" data-id="${id}">解除！</button>` : "");
-    new Popup().setLngLat((f.geometry as Point).coordinates as [number, number]).setHTML(html).addTo(map);
+    popup(id, title, unlocked, (f.geometry as Point).coordinates as [number, number]);
   });
+
+  // The person's photos as markers, like a Gyazo collection map: a framed
+  // thumbnail, stacked when there are several, ✅ in the corner once unlocked.
+  let markers: Marker[] = [];
+  const drawPhotos = () => {
+    for (const m of markers) m.remove();
+    const features = ctx.achievements().features as unknown as Parameters<typeof photoMarkers>[0];
+    markers = photoMarkers(features, ctx.photos()).map((p) => {
+      const el = document.createElement("button");
+      el.type = "button";
+      el.className = `photo-marker${p.count > 1 ? " stack" : ""}`;
+      el.setAttribute("aria-label", p.title);
+      el.innerHTML = `<img src="${gyazoImage(p.photo, 200)}" alt="" loading="lazy">${p.unlocked ? '<span class="badge">✅</span>' : ""}`;
+      el.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        popup(p.id, p.title, p.unlocked, p.lngLat);
+      });
+      return new Marker({ element: el }).setLngLat(p.lngLat).addTo(map);
+    });
+  };
+  map.on("load", drawPhotos);
   map.on("mouseenter", "achievements", () => (map.getCanvas().style.cursor = "pointer"));
   map.on("mouseleave", "achievements", () => (map.getCanvas().style.cursor = ""));
 
   return {
     update() {
       (map.getSource("achievements") as GeoJSONSource | undefined)?.setData(ctx.achievements());
+      if (map.loaded()) drawPhotos();
     },
     // Frame what is shown now, e.g. after the list switches between the
     // unlocked achievements only and all of them.

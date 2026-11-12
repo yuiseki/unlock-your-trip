@@ -11,3 +11,17 @@ export function photosByAchievement(photos: Photo[]): Map<string, string[]> {
   for (const p of photos) m.set(p.achievementId, [...(m.get(p.achievementId) ?? []), p.gyazoId]);
   return m;
 }
+
+type PointFeature = { geometry: { coordinates: number[] }; properties: { id: string; title: string; unlocked: boolean } };
+export type PhotoMarker = { id: string; title: string; unlocked: boolean; lngLat: [number, number]; photo: string; count: number };
+
+// The achievements the map shows as the person's own photo, the way a Gyazo
+// collection map does; the rest stay dots. Only shown achievements count.
+export function photoMarkers(features: PointFeature[], photos: Map<string, string[]>): PhotoMarker[] {
+  return features.flatMap((f) => {
+    const own = photos.get(f.properties.id);
+    if (!own?.length) return [];
+    const [lng, lat] = f.geometry.coordinates;
+    return [{ id: f.properties.id, title: f.properties.title, unlocked: f.properties.unlocked, lngLat: [lng, lat] as [number, number], photo: own[0], count: own.length }];
+  });
+}

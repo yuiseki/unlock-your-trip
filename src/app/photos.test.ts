@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { gyazoImage, gyazoPage, photosByAchievement } from "./photos";
+import { gyazoImage, gyazoPage, photoMarkers, photosByAchievement } from "./photos";
 
 const G = "424b64b813958ed5f0df977de3d6b877";
 
@@ -19,5 +19,20 @@ describe("photosByAchievement", () => {
     ]);
     expect(m.get("okinawa-soba")).toEqual(["1".repeat(32), "3".repeat(32)]);
     expect(m.get("okinawa-eisa")).toEqual(["2".repeat(32)]);
+  });
+});
+
+describe("photoMarkers", () => {
+  const feature = (id: string, unlocked: boolean) => ({
+    type: "Feature" as const,
+    geometry: { type: "Point" as const, coordinates: [135.5, 34.6] },
+    properties: { id, title: `title-${id}`, unlocked },
+  });
+
+  it("makes a photo marker for each shown achievement that has photos", () => {
+    const photos = new Map([["a", ["1".repeat(32), "2".repeat(32)]], ["gone", ["3".repeat(32)]]]);
+    expect(photoMarkers([feature("a", true), feature("b", false)], photos)).toEqual([
+      { id: "a", title: "title-a", unlocked: true, lngLat: [135.5, 34.6], photo: "1".repeat(32), count: 2 },
+    ]);
   });
 });
