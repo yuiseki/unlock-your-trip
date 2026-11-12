@@ -26,7 +26,10 @@ h1 a { color: inherit; text-decoration: none; }
 #crumbs a + a::before, #region:not(:empty)::before { content: "›"; margin: 0 6px; color: var(--muted); font-weight: normal; }
 .signin { display: inline-block; text-decoration: none; white-space: nowrap; }
 .signin:disabled { opacity: .45; pointer-events: none; }
-.signin-closed { display: inline-block; cursor: not-allowed; }
+.signin-closed { position: relative; display: inline-block; cursor: not-allowed; }
+/* The closed sign-in's message: to the left of the button, in the toast's colours. */
+.signin-closed .tip { position: absolute; top: 50%; right: calc(100% + 10px); transform: translateY(-50%); z-index: 20; width: max-content; max-width: 70vw; padding: 8px 12px; border-radius: 10px; background: var(--accent); color: #fff; font-size: 13px; font-weight: bold; box-shadow: 0 6px 20px rgba(0,0,0,.2); opacity: 0; visibility: hidden; transition: opacity .15s; pointer-events: none; }
+.signin-closed:hover .tip, .signin-closed:focus-visible .tip, .signin-closed.open .tip { opacity: 1; visibility: visible; }
 /* The title may wrap; the account slot keeps its size. */
 #account { flex: none; }
 .empty a { color: var(--accent); font-weight: bold; }

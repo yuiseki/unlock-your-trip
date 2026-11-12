@@ -477,12 +477,25 @@ async function showAccount() {
     }
     // Closed: the button shows but does not open. The wrapper carries the
     // tooltip and, on a phone where there is no hover, says it on a tap.
+    // The browser's own tooltip sits under the not-allowed cursor on macOS
+    // Chrome, so the message pops up to the left of the button instead: on hover and
+    // keyboard focus by CSS, and for a few seconds on a tap (phones).
     b.disabled = true;
     const wrap = document.createElement("span");
     wrap.className = "signin-closed";
-    wrap.title = SIGN_IN_CLOSED;
-    wrap.addEventListener("click", () => toast(SIGN_IN_CLOSED));
-    wrap.replaceChildren(b);
+    wrap.tabIndex = 0;
+    wrap.setAttribute("aria-describedby", "signin-tip");
+    const tip = document.createElement("span");
+    tip.id = "signin-tip";
+    tip.className = "tip";
+    tip.setAttribute("role", "tooltip");
+    tip.textContent = SIGN_IN_CLOSED;
+    wrap.addEventListener("click", () => {
+      wrap.classList.add("open");
+      clearTimeout((wrap as unknown as { t?: number }).t);
+      (wrap as unknown as { t?: number }).t = window.setTimeout(() => wrap.classList.remove("open"), 3000);
+    });
+    wrap.replaceChildren(b, tip);
     box.replaceChildren(wrap);
     return;
   }
