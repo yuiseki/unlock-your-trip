@@ -5,7 +5,7 @@ import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
 import { createSyncer } from "./syncer";
 import { loadClerk, userMenuItems, whoAmI, writesHere, type Clerk } from "./auth";
-import { creditText, crumbs, formatDistance, headerLine, listView, shownAchievements, type ListItem } from "./view";
+import { creditText, crumbs, formatDistance, headerLine, listView, shownAchievements, unlockedOnlyControl, type ListItem } from "./view";
 import { REGIONS, isPast, regionById, route } from "../shared/regions";
 import { tripSummaries } from "./trips";
 import { gyazoImage, gyazoPage, photosByAchievement, type Photo } from "./photos";
@@ -41,13 +41,28 @@ let photos = new Map<string, string[]>();
 // The tick is remembered per trip on this device.
 let lookingBack = false;
 let showLocked = true;
-const showLockedKey = () => `showLocked:${catalogue.region}`;
-function readShowLocked(): boolean {
+// The choice is remembered per trip on this device. It was stored inverted
+// ("showLocked") before the box was turned into 解除済みの実績のみ表示.
+const onlyKey = () => `unlockedOnly:${catalogue.region}`;
+function readUnlockedOnly(): boolean | null {
   try {
-    return localStorage.getItem(showLockedKey()) === "1";
+    const v = localStorage.getItem(onlyKey());
+    if (v !== null) return v === "1";
+    const old = localStorage.getItem(`showLocked:${catalogue.region}`);
+    return old === null ? null : old !== "1";
   } catch {
-    return false;
+    return null;
   }
+}
+
+function applyUnlockedOnly() {
+  const hasRecord = !!publicUser || canWrite;
+  const c = unlockedOnlyControl({ lookingBack, hasRecord, stored: readUnlockedOnly() });
+  const box = $<HTMLInputElement>("unlocked-only");
+  box.closest("label")!.hidden = !c.shown;
+  box.disabled = !c.enabled;
+  box.checked = c.checked;
+  showLocked = !c.checked;
 }
 let here: LngLat | null = null;
 let mapView: MapView | null = null;
@@ -126,7 +141,7 @@ function render() {
   if (!view.groups.length) {
     const li = document.createElement("li");
     li.className = "empty";
-    li.textContent = "この旅で解除した実績は、まだありません。「未解除の実績も表示」で全部を見られます。";
+    li.textContent = "この旅で解除した実績は、まだありません。「解除済みの実績のみ表示」を外すと全部を見られます。";
     list.replaceChildren(li);
   }
   $("sync-status").textContent = syncText();
@@ -308,22 +323,18 @@ async function main() {
   prefs = loadPrefs(localStorage, catalogue.region);
   const region = regionById(catalogue.region);
   lookingBack = !!region && isPast(region);
-  if (lookingBack) {
-    showLocked = readShowLocked();
-    const box = $<HTMLInputElement>("show-locked");
-    box.checked = showLocked;
-    box.closest("label")!.hidden = false;
-    box.addEventListener("change", () => {
-      showLocked = box.checked;
-      try {
-        localStorage.setItem(showLockedKey(), showLocked ? "1" : "0");
-      } catch {
-        // the choice then lasts only for this visit
-      }
-      render();
-      mapView?.fit();
-    });
-  }
+  applyUnlockedOnly();
+  $<HTMLInputElement>("unlocked-only").addEventListener("change", (ev) => {
+    const on = (ev.target as HTMLInputElement).checked;
+    showLocked = !on;
+    try {
+      localStorage.setItem(onlyKey(), on ? "1" : "0");
+    } catch {
+      // the choice then lasts only for this visit
+    }
+    render();
+    mapView?.fit();
+  });
   syncer = createSyncer({
     canWrite: () => canWrite,
     getToken: currentToken,
@@ -388,7 +399,11 @@ function setWriter(name: string | null) {
     watchLocation();
     void trySync();
   }
-  if (canWrite !== was) render();
+  if (canWrite !== was && catalogue) {
+    applyUnlockedOnly();
+    render();
+    mapView?.fit();
+  }
 }
 
 // The right end of the header, the same on every page: Clerk's sign-in

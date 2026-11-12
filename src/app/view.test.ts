@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { crumbs, headerLine, listView, shownAchievements } from "./view";
+import { crumbs, headerLine, listView, shownAchievements, unlockedOnlyControl } from "./view";
 import type { Achievement } from "../shared/catalogue";
 
 const a = (id: string, lngLat: [number, number], category = "sightseeing"): Achievement => ({ id, title: id, kind: "visit", category, place: id, lngLat });
@@ -172,5 +172,20 @@ describe("crumbs", () => {
       { label: "旅の実績解除！", href: "/" },
       { label: "yuiseki さん", href: "/u/yuiseki/" },
     ]);
+  });
+});
+
+describe("unlockedOnlyControl", () => {
+  it("is shown only when looking back at a past trip", () => {
+    expect(unlockedOnlyControl({ lookingBack: false, hasRecord: true, stored: null })).toEqual({ shown: false, enabled: false, checked: false });
+  });
+
+  it("starts ticked for someone with a record, and keeps their choice", () => {
+    expect(unlockedOnlyControl({ lookingBack: true, hasRecord: true, stored: null })).toEqual({ shown: true, enabled: true, checked: true });
+    expect(unlockedOnlyControl({ lookingBack: true, hasRecord: true, stored: false })).toEqual({ shown: true, enabled: true, checked: false });
+  });
+
+  it("is off and cannot be ticked without a record, so the list is not empty", () => {
+    expect(unlockedOnlyControl({ lookingBack: true, hasRecord: false, stored: true })).toEqual({ shown: true, enabled: false, checked: false });
   });
 });
