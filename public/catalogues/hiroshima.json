@@ -33,10 +33,10 @@
    "category": "sightseeing",
    "place": "島病院",
    "lngLat": [
-    132.45469,
-    34.39479
+    132.45466,
+    34.39468
    ],
-   "source": "osm:node/2479173821"
+   "source": "gyazo:2e74f86b1fc21f51cefe3ab1e7e2e79a"
   },
   {
    "id": "hiroshima-genbaku-dome",
@@ -45,10 +45,10 @@
    "category": "sightseeing",
    "place": "原爆ドーム",
    "lngLat": [
-    132.45361,
-    34.39556
+    132.45366,
+    34.39498
    ],
-   "source": "wikidata:Q231140",
+   "source": "gyazo:49a008e2f254f513063b6ec4d3082940",
    "wikidata": "Q231140",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Genbaku_Dome04-r.JPG/960px-Genbaku_Dome04-r.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -64,10 +64,10 @@
    "category": "sightseeing",
    "place": "平和記念公園",
    "lngLat": [
-    132.45237,
-    34.39273
+    132.45259,
+    34.39466
    ],
-   "source": "wikidata:Q1207208",
+   "source": "gyazo:bd24f60ed3feb57efb075e6ee82bd68c",
    "wikidata": "Q1207208",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/20181111_Hiroshima_Memorial_Cenotaph-1.jpg/960px-20181111_Hiroshima_Memorial_Cenotaph-1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -83,10 +83,10 @@
    "category": "sightseeing",
    "place": "広島平和記念資料館",
    "lngLat": [
-    132.45306,
-    34.39147
+    132.45312,
+    34.39154
    ],
-   "source": "wikidata:Q1200076",
+   "source": "gyazo:73b53429bc9c001be4013a8206f376e3",
    "wikidata": "Q1200076",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Hiroshima_Peace_Memorial_Museum_2008_01.JPG/960px-Hiroshima_Peace_Memorial_Museum_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -102,10 +102,10 @@
    "category": "sightseeing",
    "place": "国立広島原爆死没者追悼平和祈念館",
    "lngLat": [
-    132.45349,
-    34.39333
+    132.45306,
+    34.39285
    ],
-   "source": "wikidata:Q114067",
+   "source": "gyazo:2ecb65e6c862b08de4016517fd10d311",
    "wikidata": "Q114067",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Hiroshima_National_Peace_Memorial_Hall_for_the_Atomic_Bomb_Victims_2008_01.JPG/960px-Hiroshima_National_Peace_Memorial_Hall_for_the_Atomic_Bomb_Victims_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -121,10 +121,10 @@
    "category": "sightseeing",
    "place": "原爆供養塔",
    "lngLat": [
-    132.45194,
-    34.39472
+    132.45221,
+    34.39442
    ],
-   "source": "wikidata:Q11409709",
+   "source": "gyazo:e38a0a422d4bee9fd8647430b9ae7896",
    "wikidata": "Q11409709",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/HiroshimaGembakuKuyoTo7093.jpg/960px-HiroshimaGembakuKuyoTo7093.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -159,10 +159,10 @@
    "category": "sightseeing",
    "place": "原爆死没者慰霊碑",
    "lngLat": [
-    132.45256,
-    34.39297
+    132.45254,
+    34.39289
    ],
-   "source": "wikidata:Q11409718",
+   "source": "gyazo:f5ab517adc6610d1e65e548d7cc77c45",
    "wikidata": "Q11409718",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Cenotaph_for_A-Bomb_Victims.JPG/960px-Cenotaph_for_A-Bomb_Victims.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -197,10 +197,10 @@
    "category": "sightseeing",
    "place": "広島城",
    "lngLat": [
-    132.45903,
-    34.40275
+    132.45921,
+    34.40209
    ],
-   "source": "wikidata:Q41977",
+   "source": "gyazo:ef7d3ac217e2a770b0b6eb3b3fd6c1a6",
    "wikidata": "Q41977",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/HiroshimaCastle.jpg/960px-HiroshimaCastle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -216,10 +216,10 @@
    "category": "sightseeing",
    "place": "縮景園",
    "lngLat": [
-    132.4675,
-    34.40028
+    132.46783,
+    34.40036
    ],
-   "source": "wikidata:Q2576732",
+   "source": "gyazo:22526062694804ac7700af94458ba6e3",
    "wikidata": "Q2576732",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/14/Hiroshima_Shukkei-en_Pond.jpg/960px-Hiroshima_Shukkei-en_Pond.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -347,12 +347,12 @@
    "title": "広島電鉄の路面電車に乗る",
    "kind": "ride",
    "category": "transport",
-   "place": "広島駅電停",
+   "place": "広島電鉄 (大手町付近)",
    "lngLat": [
-    132.47521,
-    34.39677
+    132.45542,
+    34.38841
    ],
-   "source": "osm:node/13043288314"
+   "source": "gyazo:9a69e3af3e6c804221f3b831f45d0556"
   },
   {
    "id": "hiroshima-tram-city",
@@ -361,10 +361,10 @@
    "category": "transport",
    "place": "紙屋町東電停",
    "lngLat": [
-    132.45829,
-    34.39501
+    132.45705,
+    34.39328
    ],
-   "source": "wikidata:Q6358609",
+   "source": "gyazo:e6fc9a6c30dacf2647016a96228f6400",
    "wikidata": "Q6358609",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Hiroden_type3950_20080309.jpg/960px-Hiroden_type3950_20080309.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -428,38 +428,24 @@
    "title": "広島でお好み焼きを食べる",
    "kind": "eat",
    "category": "food",
-   "place": "お好み村",
+   "place": "加古町 (JMSアステールプラザ付近)",
    "lngLat": [
-    132.46193,
-    34.39131
+    132.44866,
+    34.38748
    ],
-   "source": "wikidata:Q11263021",
-   "wikidata": "Q11263021",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg/960px-%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg",
-    "credit": "Taisyo; Uploaded to Commons by Nihonjoe",
-    "license": "CC BY 3.0"
-   }
+   "source": "gyazo:3b627b45333bcfcaca2933a088755621"
   },
   {
    "id": "hiroshima-okonomiyaki-teppan",
    "title": "お好み焼きを鉄板の前で食べる",
    "kind": "eat",
    "category": "food",
-   "place": "お好み村",
+   "place": "国泰寺付近",
    "lngLat": [
-    132.46193,
-    34.39131
+    132.45968,
+    34.38616
    ],
-   "source": "wikidata:Q11263021",
-   "wikidata": "Q11263021",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg/960px-%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:%E3%81%8A%E5%A5%BD%E3%81%BF%E6%9D%911.jpg",
-    "credit": "Taisyo; Uploaded to Commons by Nihonjoe",
-    "license": "CC BY 3.0"
-   }
+   "source": "gyazo:0ab3a72e8fcd3a6e723db2c7d701cdc9"
   },
   {
    "id": "hiroshima-okonomiyaki-compare",
@@ -485,12 +471,12 @@
    "title": "広島で牡蠣を食べる",
    "kind": "eat",
    "category": "food",
-   "place": "かき船 かなわ",
+   "place": "本通り付近",
    "lngLat": [
-    132.46915,
-    34.39321
+    132.45468,
+    34.39423
    ],
-   "source": "osm:node/12954139157"
+   "source": "gyazo:827b8242696034f11e0c3a4dd6bafc46"
   },
   {
    "id": "hiroshima-oyster-grilled",
@@ -521,19 +507,12 @@
    "title": "カキフライを食べる",
    "kind": "eat",
    "category": "food",
-   "place": "広島駅",
+   "place": "本通り付近",
    "lngLat": [
-    132.47583,
-    34.39833
+    132.45468,
+    34.39423
    ],
-   "source": "wikidata:Q576459",
-   "wikidata": "Q576459",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/56/Hiroshima_Station_South_04.jpg/960px-Hiroshima_Station_South_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Hiroshima_Station_South_04.jpg",
-    "credit": "ノボホショコロトソ",
-    "license": "CC BY 4.0"
-   }
+   "source": "gyazo:827b8242696034f11e0c3a4dd6bafc46"
   },
   {
    "id": "hiroshima-oyster-dotenabe",
@@ -592,10 +571,10 @@
    "category": "food",
    "place": "キング軒",
    "lngLat": [
-    132.45467,
-    34.40108
+    132.45383,
+    34.3887
    ],
-   "source": "osm:node/12259090151"
+   "source": "gyazo:9caa017a4ce5d29638657bd0eefd4ab8"
   },
   {
    "id": "hiroshima-tsukemen",
@@ -786,10 +765,10 @@
    "category": "foss4g",
    "place": "広島国際会議場",
    "lngLat": [
-    132.45103,
-    34.39208
+    132.45082,
+    34.39201
    ],
-   "source": "wikidata:Q11484485",
+   "source": "gyazo:c2796112be20706150e2e575e95330ff",
    "wikidata": "Q11484485",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/International_Conference_Center_Hiroshima_2008_01.JPG/960px-International_Conference_Center_Hiroshima_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -817,10 +796,10 @@
    "category": "foss4g",
    "place": "広島国際会議場",
    "lngLat": [
-    132.45103,
-    34.39208
+    132.45082,
+    34.39201
    ],
-   "source": "wikidata:Q11484485",
+   "source": "gyazo:c2796112be20706150e2e575e95330ff",
    "wikidata": "Q11484485",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/International_Conference_Center_Hiroshima_2008_01.JPG/960px-International_Conference_Center_Hiroshima_2008_01.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -836,10 +815,10 @@
    "category": "foss4g",
    "place": "HIROSHIMA GATE PARK",
    "lngLat": [
-    132.45492,
-    34.39701
+    132.45456,
+    34.39717
    ],
-   "source": "osm:way/105823434",
+   "source": "gyazo:6db4ea2d9c669921d699947580e81fda",
    "wikidata": "Q138707848",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Hiroshima_Gate_Park_2024-0326-01.jpg/960px-Hiroshima_Gate_Park_2024-0326-01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -855,10 +834,10 @@
    "category": "foss4g",
    "place": "グランドプリンスホテル広島",
    "lngLat": [
-    132.464,
-    34.34347
+    132.46387,
+    34.34351
    ],
-   "source": "wikidata:Q111328168",
+   "source": "gyazo:35672a8d351f26078145efa912b55451",
    "wikidata": "Q111328168",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Grand_Prince_Hotel_Hiroshima_20190614-002.jpg/960px-Grand_Prince_Hotel_Hiroshima_20190614-002.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",

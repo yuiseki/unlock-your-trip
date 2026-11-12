@@ -33,10 +33,10 @@
    "category": "museum",
    "place": "神戸市立博物館",
    "lngLat": [
-    135.19306,
-    34.68722
+    135.19383,
+    34.68718
    ],
-   "source": "wikidata:Q3330666",
+   "source": "gyazo:7033fe98515b3417a10896b8e5603758",
    "wikidata": "Q3330666",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Kobe_city_museum02s3200.jpg/960px-Kobe_city_museum02s3200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -71,10 +71,10 @@
    "category": "museum",
    "place": "KOBEとんぼ玉ミュージアム",
    "lngLat": [
-    135.19372,
-    34.68861
+    135.19359,
+    34.68867
    ],
-   "source": "wikidata:Q11228060",
+   "source": "gyazo:23752a5b20295b0e3200640f973b809e",
    "wikidata": "Q11228060",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Nihon_Building_Kobe02n4272.jpg/960px-Nihon_Building_Kobe02n4272.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -88,13 +88,12 @@
    "title": "神戸ポートタワーに上る",
    "kind": "visit",
    "category": "port-exotic",
-   "place": "神戸ポートタワー",
+   "place": "神戸ポートタワー (中突堤から)",
    "lngLat": [
-    135.18667,
-    34.6825
+    135.18845,
+    34.68035
    ],
-   "source": "wikidata:Q798766",
-   "wikidata": "Q798766",
+   "source": "gyazo:5a5765a994e148f8e80617338529f982",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/Kobe_port_tower12s3200.jpg/960px-Kobe_port_tower12s3200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Kobe_port_tower12s3200.jpg",
@@ -119,76 +118,48 @@
    "title": "神戸牛を食べる",
    "kind": "eat",
    "category": "kobe-food",
-   "place": "元町",
+   "place": "三宮センタープラザ付近",
    "lngLat": [
-    135.18739,
-    34.68956
+    135.19199,
+    34.69154
    ],
-   "source": "wikidata:Q59520",
-   "wikidata": "Q59520",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Kobe_motomachi_st01s3200.jpg/960px-Kobe_motomachi_st01s3200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Kobe_motomachi_st01s3200.jpg",
-    "credit": "663highland",
-    "license": "CC BY 2.5"
-   }
+   "source": "gyazo:944053cd9e3c7e071a57a6bfb1648859"
   },
   {
    "id": "kobe-sobameshi",
    "title": "そばめしを食べる",
    "kind": "eat",
    "category": "kobe-food",
-   "place": "新長田",
+   "place": "長田本庄軒 三宮センタープラザ店",
    "lngLat": [
-    135.14361,
-    34.65667
+    135.19219,
+    34.69172
    ],
-   "source": "wikidata:Q1066558",
-   "wikidata": "Q1066558",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/JR_Shin-Nagata_Station.jpg/960px-JR_Shin-Nagata_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:JR_Shin-Nagata_Station.jpg",
-    "credit": "KishujiRapid",
-    "license": "CC BY 4.0"
-   }
+   "source": "gyazo:f0e8e5ec3d93a5108851a7848f47bf4f"
   },
   {
    "id": "kobe-bokkake",
    "title": "ぼっかけを食べる",
    "kind": "eat",
    "category": "kobe-food",
-   "place": "新長田",
+   "place": "長田本庄軒 三宮センタープラザ店",
    "lngLat": [
-    135.14361,
-    34.65667
+    135.19214,
+    34.6917
    ],
-   "source": "wikidata:Q1066558",
-   "wikidata": "Q1066558",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/JR_Shin-Nagata_Station.jpg/960px-JR_Shin-Nagata_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:JR_Shin-Nagata_Station.jpg",
-    "credit": "KishujiRapid",
-    "license": "CC BY 4.0"
-   }
+   "source": "gyazo:07f2f02c1ce30ade8b42d4f82502b74c"
   },
   {
    "id": "kobe-bokkake-sobameshi",
    "title": "ぼっかけそばめしを食べる",
    "kind": "eat",
    "category": "kobe-food",
-   "place": "新長田",
+   "place": "長田本庄軒 三宮センタープラザ店",
    "lngLat": [
-    135.14361,
-    34.65667
+    135.19219,
+    34.69172
    ],
-   "source": "wikidata:Q1066558",
-   "wikidata": "Q1066558",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/JR_Shin-Nagata_Station.jpg/960px-JR_Shin-Nagata_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:JR_Shin-Nagata_Station.jpg",
-    "credit": "KishujiRapid",
-    "license": "CC BY 4.0"
-   }
+   "source": "gyazo:f0e8e5ec3d93a5108851a7848f47bf4f"
   },
   {
    "id": "kobe-akashiyaki",
@@ -213,12 +184,12 @@
    "title": "味噌だれ餃子を食べる",
    "kind": "eat",
    "category": "kobe-food",
-   "place": "元祖ぎょうざ苑",
+   "place": "三宮 (珉珉付近)",
    "lngLat": [
-    135.18766,
-    34.68787
+    135.193,
+    34.69342
    ],
-   "source": "osm:node/6325451890"
+   "source": "gyazo:6335f9bb754d7408e07f6f9cd048b59e"
   },
   {
    "id": "kobe-croquette",
@@ -237,19 +208,12 @@
    "title": "神戸パンを食べ歩く",
    "kind": "eat",
    "category": "kobe-bread",
-   "place": "元町",
+   "place": "三宮",
    "lngLat": [
-    135.18739,
-    34.68956
+    135.19479,
+    34.69221
    ],
-   "source": "wikidata:Q59520",
-   "wikidata": "Q59520",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Kobe_motomachi_st01s3200.jpg/960px-Kobe_motomachi_st01s3200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Kobe_motomachi_st01s3200.jpg",
-    "credit": "663highland",
-    "license": "CC BY 2.5"
-   }
+   "source": "gyazo:a4615f0bbeb9f6041100bdcdf8ff3f4f"
   },
   {
    "id": "kobe-comme-chinois",
@@ -306,10 +270,10 @@
    "category": "port-exotic",
    "place": "南京町",
    "lngLat": [
-    135.18806,
-    34.68806
+    135.18823,
+    34.68804
    ],
-   "source": "wikidata:Q912392",
+   "source": "gyazo:c7dff67ec0007afa1f87edbbe0e74db1",
    "wikidata": "Q912392",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Kobe-Nankinmachi.JPG/960px-Kobe-Nankinmachi.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -325,10 +289,10 @@
    "category": "port-exotic",
    "place": "メリケンパーク",
    "lngLat": [
-    135.18925,
-    34.68128
+    135.18916,
+    34.68137
    ],
-   "source": "wikidata:Q116944054",
+   "source": "gyazo:cf39b9f920765472d255198924439461",
    "wikidata": "Q116944054",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/BE_KOBE_20190216.jpg/960px-BE_KOBE_20190216.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -356,10 +320,10 @@
    "category": "kobe-food",
    "place": "神戸メリケンパークオリエンタルホテル",
    "lngLat": [
-    135.18861,
-    34.68
+    135.18842,
+    34.68004
    ],
-   "source": "wikidata:Q5363534",
+   "source": "gyazo:1116518522e1bdf4febf92b00efe3f42",
    "wikidata": "Q5363534",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ab/Kobe_Meriken_Park_Oriental_Hotel_20201114.jpg/960px-Kobe_Meriken_Park_Oriental_Hotel_20201114.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",

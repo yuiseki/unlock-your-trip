@@ -2,16 +2,16 @@ id	title	kind	category	place	search
 kobe-city-museum	神戸市立博物館に行く	visit	museum	神戸市立博物館	神戸市立博物館
 kobe-overseas-chinese-museum	神戸華僑歴史博物館に行く	visit	museum	神戸華僑歴史博物館	神戸華僑歴史博物館
 kobe-tombodama-museum	KOBEとんぼ玉ミュージアムに行く	visit	museum	KOBEとんぼ玉ミュージアム	KOBEとんぼ玉ミュージアム
-kobe-port-tower	神戸ポートタワーに上る	visit	port-exotic	神戸ポートタワー	神戸ポートタワー
+kobe-port-tower	神戸ポートタワーに上る	visit	port-exotic	神戸ポートタワー (中突堤から)	神戸ポートタワー
 kobe-kitano-ijinkan	北野異人館街を歩く	visit	port-exotic	北野異人館街	北野異人館街
-kobe-beef	神戸牛を食べる	eat	kobe-food	元町	元町
-kobe-sobameshi	そばめしを食べる	eat	kobe-food	新長田	新長田
-kobe-bokkake	ぼっかけを食べる	eat	kobe-food	新長田	新長田
-kobe-bokkake-sobameshi	ぼっかけそばめしを食べる	eat	kobe-food	新長田	新長田
+kobe-beef	神戸牛を食べる	eat	kobe-food	三宮センタープラザ付近	元町
+kobe-sobameshi	そばめしを食べる	eat	kobe-food	長田本庄軒 三宮センタープラザ店	新長田
+kobe-bokkake	ぼっかけを食べる	eat	kobe-food	長田本庄軒 三宮センタープラザ店	新長田
+kobe-bokkake-sobameshi	ぼっかけそばめしを食べる	eat	kobe-food	長田本庄軒 三宮センタープラザ店	新長田
 kobe-akashiyaki	明石焼きを食べる	eat	kobe-food	魚の棚商店街	魚の棚
-kobe-miso-gyoza	味噌だれ餃子を食べる	eat	kobe-food	元祖ぎょうざ苑	元祖 ぎょうざ苑
+kobe-miso-gyoza	味噌だれ餃子を食べる	eat	kobe-food	三宮 (珉珉付近)	元祖 ぎょうざ苑
 kobe-croquette	神戸コロッケを食べる	eat	kobe-food	神戸コロッケ (南京町)	神戸コロッケ
-kobe-bread	神戸パンを食べ歩く	eat	kobe-bread	元町	元町
+kobe-bread	神戸パンを食べ歩く	eat	kobe-bread	三宮	元町
 kobe-comme-chinois	ブランジェリー・コム・シノワでパンを買う	eat	kobe-bread	ブランジェリー・コム・シノワ	ブランジェリー　コム　シノワ
 kobe-sa-masse	サ・マーシュでパンを買う	eat	kobe-bread	北野 (サ・マーシュの位置は未確認)	北野異人館街
 kobe-isuzu-motomachi	イスズベーカリー元町店でパンを買う	eat	kobe-bread	イスズベーカリー 元町店	イスズベーカリー

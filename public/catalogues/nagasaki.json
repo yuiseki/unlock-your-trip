@@ -33,10 +33,10 @@
    "category": "sightseeing",
    "place": "長崎歴史文化博物館",
    "lngLat": [
-    129.87956,
-    32.75281
+    129.87927,
+    32.75257
    ],
-   "source": "wikidata:Q73613",
+   "source": "gyazo:06f51460e76f74a988504cd68fc1c66b",
    "wikidata": "Q73613",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Nagasaki_Museum_of_History_and_Culture_ac_%281%29.jpg/960px-Nagasaki_Museum_of_History_and_Culture_ac_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -52,10 +52,10 @@
    "category": "peace",
    "place": "長崎原爆資料館",
    "lngLat": [
-    129.86451,
-    32.77265
+    129.86456,
+    32.77235
    ],
-   "source": "wikidata:Q1099077",
+   "source": "gyazo:c2859f55fea59ca7d8f3f995706038fb",
    "wikidata": "Q1099077",
    "image": {
     "url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Nagasakigenbaku.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
@@ -71,10 +71,10 @@
    "category": "peace",
    "place": "原子爆弾落下中心地碑",
    "lngLat": [
-    129.86328,
-    32.77374
+    129.8634,
+    32.7737
    ],
-   "source": "osm:way/375933470"
+   "source": "gyazo:430e2dec67f011e479eee6ec23186851"
   },
   {
    "id": "nagasaki-peace-park",
@@ -83,10 +83,10 @@
    "category": "peace",
    "place": "長崎平和公園",
    "lngLat": [
-    129.86312,
-    32.77558
+    129.86288,
+    32.77416
    ],
-   "source": "wikidata:Q93490",
+   "source": "gyazo:aac33847b98875d6c0a00749d4e152f5",
    "wikidata": "Q93490",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Fountain_at_Nagasaki_Peace_Park.jpg/960px-Fountain_at_Nagasaki_Peace_Park.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -102,10 +102,10 @@
    "category": "peace",
    "place": "平和祈念像",
    "lngLat": [
-    129.86397,
-    32.77692
+    129.86393,
+    32.77721
    ],
-   "source": "wikidata:Q11482256",
+   "source": "gyazo:f38d65b7cabc37ed946cb31fe9aacd09",
    "wikidata": "Q11482256",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/20190202_Nagasaki_Peace_Park_Peace_Statue-1.jpg/960px-20190202_Nagasaki_Peace_Park_Peace_Statue-1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -121,10 +121,10 @@
    "category": "sightseeing",
    "place": "長崎新地中華街",
    "lngLat": [
-    129.87528,
-    32.74147
+    129.87588,
+    32.74206
    ],
-   "source": "wikidata:Q63229",
+   "source": "gyazo:380199178b9ac9e29a65dd615b1670da",
    "wikidata": "Q63229",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG/960px-Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -140,10 +140,10 @@
    "category": "sightseeing",
    "place": "出島",
    "lngLat": [
-    129.87302,
-    32.74352
+    129.87186,
+    32.74391
    ],
-   "source": "wikidata:Q640267",
+   "source": "gyazo:9f65581b2d438ffd71a7e0dc5a5bdb43",
    "wikidata": "Q640267",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/View_of_Dejima_in_Nagasaki_Bay_Folding_Screen_by_Kawahara_Keiga_c1836.jpg/960px-View_of_Dejima_in_Nagasaki_Bay_Folding_Screen_by_Kawahara_Keiga_c1836.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -159,10 +159,10 @@
    "category": "sightseeing",
    "place": "眼鏡橋",
    "lngLat": [
-    129.88009,
-    32.74721
+    129.87966,
+    32.74681
    ],
-   "source": "wikidata:Q74710",
+   "source": "gyazo:26801c3d0655981be2a94f8f3f15aa9e",
    "wikidata": "Q74710",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/61/Meganebashi%2C_Nagasaki_cropped_1.jpg/960px-Meganebashi%2C_Nagasaki_cropped_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -178,10 +178,10 @@
    "category": "sightseeing",
    "place": "軍艦島デジタルミュージアム",
    "lngLat": [
-    129.86914,
+    129.86913,
     32.73604
    ],
-   "source": "osm:way/242947332",
+   "source": "gyazo:7e909027518a0eae5cad6c85d5caeb8e",
    "wikidata": "Q24869383",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Gunkanjima_Digital_Museum_02.jpg/960px-Gunkanjima_Digital_Museum_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -197,10 +197,10 @@
    "category": "sightseeing",
    "place": "グラバー園",
    "lngLat": [
-    129.86889,
-    32.73444
+    129.86898,
+    32.73414
    ],
-   "source": "wikidata:Q63465",
+   "source": "gyazo:74e16fc1863f9e900c303ee8e305ab13",
    "wikidata": "Q63465",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Nagasaki-Glover-Garden-5415.jpg/960px-Nagasaki-Glover-Garden-5415.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -217,9 +217,9 @@
    "place": "長崎伝統芸能館",
    "lngLat": [
     129.86852,
-    32.73387
+    32.73388
    ],
-   "source": "wikidata:Q127806461",
+   "source": "gyazo:6a0b077da0b9674606030d3606b0f477",
    "wikidata": "Q127806461",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a8/Glover_Garden_Nagasaki_Japan87s3.jpg/960px-Glover_Garden_Nagasaki_Japan87s3.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -233,12 +233,12 @@
    "title": "長崎の猫を見る",
    "kind": "see",
    "category": "sightseeing",
-   "place": "南山手",
+   "place": "万屋町",
    "lngLat": [
-    129.86852,
-    32.73302
+    129.87998,
+    32.74385
    ],
-   "source": "osm:node/8444589541"
+   "source": "gyazo:6e49658581e7694668d880a01cae5f29"
   },
   {
    "id": "nagasaki-26-martyrs",
@@ -321,50 +321,36 @@
    "title": "ちゃんぽんを食べる",
    "kind": "eat",
    "category": "food",
-   "place": "四海樓",
+   "place": "長崎駅前 (尾上町)",
    "lngLat": [
-    129.86981,
-    32.73647
+    129.86871,
+    32.75337
    ],
-   "source": "wikidata:Q11248844",
-   "wikidata": "Q11248844",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/Shikairo_Nagasaki_Japan01n.jpg/960px-Shikairo_Nagasaki_Japan01n.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Shikairo_Nagasaki_Japan01n.jpg",
-    "credit": "663highland",
-    "license": "CC BY 2.5"
-   }
+   "source": "gyazo:56f4042f602c1a20ed06fb0caadac62a"
   },
   {
    "id": "nagasaki-sara-udon",
    "title": "皿うどんを食べる",
    "kind": "eat",
    "category": "food",
-   "place": "長崎新地中華街",
+   "place": "アミュプラザ長崎",
    "lngLat": [
-    129.87528,
-    32.74147
+    129.87083,
+    32.75157
    ],
-   "source": "wikidata:Q63229",
-   "wikidata": "Q63229",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG/960px-Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG",
-    "credit": "そらみみ (Soramimi)",
-    "license": "CC BY-SA 4.0"
-   }
+   "source": "gyazo:0acda2865e42746082724b55135efda6"
   },
   {
    "id": "nagasaki-turkish-rice",
    "title": "トルコライスを食べる",
    "kind": "eat",
    "category": "food",
-   "place": "ツル茶ん",
+   "place": "アミュプラザ長崎",
    "lngLat": [
-    129.8807,
-    32.74317
+    129.87091,
+    32.75188
    ],
-   "source": "osm:node/12177836984"
+   "source": "gyazo:bb326f76fb4b7870dad36725c0810399"
   },
   {
    "id": "nagasaki-hatoshi",
@@ -373,10 +359,10 @@
    "category": "food",
    "place": "長崎新地中華街",
    "lngLat": [
-    129.87528,
-    32.74147
+    129.87511,
+    32.7413
    ],
-   "source": "wikidata:Q63229",
+   "source": "gyazo:5f82ecdb79b54cab78a467cbe69e2105",
    "wikidata": "Q63229",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG/960px-Gembumon_Gate_of_Nagasaki_Shinchi_Chinatown.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -390,12 +376,12 @@
    "title": "角煮まんじゅうを食べる",
    "kind": "eat",
    "category": "food",
-   "place": "岩崎本舗",
+   "place": "長崎駅前 (出島メッセ長崎付近)",
    "lngLat": [
-    129.87594,
-    32.74234
+    129.86757,
+    32.75308
    ],
-   "source": "osm:node/7105972210"
+   "source": "gyazo:942c781218c0378df0646959f68eea7a"
   },
   {
    "id": "nagasaki-aji-fry-sandwich",
@@ -404,10 +390,10 @@
    "category": "food",
    "place": "長崎駅",
    "lngLat": [
-    129.86908,
-    32.75275
+    129.86829,
+    32.75179
    ],
-   "source": "wikidata:Q1076315",
+   "source": "gyazo:4ca3d2e48716a12fde4d24154370b47a",
    "wikidata": "Q1076315",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Nagasaki_Station_20200407_03.jpg/960px-Nagasaki_Station_20200407_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -423,10 +409,10 @@
    "category": "food",
    "place": "思案橋",
    "lngLat": [
-    129.88,
-    32.7427
+    129.88109,
+    32.74336
    ],
-   "source": "wikidata:Q11491540",
+   "source": "gyazo:aa591411a9aa6cb74e848a5ce8977d7f",
    "wikidata": "Q11491540",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Shianbashi_Station_4.JPG/960px-Shianbashi_Station_4.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -442,10 +428,10 @@
    "category": "food",
    "place": "思案橋",
    "lngLat": [
-    129.88,
-    32.7427
+    129.88102,
+    32.74352
    ],
-   "source": "wikidata:Q11491540",
+   "source": "gyazo:3713c10b00effb2dd29617fb5493a60b",
    "wikidata": "Q11491540",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7b/Shianbashi_Station_4.JPG/960px-Shianbashi_Station_4.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -459,12 +445,12 @@
    "title": "文明堂のカステラを食べる",
    "kind": "eat",
    "category": "food",
-   "place": "文明堂総本店",
+   "place": "思案橋 (ツル茶ん付近)",
    "lngLat": [
-    129.8723,
-    32.74556
+    129.88101,
+    32.74353
    ],
-   "source": "osm:node/7150986485"
+   "source": "gyazo:35d6bed835d99595a6fcfb9e27c87446"
   },
   {
    "id": "nagasaki-airport-whisky",
@@ -473,10 +459,10 @@
    "category": "food",
    "place": "長崎空港",
    "lngLat": [
-    129.92238,
-    32.91413
+    129.92312,
+    32.91374
    ],
-   "source": "osm:way/553063057",
+   "source": "gyazo:f35cc5e674a20ff55d93e0a5ef60be5b",
    "wikidata": "Q133796",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Nagasaki_Airport_Omura_Nagasaki_pref_Japan06n.jpg/960px-Nagasaki_Airport_Omura_Nagasaki_pref_Japan06n.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -492,10 +478,10 @@
    "category": "ramen",
    "place": "朝日屋",
    "lngLat": [
-    129.87124,
-    32.75052
+    129.87128,
+    32.75049
    ],
-   "source": "osm:node/5251190624"
+   "source": "gyazo:5e8a6a2271dd1a7f995ca10dac70dad3"
   },
   {
    "id": "nagasaki-menya-always",
@@ -504,10 +490,10 @@
    "category": "ramen",
    "place": "麺也オールウェイズ 万屋町店",
    "lngLat": [
-    129.87908,
-    32.74512
+    129.88031,
+    32.74421
    ],
-   "source": "osm:node/8444589604"
+   "source": "gyazo:c88281f96791be6606aadddec3d9521b"
   },
   {
    "id": "nagasaki-hiiragi",
@@ -516,10 +502,10 @@
    "category": "ramen",
    "place": "らーめん柊 銅座本店",
    "lngLat": [
-    129.87766,
-    32.74333
+    129.87759,
+    32.74323
    ],
-   "source": "osm:node/6150732786"
+   "source": "gyazo:a85a9ddfb2f85eba9d9d9eda1a2c5816"
   },
   {
    "id": "nagasaki-shianbashi-ramen",

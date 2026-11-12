@@ -55,16 +55,10 @@
    "category": "awamori-sake",
    "place": "国際通り",
    "lngLat": [
-    127.69011,
-    26.21691
+    127.68593,
+    26.21554
    ],
-   "source": "osm:way/988643007",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kokusai-dori08s3s4440.jpg/960px-Kokusai-dori08s3s4440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Kokusai-dori08s3s4440.jpg",
-    "credit": "663highland",
-    "license": "CC BY 2.5"
-   }
+   "source": "gyazo:33a19475a4fc70b3c4fc3d698f2d833b"
   },
   {
    "id": "okinawa-shuri-tenro",
@@ -73,16 +67,10 @@
    "category": "ryukyu-culture",
    "place": "首里天楼",
    "lngLat": [
-    127.69011,
-    26.21691
+    127.68696,
+    26.21592
    ],
-   "source": "osm:way/988643007",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kokusai-dori08s3s4440.jpg/960px-Kokusai-dori08s3s4440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Kokusai-dori08s3s4440.jpg",
-    "credit": "663highland",
-    "license": "CC BY 2.5"
-   }
+   "source": "gyazo:18733e1e95ba826a2b49ac66b1fc757b"
   },
   {
    "id": "okinawa-ryukyu-buyo",
@@ -91,16 +79,10 @@
    "category": "ryukyu-culture",
    "place": "首里天楼",
    "lngLat": [
-    127.69011,
-    26.21691
+    127.68703,
+    26.21614
    ],
-   "source": "osm:way/988643007",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kokusai-dori08s3s4440.jpg/960px-Kokusai-dori08s3s4440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Kokusai-dori08s3s4440.jpg",
-    "credit": "663highland",
-    "license": "CC BY 2.5"
-   }
+   "source": "gyazo:7badc60aa69f23ce9a0ecb263ffc9d8a"
   },
   {
    "id": "okinawa-awamori",
@@ -109,16 +91,10 @@
    "category": "awamori-sake",
    "place": "首里天楼",
    "lngLat": [
-    127.69011,
-    26.21691
+    127.68689,
+    26.2161
    ],
-   "source": "osm:way/988643007",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kokusai-dori08s3s4440.jpg/960px-Kokusai-dori08s3s4440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Kokusai-dori08s3s4440.jpg",
-    "credit": "663highland",
-    "license": "CC BY 2.5"
-   }
+   "source": "gyazo:2ea12ebc2f0add2f28cafd83e16ffc08"
   },
   {
    "id": "okinawa-goya-champuru",
@@ -127,16 +103,10 @@
    "category": "okinawa-food",
    "place": "首里天楼",
    "lngLat": [
-    127.69011,
-    26.21691
+    127.68706,
+    26.21615
    ],
-   "source": "osm:way/988643007",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kokusai-dori08s3s4440.jpg/960px-Kokusai-dori08s3s4440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Kokusai-dori08s3s4440.jpg",
-    "credit": "663highland",
-    "license": "CC BY 2.5"
-   }
+   "source": "gyazo:0883f7b5ec3e757a75fba23775768c4b"
   },
   {
    "id": "okinawa-umibudo",
@@ -163,10 +133,10 @@
    "category": "naha",
    "place": "国際通り",
    "lngLat": [
-    127.69011,
-    26.21691
+    127.68876,
+    26.21651
    ],
-   "source": "osm:way/988643007",
+   "source": "gyazo:65be40586854eec59d8688f2785614e8",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kokusai-dori08s3s4440.jpg/960px-Kokusai-dori08s3s4440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Kokusai-dori08s3s4440.jpg",
@@ -181,10 +151,10 @@
    "category": "okinawa-food",
    "place": "どん亭",
    "lngLat": [
-    127.68797,
-    26.21675
+    127.69308,
+    26.21796
    ],
-   "source": "osm:node/5357394886"
+   "source": "gyazo:d6f32368f0def739c75413a948d96492"
   },
   {
    "id": "okinawa-gyudon",
@@ -193,10 +163,10 @@
    "category": "okinawa-food",
    "place": "どん亭",
    "lngLat": [
-    127.68797,
-    26.21675
+    127.69297,
+    26.21804
    ],
-   "source": "osm:node/5357394886"
+   "source": "gyazo:4ed175eb931ec2b187eeb59941ba0f6d"
   },
   {
    "id": "okinawa-soba",
@@ -205,10 +175,10 @@
    "category": "okinawa-food",
    "place": "どん亭",
    "lngLat": [
-    127.68797,
-    26.21675
+    127.69297,
+    26.21804
    ],
-   "source": "osm:node/5357394886"
+   "source": "gyazo:4ed175eb931ec2b187eeb59941ba0f6d"
   },
   {
    "id": "okinawa-louis-vuitton",
@@ -217,10 +187,10 @@
    "category": "naha",
    "place": "T ギャラリア 沖縄 by DFS",
    "lngLat": [
-    127.69722,
-    26.2231
+    127.69718,
+    26.22295
    ],
-   "source": "osm:way/93119558",
+   "source": "gyazo:2fabab4bbcb052b7dcb6affd19b98946",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c7/DFS_Galleria_Okinawa_20150316.JPG/960px-DFS_Galleria_Okinawa_20150316.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:DFS_Galleria_Okinawa_20150316.JPG",
@@ -233,24 +203,24 @@
    "title": "A&W に行く",
    "kind": "visit",
    "category": "okinawa-food",
-   "place": "A&W 国際通り松尾店",
+   "place": "A&W 那覇新都心おもろ店",
    "lngLat": [
-    127.68079,
-    26.21361
+    127.70073,
+    26.22752
    ],
-   "source": "osm:node/5215011032"
+   "source": "gyazo:ac58194c1f82762aa6cc91ddce074398"
   },
   {
    "id": "okinawa-root-beer",
    "title": "ルートビアを飲む",
    "kind": "eat",
    "category": "okinawa-food",
-   "place": "A&W 国際通り松尾店",
+   "place": "A&W 那覇新都心おもろ店",
    "lngLat": [
-    127.68079,
-    26.21361
+    127.7007,
+    26.22752
    ],
-   "source": "osm:node/5215011032"
+   "source": "gyazo:3b8ef008c02b0b02300a8da7ba9ece00"
   },
   {
    "id": "okinawa-prefectural-museum",
@@ -259,10 +229,10 @@
    "category": "ryukyu-culture",
    "place": "沖縄県立博物館・美術館",
    "lngLat": [
-    127.6941,
-    26.22659
+    127.69529,
+    26.22692
    ],
-   "source": "wikidata:Q4617100",
+   "source": "gyazo:7ea999c15be538dacb6d4dc816117359",
    "wikidata": "Q4617100",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Okinawa_Prefectural_Museum_%26_Art_Museum02bss3200.jpg/960px-Okinawa_Prefectural_Museum_%26_Art_Museum02bss3200.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
@@ -276,24 +246,24 @@
    "title": "ブルーシールに行く",
    "kind": "visit",
    "category": "okinawa-food",
-   "place": "ブルーシール国際通りトレビアン",
+   "place": "ブルーシール (国際通り)",
    "lngLat": [
-    127.69108,
-    26.21737
+    127.68918,
+    26.21678
    ],
-   "source": "osm:node/1796942114"
+   "source": "gyazo:5db84523f43a6209bb0c29deb28b8f64"
   },
   {
    "id": "okinawa-blue-wave",
    "title": "ブルーシールでブルーウェーブを食べる",
    "kind": "eat",
    "category": "okinawa-food",
-   "place": "ブルーシール国際通りトレビアン",
+   "place": "ブルーシール (国際通り)",
    "lngLat": [
-    127.69108,
-    26.21737
+    127.68918,
+    26.21678
    ],
-   "source": "osm:node/1796942114"
+   "source": "gyazo:5db84523f43a6209bb0c29deb28b8f64"
   },
   {
    "id": "okinawa-shikuwasa-ice",
@@ -314,10 +284,10 @@
    "category": "ryukyu-culture",
    "place": "那覇市伝統工芸館",
    "lngLat": [
-    127.68931,
-    26.21613
+    127.68932,
+    26.21594
    ],
-   "source": "osm:way/104977340",
+   "source": "gyazo:d26e9881d6e4fce989ae959d3d355da8",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Naha_Traditional_Craft_Center_20150315.JPG/960px-Naha_Traditional_Craft_Center_20150315.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Naha_Traditional_Craft_Center_20150315.JPG",
@@ -332,10 +302,10 @@
    "category": "ryukyu-culture",
    "place": "那覇市伝統工芸館",
    "lngLat": [
-    127.68931,
-    26.21613
+    127.68919,
+    26.21586
    ],
-   "source": "osm:way/104977340",
+   "source": "gyazo:4176ed3857cc29f4e2f260f5acd27e24",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Naha_Traditional_Craft_Center_20150315.JPG/960px-Naha_Traditional_Craft_Center_20150315.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Naha_Traditional_Craft_Center_20150315.JPG",
@@ -363,10 +333,10 @@
    "category": "awamori-sake",
    "place": "平和通り",
    "lngLat": [
-    127.68864,
-    26.21544
+    127.68914,
+    26.21446
    ],
-   "source": "wikidata:Q5701168",
+   "source": "gyazo:df78b6bb349d9af89f1b9f46d3dba304",
    "wikidata": "Q5701168"
   },
   {
@@ -376,10 +346,10 @@
    "category": "okinawa-food",
    "place": "国際通り",
    "lngLat": [
-    127.69011,
-    26.21691
+    127.68994,
+    26.21719
    ],
-   "source": "osm:way/988643007",
+   "source": "gyazo:810c86a01e0b68c5f8986cc88c71c784",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kokusai-dori08s3s4440.jpg/960px-Kokusai-dori08s3s4440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Kokusai-dori08s3s4440.jpg",
@@ -410,37 +380,24 @@
    "title": "サーターアンダギーを食べる",
    "kind": "eat",
    "category": "okinawa-food",
-   "place": "第一牧志公設市場",
+   "place": "牧志駅前 (さいおんスクエア付近)",
    "lngLat": [
-    127.68828,
-    26.21453
+    127.69394,
+    26.21756
    ],
-   "source": "wikidata:Q11570421",
-   "wikidata": "Q11570421",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Sign_of_Makishi_First_Public_Market_Jan_31%2C_2007.jpg/960px-Sign_of_Makishi_First_Public_Market_Jan_31%2C_2007.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Sign_of_Makishi_First_Public_Market_Jan_31,_2007.jpg",
-    "credit": "Hideyuki KAMON",
-    "license": "CC BY-SA 2.0"
-   }
+   "source": "gyazo:8cf73fe90f6f48b931d96bd8762ded78"
   },
   {
    "id": "okinawa-shugo-densetsu",
    "title": "琉球酒豪伝説を買って飲む",
    "kind": "do",
    "category": "awamori-sake",
-   "place": "国際通り",
+   "place": "那覇市内",
    "lngLat": [
-    127.69011,
-    26.21691
+    127.68186,
+    26.2159
    ],
-   "source": "osm:way/988643007",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kokusai-dori08s3s4440.jpg/960px-Kokusai-dori08s3s4440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Kokusai-dori08s3s4440.jpg",
-    "credit": "663highland",
-    "license": "CC BY 2.5"
-   }
+   "source": "gyazo:7057de9e0f5e9394012402706f0149f8"
   },
   {
    "id": "okinawa-mystery-plate",
@@ -483,12 +440,12 @@
    "title": "ステーキを食べる",
    "kind": "eat",
    "category": "okinawa-food",
-   "place": "国際通り",
+   "place": "ステーキハウス88",
    "lngLat": [
-    127.69011,
-    26.21691
+    127.68854,
+    26.21633
    ],
-   "source": "osm:way/988643007",
+   "source": "gyazo:aa79da39030e95476a7de545043db9fe",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kokusai-dori08s3s4440.jpg/960px-Kokusai-dori08s3s4440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Kokusai-dori08s3s4440.jpg",
@@ -501,18 +458,12 @@
    "title": "エイサーを鑑賞する",
    "kind": "see",
    "category": "ryukyu-culture",
-   "place": "国際通り",
+   "place": "沖縄コンベンションセンター",
    "lngLat": [
-    127.69011,
-    26.21691
+    127.73249,
+    26.2799
    ],
-   "source": "osm:way/988643007",
-   "image": {
-    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kokusai-dori08s3s4440.jpg/960px-Kokusai-dori08s3s4440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "page": "https://commons.wikimedia.org/wiki/File:Kokusai-dori08s3s4440.jpg",
-    "credit": "663highland",
-    "license": "CC BY 2.5"
-   }
+   "source": "gyazo:9045e123a2f5b48aef97bd62f47e1d38"
   },
   {
    "id": "okinawa-akainko",
@@ -521,10 +472,10 @@
    "category": "awamori-sake",
    "place": "アカインコ",
    "lngLat": [
-    127.68982,
-    26.21693
+    127.68985,
+    26.21691
    ],
-   "source": "osm:node/11771851452"
+   "source": "gyazo:091df96a2ce7bf03759420117448a149"
   },
   {
    "id": "okinawa-mozuku-tempura",
@@ -543,24 +494,24 @@
    "title": "オリオンビールを飲む",
    "kind": "eat",
    "category": "awamori-sake",
-   "place": "アカインコ",
+   "place": "国際通り (南国市場付近)",
    "lngLat": [
-    127.68982,
-    26.21693
+    127.68117,
+    26.21378
    ],
-   "source": "osm:node/11771851452"
+   "source": "gyazo:0419f7e20e33e5c813071007761bb693"
   },
   {
    "id": "okinawa-spam-onigiri",
    "title": "スパムおにぎりを食べる",
    "kind": "eat",
    "category": "okinawa-food",
-   "place": "ポークたまごおにぎり本店",
+   "place": "那覇市内",
    "lngLat": [
-    127.68801,
-    26.21515
+    127.6934,
+    26.21563
    ],
-   "source": "osm:node/6337141313"
+   "source": "gyazo:8a3c3cd98aa90253b04088e236d4d2fd"
   },
   {
    "id": "okinawa-shikuwasa-awamori",
@@ -623,10 +574,10 @@
    "category": "okinawa-food",
    "place": "国際通り",
    "lngLat": [
-    127.69011,
-    26.21691
+    127.69098,
+    26.21556
    ],
-   "source": "osm:way/988643007",
+   "source": "gyazo:44261a3d6151b47eb32767ea0351f371",
    "image": {
     "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Kokusai-dori08s3s4440.jpg/960px-Kokusai-dori08s3s4440.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "page": "https://commons.wikimedia.org/wiki/File:Kokusai-dori08s3s4440.jpg",

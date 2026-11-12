@@ -1,32 +1,32 @@
 id	source	wikidata	lng	lat	image_file
-nagasaki-history-museum	wikidata:Q73613	Q73613	129.87956	32.75281	Nagasaki Museum of History and Culture ac (1).jpg
-nagasaki-atomic-bomb-museum	wikidata:Q1099077	Q1099077	129.86451	32.77265	Nagasakigenbaku.jpg
-nagasaki-hypocenter	osm:way/375933470		129.86328	32.77374	
-nagasaki-peace-park	wikidata:Q93490	Q93490	129.86312	32.77558	Fountain at Nagasaki Peace Park.jpg
-nagasaki-peace-statue	wikidata:Q11482256	Q11482256	129.86397	32.77692	20190202 Nagasaki Peace Park Peace Statue-1.jpg
-nagasaki-chinatown	wikidata:Q63229	Q63229	129.87528	32.74147	Gembumon Gate of Nagasaki Shinchi Chinatown.JPG
-nagasaki-dejima	wikidata:Q640267	Q640267	129.87302	32.74352	View of Dejima in Nagasaki Bay Folding Screen by Kawahara Keiga c1836.jpg
-nagasaki-meganebashi	wikidata:Q74710	Q74710	129.88009	32.74721	Meganebashi, Nagasaki cropped 1.jpg
-nagasaki-gunkanjima-museum	osm:way/242947332	Q24869383	129.86914	32.73604	Gunkanjima Digital Museum 02.jpg
-nagasaki-glover-garden	wikidata:Q63465	Q63465	129.86889	32.73444	Nagasaki-Glover-Garden-5415.jpg
-nagasaki-traditional-arts	wikidata:Q127806461	Q127806461	129.86852	32.73387	Glover Garden Nagasaki Japan87s3.jpg
-nagasaki-cats	osm:node/8444589541		129.86852	32.73302	
+nagasaki-history-museum	gyazo:06f51460e76f74a988504cd68fc1c66b	Q73613	129.87927	32.75257	Nagasaki Museum of History and Culture ac (1).jpg
+nagasaki-atomic-bomb-museum	gyazo:c2859f55fea59ca7d8f3f995706038fb	Q1099077	129.86456	32.77235	Nagasakigenbaku.jpg
+nagasaki-hypocenter	gyazo:430e2dec67f011e479eee6ec23186851		129.86340	32.77370	
+nagasaki-peace-park	gyazo:aac33847b98875d6c0a00749d4e152f5	Q93490	129.86288	32.77416	Fountain at Nagasaki Peace Park.jpg
+nagasaki-peace-statue	gyazo:f38d65b7cabc37ed946cb31fe9aacd09	Q11482256	129.86393	32.77721	20190202 Nagasaki Peace Park Peace Statue-1.jpg
+nagasaki-chinatown	gyazo:380199178b9ac9e29a65dd615b1670da	Q63229	129.87588	32.74206	Gembumon Gate of Nagasaki Shinchi Chinatown.JPG
+nagasaki-dejima	gyazo:9f65581b2d438ffd71a7e0dc5a5bdb43	Q640267	129.87186	32.74391	View of Dejima in Nagasaki Bay Folding Screen by Kawahara Keiga c1836.jpg
+nagasaki-meganebashi	gyazo:26801c3d0655981be2a94f8f3f15aa9e	Q74710	129.87966	32.74681	Meganebashi, Nagasaki cropped 1.jpg
+nagasaki-gunkanjima-museum	gyazo:7e909027518a0eae5cad6c85d5caeb8e	Q24869383	129.86913	32.73604	Gunkanjima Digital Museum 02.jpg
+nagasaki-glover-garden	gyazo:74e16fc1863f9e900c303ee8e305ab13	Q63465	129.86898	32.73414	Nagasaki-Glover-Garden-5415.jpg
+nagasaki-traditional-arts	gyazo:6a0b077da0b9674606030d3606b0f477	Q127806461	129.86852	32.73388	Glover Garden Nagasaki Japan87s3.jpg
+nagasaki-cats	gyazo:6e49658581e7694668d880a01cae5f29		129.87998	32.74385	
 nagasaki-26-martyrs	wikidata:Q84029	Q84029	129.87167	32.75472	26 martyrs museum.jpg
 nagasaki-pref-art-museum	wikidata:Q11652770	Q11652770	129.87106	32.74168	Nagasaki art museum IMG 2093.JPG
 nagasaki-siebold	wikidata:Q1049762	Q1049762	129.89221	32.75584	Siebold Memorial Museum 002.jpg
 nagasaki-night-view	wikidata:Q3031841	Q3031841	129.84950	32.75270	Mt.Inasa 2010.jpg
-nagasaki-champon	wikidata:Q11248844	Q11248844	129.86981	32.73647	Shikairo Nagasaki Japan01n.jpg
-nagasaki-sara-udon	wikidata:Q63229	Q63229	129.87528	32.74147	Gembumon Gate of Nagasaki Shinchi Chinatown.JPG
-nagasaki-turkish-rice	osm:node/12177836984		129.88070	32.74317	
-nagasaki-hatoshi	wikidata:Q63229	Q63229	129.87528	32.74147	Gembumon Gate of Nagasaki Shinchi Chinatown.JPG
-nagasaki-kakuni-manju	osm:node/7105972210		129.87594	32.74234	
-nagasaki-aji-fry-sandwich	wikidata:Q1076315	Q1076315	129.86908	32.75275	Nagasaki Station 20200407 03.jpg
-nagasaki-whale-sashimi	wikidata:Q11491540	Q11491540	129.88000	32.74270	Shianbashi Station 4.JPG
-nagasaki-harihari-nabe	wikidata:Q11491540	Q11491540	129.88000	32.74270	Shianbashi Station 4.JPG
-nagasaki-castella	osm:node/7150986485		129.87230	32.74556	
-nagasaki-airport-whisky	osm:way/553063057	Q133796	129.92238	32.91413	Nagasaki Airport Omura Nagasaki pref Japan06n.jpg
-nagasaki-asahiya	osm:node/5251190624		129.87124	32.75052	
-nagasaki-menya-always	osm:node/8444589604		129.87908	32.74512	
-nagasaki-hiiragi	osm:node/6150732786		129.87766	32.74333	
+nagasaki-champon	gyazo:56f4042f602c1a20ed06fb0caadac62a		129.86871	32.75337	
+nagasaki-sara-udon	gyazo:0acda2865e42746082724b55135efda6		129.87083	32.75157	
+nagasaki-turkish-rice	gyazo:bb326f76fb4b7870dad36725c0810399		129.87091	32.75188	
+nagasaki-hatoshi	gyazo:5f82ecdb79b54cab78a467cbe69e2105	Q63229	129.87511	32.74130	Gembumon Gate of Nagasaki Shinchi Chinatown.JPG
+nagasaki-kakuni-manju	gyazo:942c781218c0378df0646959f68eea7a		129.86757	32.75308	
+nagasaki-aji-fry-sandwich	gyazo:4ca3d2e48716a12fde4d24154370b47a	Q1076315	129.86829	32.75179	Nagasaki Station 20200407 03.jpg
+nagasaki-whale-sashimi	gyazo:aa591411a9aa6cb74e848a5ce8977d7f	Q11491540	129.88109	32.74336	Shianbashi Station 4.JPG
+nagasaki-harihari-nabe	gyazo:3713c10b00effb2dd29617fb5493a60b	Q11491540	129.88102	32.74352	Shianbashi Station 4.JPG
+nagasaki-castella	gyazo:35d6bed835d99595a6fcfb9e27c87446		129.88101	32.74353	
+nagasaki-airport-whisky	gyazo:f35cc5e674a20ff55d93e0a5ef60be5b	Q133796	129.92312	32.91374	Nagasaki Airport Omura Nagasaki pref Japan06n.jpg
+nagasaki-asahiya	gyazo:5e8a6a2271dd1a7f995ca10dac70dad3		129.87128	32.75049	
+nagasaki-menya-always	gyazo:c88281f96791be6606aadddec3d9521b		129.88031	32.74421	
+nagasaki-hiiragi	gyazo:a85a9ddfb2f85eba9d9d9eda1a2c5816		129.87759	32.74323	
 nagasaki-shianbashi-ramen	osm:node/3828530363		129.87910	32.74313	
 nagasaki-ichimentei	osm:node/8444648239		129.86543	32.76920	

@@ -11,11 +11,11 @@ okinawa-dontei	どん亭に行く	visit	okinawa-food	どん亭	どん亭
 okinawa-gyudon	沖縄で牛丼を食べる	eat	okinawa-food	どん亭	どん亭
 okinawa-soba	沖縄そばを食べる	eat	okinawa-food	どん亭	どん亭
 okinawa-louis-vuitton	Tギャラリアのルイ・ヴィトン沖縄店に行く	visit	naha	T ギャラリア 沖縄 by DFS	DFSギャラリア沖縄
-okinawa-aw	A&W に行く	visit	okinawa-food	A&W 国際通り松尾店	A&W
-okinawa-root-beer	ルートビアを飲む	eat	okinawa-food	A&W 国際通り松尾店	A&W
+okinawa-aw	A&W に行く	visit	okinawa-food	A&W 那覇新都心おもろ店	A&W
+okinawa-root-beer	ルートビアを飲む	eat	okinawa-food	A&W 那覇新都心おもろ店	A&W
 okinawa-prefectural-museum	沖縄県立博物館・美術館に行く	visit	ryukyu-culture	沖縄県立博物館・美術館	沖縄県立博物館・美術館
-okinawa-blue-seal	ブルーシールに行く	visit	okinawa-food	ブルーシール国際通りトレビアン	ブルーシール
-okinawa-blue-wave	ブルーシールでブルーウェーブを食べる	eat	okinawa-food	ブルーシール国際通りトレビアン	ブルーシール
+okinawa-blue-seal	ブルーシールに行く	visit	okinawa-food	ブルーシール (国際通り)	ブルーシール
+okinawa-blue-wave	ブルーシールでブルーウェーブを食べる	eat	okinawa-food	ブルーシール (国際通り)	ブルーシール
 okinawa-shikuwasa-ice	ブルーシールでシークワーサーを食べる	eat	okinawa-food	ブルーシール国際通りトレビアン	ブルーシール
 okinawa-dento-kogeikan	那覇市伝統工芸館に行く	visit	ryukyu-culture	那覇市伝統工芸館	那覇市伝統工芸館
 okinawa-ryukyu-glass	琉球ガラスの工房を体験する	do	ryukyu-culture	那覇市伝統工芸館	那覇市伝統工芸館
@@ -23,16 +23,16 @@ okinawa-heiwa-dori	平和通りに行く	visit	naha	平和通り	平和通り
 okinawa-shikuwasa-highball	シークワーサーハイボールを飲む	eat	awamori-sake	平和通り	平和通り
 okinawa-agu	アグー豚を食べる	eat	okinawa-food	国際通り	国際通り
 okinawa-ishigaki-beef	石垣牛を食べる	eat	okinawa-food	国際通り	国際通り
-okinawa-sata-andagi	サーターアンダギーを食べる	eat	okinawa-food	第一牧志公設市場	第一牧志公設市場
-okinawa-shugo-densetsu	琉球酒豪伝説を買って飲む	do	awamori-sake	国際通り	国際通り
+okinawa-sata-andagi	サーターアンダギーを食べる	eat	okinawa-food	牧志駅前 (さいおんスクエア付近)	第一牧志公設市場
+okinawa-shugo-densetsu	琉球酒豪伝説を買って飲む	do	awamori-sake	那覇市内	国際通り
 okinawa-mystery-plate	謎の皿を買う	do	naha	国際通り	国際通り
 okinawa-mystery-rock	謎の岩を買う	do	naha	国際通り	国際通り
-okinawa-steak	ステーキを食べる	eat	okinawa-food	国際通り	国際通り
-okinawa-eisa	エイサーを鑑賞する	see	ryukyu-culture	国際通り	国際通り
+okinawa-steak	ステーキを食べる	eat	okinawa-food	ステーキハウス88	国際通り
+okinawa-eisa	エイサーを鑑賞する	see	ryukyu-culture	沖縄コンベンションセンター	国際通り
 okinawa-akainko	アカインコに行く	visit	awamori-sake	アカインコ	アカインコ
 okinawa-mozuku-tempura	もずくの天ぷらも食べる	eat	okinawa-food	アカインコ	アカインコ
-okinawa-orion-beer	オリオンビールを飲む	eat	awamori-sake	アカインコ	アカインコ
-okinawa-spam-onigiri	スパムおにぎりを食べる	eat	okinawa-food	ポークたまごおにぎり本店	ポークたまごおにぎり本店
+okinawa-orion-beer	オリオンビールを飲む	eat	awamori-sake	国際通り (南国市場付近)	アカインコ
+okinawa-spam-onigiri	スパムおにぎりを食べる	eat	okinawa-food	那覇市内	ポークたまごおにぎり本店
 okinawa-shikuwasa-awamori	シークヮーサー泡盛を飲む	eat	awamori-sake	国際通り	国際通り
 okinawa-chura-tomato	ちゅらとまとを食べる	eat	okinawa-food	国際通り	国際通り
 okinawa-coffee-awamori	コーヒー泡盛を飲む	eat	awamori-sake	国際通り	国際通り
