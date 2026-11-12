@@ -43,7 +43,7 @@
 
 | 部分 | 置き場所と手段 |
 |---|---|
-| 画面 | Vite と TypeScript。地図は MapLibre GL JS 6 系で、地図のタブを開いたときだけ読み込む |
+| 画面 | Vite と TypeScript。地図は MapLibre GL JS 6 系で、地図のタブを開いたときだけ読み込む。地図の現在地は MapLibre 標準の GeolocateControl (書き込む人の画面だけ) |
 | 背景の地図 | OpenFreeMap の Liberty スタイル。注記を日本語だけに直して使う (`src/app/style.ts`) |
 | 実績の一覧 | 静的な JSON (`public/catalogues/<地域>.json`)。`data/` の TSV からビルドする。旅の表 (名前、年、URL、範囲) は `src/shared/regions.ts` |
 | ログイン | Clerk (Google)。SDK は Clerk の Frontend API から、書き込む人の画面でだけ読み込む (`src/app/auth.ts`)。Worker は Clerk の公開鍵 (JWKS) でセッショントークンを確かめ、Clerk のシークレットキーは持たない (`worker/clerk.ts`) |
