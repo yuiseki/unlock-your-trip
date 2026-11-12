@@ -154,7 +154,6 @@ async function openMap() {
   mapView = await createMap({
     container: "map",
     bbox: catalogue.bbox,
-    here: () => here,
     achievements: geojson,
     canWrite: () => canWrite,
     toast,

@@ -16,7 +16,6 @@ export type MapView = { update(): void; flyTo(lngLat: LngLat): void; resize(): v
 type Context = {
   container: string;
   bbox: [number, number, number, number];
-  here: () => LngLat | null;
   achievements: () => FeatureCollection;
   canWrite: () => boolean;
   toast: (text: string) => void;
@@ -31,16 +30,12 @@ export async function createMap(ctx: Context): Promise<MapView> {
   const map = new MapLibreMap({
     container: ctx.container,
     style,
-    bounds: boundsOf(points(), ctx.here()) ?? ctx.bbox,
+    // The trip's achievements only. Looking back at a past trip from home,
+    // the device's position would only zoom the map out; the geolocate
+    // control brings it in when wanted.
+    bounds: boundsOf(points(), null) ?? ctx.bbox,
     fitBoundsOptions: { padding: PADDING, maxZoom: 16 },
   });
-  // If the position arrives after the map opened, widen the view once to
-  // include it, unless the person has already moved the map.
-  let fittedWithHere = ctx.here() !== null;
-  let moved = false;
-  map.on("dragstart", () => (moved = true));
-  map.on("zoomstart", (e) => { if ((e as { originalEvent?: Event }).originalEvent) moved = true; });
-
   map.addControl(new NavigationControl(), "top-right");
   // MapLibre's own control: it asks for the position, follows it, and shows
   // its state by colour (searching, following, lost). Only writers get it;
@@ -85,11 +80,6 @@ export async function createMap(ctx: Context): Promise<MapView> {
   return {
     update() {
       (map.getSource("achievements") as GeoJSONSource | undefined)?.setData(ctx.achievements());
-      const h = ctx.here();
-      if (h && !fittedWithHere && !moved) {
-        fittedWithHere = true;
-        map.fitBounds(boundsOf(points(), h)!, { padding: PADDING, maxZoom: 16 });
-      }
     },
     flyTo: (lngLat) => map.flyTo({ center: lngLat, zoom: 16 }),
     resize: () => map.resize(),
