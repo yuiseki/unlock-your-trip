@@ -59,6 +59,13 @@ export function shownAchievements(achievements: Achievement[], unlocks: Unlock[]
   return achievements.filter((a) => done.has(a.id));
 }
 
+// The links at the start of the title. The title itself always leads to the
+// top page; a public page adds its person, whose list of trips it belongs to.
+export function crumbs(publicUser: string | null): { label: string; href: string }[] {
+  const top = { label: "旅の実績解除！", href: "/" };
+  return publicUser ? [top, { label: `${publicUser} さん`, href: `/u/${publicUser}/` }] : [top];
+}
+
 // The line under the title, the same shape on every page: whose, what, how many.
 export type HeaderFacts = { whose: string | null } & ({ trips: number } | { unlocked: number; total: number; pending: number });
 export function headerLine(f: HeaderFacts): string {

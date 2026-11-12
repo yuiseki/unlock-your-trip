@@ -5,7 +5,7 @@ import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
 import { createSyncer } from "./syncer";
 import { loadClerk, userMenuItems, whoAmI, writesHere, type Clerk } from "./auth";
-import { creditText, formatDistance, headerLine, listView, shownAchievements, type ListItem } from "./view";
+import { creditText, crumbs, formatDistance, headerLine, listView, shownAchievements, type ListItem } from "./view";
 import { REGIONS, isPast, regionById, route } from "../shared/regions";
 import { tripSummaries } from "./trips";
 import { gyazoImage, gyazoPage, photosByAchievement, type Photo } from "./photos";
@@ -274,7 +274,14 @@ async function showTrips() {
 }
 
 async function main() {
-  $<HTMLAnchorElement>("home").href = home;
+  $("crumbs").replaceChildren(
+    ...crumbs(publicUser).map(({ label, href }) => {
+      const a = document.createElement("a");
+      a.href = href;
+      a.textContent = label;
+      return a;
+    }),
+  );
   if (where.kind === "trips") return showTrips();
   if (where.kind !== "region") {
     document.querySelector("nav")?.remove();

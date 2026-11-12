@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { headerLine, listView, shownAchievements } from "./view";
+import { crumbs, headerLine, listView, shownAchievements } from "./view";
 import type { Achievement } from "../shared/catalogue";
 
 const a = (id: string, lngLat: [number, number], category = "sightseeing"): Achievement => ({ id, title: id, kind: "visit", category, place: id, lngLat });
@@ -159,5 +159,18 @@ describe("headerLine", () => {
     expect(headerLine({ whose: null, unlocked: 40, total: 54, pending: 0 })).toBe("40 / 54 解除");
     expect(headerLine({ whose: null, unlocked: 40, total: 54, pending: 2 })).toBe("40 / 54 解除 (未送信 2)");
     expect(headerLine({ whose: "yuiseki", unlocked: 40, total: 54, pending: 0 })).toBe("yuiseki さんの記録 ・ 40 / 54 解除");
+  });
+});
+
+describe("crumbs", () => {
+  it("always leads the title to the top page", () => {
+    expect(crumbs(null)).toEqual([{ label: "旅の実績解除！", href: "/" }]);
+  });
+
+  it("puts the person between the title and the trip on public pages", () => {
+    expect(crumbs("yuiseki")).toEqual([
+      { label: "旅の実績解除！", href: "/" },
+      { label: "yuiseki さん", href: "/u/yuiseki/" },
+    ]);
   });
 });
