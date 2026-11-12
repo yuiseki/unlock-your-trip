@@ -6,9 +6,9 @@ import { openStore, type Store, type Unlock } from "./store";
 import { createSyncer } from "./syncer";
 import { loadClerk, whoAmI, type Clerk } from "./auth";
 import { creditText, formatDistance, listView, type ListItem } from "./view";
+import { DEFAULT_REGION, regionPath, route } from "../shared/regions";
 import { loadPrefs, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
 
-const REGION = "osaka";
 const KIND_LABEL = { visit: "行く", eat: "食べる", ride: "乗る", see: "見る", do: "する" } as const;
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -25,8 +25,14 @@ function readCredentials() {
   return { token: localStorage.getItem("token"), user: localStorage.getItem("user") };
 }
 
-// /u/<id> is somebody's public, read-only page.
-const publicUser = /^\/u\/([a-z0-9-]{1,40})\/?$/.exec(location.pathname)?.[1] ?? null;
+// The region comes from the path (/japan/kansai/osaka/); /u/<id>/... is
+// somebody's public, read-only record of it. Old addresses are rewritten in
+// place rather than redirected by the server, so the offline copy of the
+// page stays a page.
+const first = route(location.pathname);
+if (first.kind === "redirect") history.replaceState(null, "", first.to + location.hash);
+const where = route(location.pathname);
+const publicUser = where.kind === "region" ? where.publicUser : null;
 
 let catalogue: Catalogue;
 let store: Store;
@@ -180,7 +186,13 @@ function watchLocation() {
 }
 
 async function main() {
-  catalogue = await (await fetch(`/catalogues/${REGION}.json`)).json();
+  if (where.kind !== "region") {
+    document.title = "旅の実績解除！";
+    $("progress").innerHTML = `この地域はまだありません。<a href="${regionPath(DEFAULT_REGION)}">大阪を開く</a>`;
+    document.querySelector("nav")?.remove();
+    return;
+  }
+  catalogue = await (await fetch(`/catalogues/${where.region}.json`)).json();
   $("region").textContent = catalogue.name;
   $("credits").innerHTML =
     '地図: <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> © OpenMapTiles © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>' +
