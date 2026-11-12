@@ -18,7 +18,7 @@ type Context = {
   bbox: [number, number, number, number];
   here: () => LngLat | null;
   achievements: () => FeatureCollection;
-  canWrite: boolean;
+  canWrite: () => boolean;
   toast: (text: string) => void;
 };
 
@@ -66,7 +66,7 @@ export async function createMap(ctx: Context): Promise<MapView> {
   }
 
   map.addControl(new NavigationControl(), "top-right");
-  if (ctx.canWrite) map.addControl(new LocateButton(), "top-right");
+  if (ctx.canWrite()) map.addControl(new LocateButton(), "top-right");
   map.on("load", () => {
     map.addSource("achievements", { type: "geojson", data: ctx.achievements() });
     map.addLayer({
@@ -100,7 +100,7 @@ export async function createMap(ctx: Context): Promise<MapView> {
     if (!f) return;
     // maplibre-gl v6 returns feature properties as plain values.
     const { id, title, unlocked } = f.properties as { id: string; title: string; unlocked: boolean };
-    const html = `<strong>${escape(title)}</strong><br>` + (unlocked ? "🏆 解除済み" : ctx.canWrite ? `<button class="unlock" data-id="${id}">解除！</button>` : "");
+    const html = `<strong>${escape(title)}</strong><br>` + (unlocked ? "🏆 解除済み" : ctx.canWrite() ? `<button class="unlock" data-id="${id}">解除！</button>` : "");
     new Popup().setLngLat((f.geometry as Point).coordinates as [number, number]).setHTML(html).addTo(map);
   });
   map.on("mouseenter", "achievements", () => (map.getCanvas().style.cursor = "pointer"));

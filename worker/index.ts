@@ -1,6 +1,9 @@
 // API for unlock-your-trip. Static files (the app and the catalogues) are
 // served by Workers static assets; only /api/* reaches this code.
-export type Env = { DB: D1Database };
+import { clerkFrontendApi } from "../src/shared/clerk";
+import { clerkKeys, verifyClerkToken } from "./clerk";
+
+export type Env = { DB: D1Database; CLERK_PUBLISHABLE_KEY: string; CLERK_AUTHORIZED_PARTIES: string };
 
 type Unlock = { achievementId: string; unlockedAt: string };
 
@@ -16,11 +19,27 @@ export async function sha256Hex(text: string): Promise<string> {
 const json = (body: unknown, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json; charset=utf-8" } });
 
-async function userFromToken(request: Request, env: Env): Promise<string | null> {
+type Writer = { user: string } | { error: Response };
+
+// The bearer is either a setup-link token (random hex) or a Clerk session
+// token (a JWT, so it has dots). A Clerk user who is signed in but not on
+// any row is told their ID, which is what the administrator registers.
+async function writer(request: Request, env: Env): Promise<Writer> {
+  const unauthorized = { error: json({ error: "unauthorized" }, 401) };
   const m = /^Bearer (.+)$/.exec(request.headers.get("authorization") ?? "");
-  if (!m) return null;
-  const row = await env.DB.prepare("SELECT id FROM users WHERE token_sha256 = ?").bind(await sha256Hex(m[1])).first<{ id: string }>();
-  return row?.id ?? null;
+  if (!m) return unauthorized;
+  if (!m[1].includes(".")) {
+    const row = await env.DB.prepare("SELECT id FROM users WHERE token_sha256 = ?").bind(await sha256Hex(m[1])).first<{ id: string }>();
+    return row ? { user: row.id } : unauthorized;
+  }
+  const host = clerkFrontendApi(env.CLERK_PUBLISHABLE_KEY ?? "");
+  if (!host) return unauthorized;
+  const issuer = `https://${host}`;
+  const parties = (env.CLERK_AUTHORIZED_PARTIES ?? "").split(",").map((s) => s.trim()).filter(Boolean);
+  const clerkUser = await verifyClerkToken(m[1], { issuer, authorizedParties: parties, keys: clerkKeys(issuer) });
+  if (!clerkUser) return unauthorized;
+  const row = await env.DB.prepare("SELECT id FROM users WHERE clerk_user_id = ?").bind(clerkUser).first<{ id: string }>();
+  return row ? { user: row.id } : { error: json({ error: "not registered", clerkUserId: clerkUser }, 403) };
 }
 
 async function unlocksOf(env: Env, user: string): Promise<Unlock[]> {
@@ -43,8 +62,9 @@ function parseUnlocks(body: unknown): Unlock[] | null {
 }
 
 async function postUnlocks(request: Request, env: Env): Promise<Response> {
-  const user = await userFromToken(request, env);
-  if (!user) return json({ error: "unauthorized" }, 401);
+  const w = await writer(request, env);
+  if ("error" in w) return w.error;
+  const user = w.user;
   const unlocks = parseUnlocks(await request.json().catch(() => null));
   if (!unlocks) return json({ error: "bad request" }, 400);
   const now = new Date().toISOString();
@@ -67,6 +87,11 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname === "/api/unlocks" && request.method === "POST") return postUnlocks(request, env);
+    if (url.pathname === "/api/me" && request.method === "GET") {
+      const w = await writer(request, env);
+      return "error" in w ? w.error : json({ user: w.user });
+    }
+    if (url.pathname === "/api/config" && request.method === "GET") return json({ clerkPublishableKey: env.CLERK_PUBLISHABLE_KEY });
     const m = /^\/api\/users\/([a-z0-9-]{1,40})\/unlocks$/.exec(url.pathname);
     if (m && request.method === "GET") return getUnlocks(m[1], env);
     return json({ error: "not found" }, 404);

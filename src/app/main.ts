@@ -4,6 +4,7 @@ import type { LngLat } from "../shared/geo";
 import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
 import { sync } from "./sync";
+import { loadClerk, whoAmI, type Clerk } from "./auth";
 import { creditText, formatDistance, listView, type ListItem } from "./view";
 import { loadPrefs, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
 
@@ -34,7 +35,18 @@ let here: LngLat | null = null;
 let mapView: MapView | null = null;
 let prefs: Prefs = { stars: {}, collapsed: [] };
 const { token, user } = readCredentials();
-const canWrite = !publicUser && !!token;
+let clerk: Clerk | null = null;
+// Set once the server has said this Clerk account may write, so the device
+// keeps unlocking offline, when Clerk itself cannot load.
+const CLERK_WRITER = "clerkWriter";
+const clerkWriter = () => localStorage.getItem(CLERK_WRITER);
+const writerName = () => (token ? user : clerkWriter());
+let canWrite = !publicUser && !!writerName();
+
+async function currentToken(): Promise<string | null> {
+  if (token) return token;
+  return (await clerk?.session?.getToken()) ?? null;
+}
 
 function toast(text: string) {
   const el = $("toast");
@@ -110,7 +122,9 @@ async function unlock(id: string) {
 
 async function trySync() {
   if (!canWrite) return;
-  const r = await sync(store, { token });
+  const t = await currentToken();
+  if (!t) return;
+  const r = await sync(store, { token: t });
   if (r.ok) {
     unlocks = await store.all();
     render();
@@ -137,7 +151,7 @@ async function openMap() {
     bbox: catalogue.bbox,
     here: () => here,
     achievements: geojson,
-    canWrite,
+    canWrite: () => canWrite,
     toast,
   });
 }
@@ -150,8 +164,10 @@ function showTab(which: "list" | "map") {
   if (which === "map") void openMap().then(() => mapView?.resize());
 }
 
+let watching = false;
 function watchLocation() {
-  if (!("geolocation" in navigator)) return;
+  if (watching || !("geolocation" in navigator)) return;
+  watching = true;
   navigator.geolocation.watchPosition(
     (pos) => {
       here = [pos.coords.longitude, pos.coords.latitude];
@@ -194,7 +210,81 @@ async function main() {
   setInterval(() => void trySync(), 60_000);
   void trySync();
   if ("serviceWorker" in navigator && import.meta.env.PROD) void navigator.serviceWorker.register("/sw.js");
-  if (user && !publicUser) $("progress").title = `記録先: ${user}`;
+  showWriter();
+  if (!publicUser && !token) void setupClerk();
+}
+
+function showWriter() {
+  const name = writerName();
+  $("progress").title = name && !publicUser ? `記録先: ${name}` : "";
+}
+
+function note(text: string | null) {
+  const el = $("account-note");
+  el.textContent = text ?? "";
+  el.hidden = !text;
+}
+
+function setWriter(name: string | null) {
+  if (name) localStorage.setItem(CLERK_WRITER, name);
+  else localStorage.removeItem(CLERK_WRITER);
+  const was = canWrite;
+  canWrite = !!writerName();
+  showWriter();
+  if (canWrite && !was) {
+    watchLocation();
+    void trySync();
+  }
+  if (canWrite !== was) render();
+}
+
+// A device with a setup link never needs Clerk. Every other writer's page
+// signs in with Clerk; failing to load it (offline) changes nothing.
+async function setupClerk() {
+  try {
+    const { clerkPublishableKey } = (await (await fetch("/api/config")).json()) as { clerkPublishableKey?: string };
+    if (!clerkPublishableKey) return;
+    clerk = await loadClerk(clerkPublishableKey);
+  } catch {
+    return;
+  }
+  clerk.addListener(() => void showAccount());
+  await showAccount();
+}
+
+let shownUser: string | null | undefined;
+async function showAccount() {
+  if (!clerk) return;
+  const id = clerk.user?.id ?? null;
+  if (id === shownUser) return;
+  shownUser = id;
+  const box = $<HTMLDivElement>("account");
+  box.replaceChildren();
+  if (!id) {
+    note(null);
+    setWriter(null);
+    const b = document.createElement("button");
+    b.className = "signin";
+    b.textContent = "ログイン";
+    b.addEventListener("click", () => clerk?.openSignIn());
+    // replaceChildren, not append: the Workers types redefine Element.append.
+    box.replaceChildren(b);
+    return;
+  }
+  clerk.mountUserButton(box);
+  const t = await currentToken();
+  const me = t ? await whoAmI(t) : { kind: "rejected" as const };
+  if (me.kind === "writer") {
+    note(null);
+    setWriter(me.user);
+  } else if (me.kind === "unregistered") {
+    setWriter(null);
+    note(`このアカウントは、まだ記録先に登録されていません。管理者に次の ID を伝えてください: ${me.clerkUserId}`);
+  } else if (me.kind === "rejected") {
+    setWriter(null);
+    note("ログインを確かめられませんでした。ログインし直してください。");
+  }
+  // "unreachable": keep whatever this device already knew.
 }
 
 void main();

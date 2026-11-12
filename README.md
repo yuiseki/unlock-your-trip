@@ -13,15 +13,17 @@
 - 「解除！」を押すと、端末に先に記録し、つながればサーバーに送る。電波が弱い場所でも記録は消えず、あとで送り直す。同じ実績は二重に記録されず、最初に解除した時刻が残る
 - 解除の記録は `/u/<id>` で誰でも見られる
 
-まだ無いもの: 解除の瞬間の演出、撮った写真への差し替え、他の人の登録。
+まだ無いもの: 解除の瞬間の演出、撮った写真への差し替え、他の人が自分で登録すること。
 
 ## 使い方 (書き込む人)
 
-1. 管理者から受け取った設定用のリンク (`https://unlock-your-trip.yuiseki.workers.dev/#token=...&user=...`) を、使う端末のブラウザで 1 回だけ開く。合言葉はその端末の中にだけ保存され、アドレス欄からは消える
+1. 右上の「ログイン」から Google でログインする。端末ごとに 1 回ずつ。初めてのアカウントは「まだ記録先に登録されていません」と ID (`user_...`) が出るので、管理者に伝えて登録してもらう
 2. Android の Chrome なら、メニューの「ホーム画面に追加」でアプリとして使える
 3. 位置情報の利用を許可すると、近い順に並ぶ
 
-設定用のリンクは合言葉そのものなので、人に見せない。
+一度登録を確かめた端末は、電波が無くても解除を端末に記録でき、つながったときに送る。
+
+ログインの代わりに、管理者から受け取った設定用のリンク (`https://unlock-your-trip.yuiseki.workers.dev/#token=...&user=...`) を端末で 1 回開いてもよい。合言葉はその端末の中にだけ保存され、アドレス欄からは消える。設定用のリンクは合言葉そのものなので、人に見せない。
 
 ## 作り
 
@@ -30,15 +32,20 @@
 | 画面 | Vite と TypeScript。地図は MapLibre GL JS 6 系で、地図のタブを開いたときだけ読み込む |
 | 背景の地図 | OpenFreeMap の Liberty スタイル。注記を日本語だけに直して使う (`src/app/style.ts`) |
 | 実績の一覧 | 静的な JSON (`public/catalogues/osaka.json`)。`data/` の TSV からビルドする |
+| ログイン | Clerk (Google)。SDK は Clerk の Frontend API から、書き込む人の画面でだけ読み込む (`src/app/auth.ts`)。Worker は Clerk の公開鍵 (JWKS) でセッショントークンを確かめ、Clerk のシークレットキーは持たない (`worker/clerk.ts`) |
 | 解除の記録 | 端末の IndexedDB に先に書き (`src/app/store.ts`)、Cloudflare Workers の API (`worker/index.ts`) を通して D1 に送る |
 | 配信 | Cloudflare Workers の静的アセット。`/api/*` だけを Worker が受ける |
 
 API:
 
-- `POST /api/unlocks`: `Authorization: Bearer <合言葉>` を付けて `{ "unlocks": [{ "achievementId", "unlockedAt" }] }` を送る。その人の全部の記録を返す
+- `POST /api/unlocks`: `Authorization: Bearer <合言葉か Clerk のセッショントークン>` を付けて `{ "unlocks": [{ "achievementId", "unlockedAt" }] }` を送る。その人の全部の記録を返す
 - `GET /api/users/<id>/unlocks`: 誰でも読める
+- `GET /api/me`: 同じ `Authorization` で、記録先の ID を返す。Clerk にログインしていても登録が無ければ 403 と Clerk の ID を返す
+- `GET /api/config`: 画面が使う Clerk の公開キー
 
-合言葉は D1 に SHA-256 のハッシュだけを置く。
+合言葉は D1 に SHA-256 のハッシュだけを置く。Clerk のトークンは、署名、発行元、期限、`azp` (トークンを求めたオリジン) を確かめる。許すオリジンは `wrangler.jsonc` の `CLERK_AUTHORIZED_PARTIES` にある。
+
+Clerk は今、開発用インスタンス (`pk_test_`) で動かしている。利用者は 100 人までで、ログインの画面に「Development mode」と出る。Google のログインは Clerk の共用の資格情報で動いている。本番用に移すには、自分のドメインと Google OAuth クライアントが要る。
 
 ## 実績の一覧の作り方
 
@@ -61,7 +68,17 @@ npx wrangler d1 migrations apply unlock-your-trip --local
 npx wrangler dev --port 8820     # 手元で http://127.0.0.1:8820
 ```
 
-書き込む人を足すには、合言葉を作り、そのハッシュを `users` に入れる。
+書き込む人を足すには、Google でログインしてもらい、画面に出た Clerk の ID を `users` に入れる。
+
+```sh
+npx wrangler d1 execute unlock-your-trip --remote --command \
+  "UPDATE users SET clerk_user_id = 'user_...' WHERE id = '<id>'"
+# まだ行が無い人は、使わない合言葉のハッシュで行を作る
+npx wrangler d1 execute unlock-your-trip --remote --command \
+  "INSERT INTO users (id, token_sha256, created_at, clerk_user_id) VALUES ('<id>', '$(openssl rand -hex 32)', '$(date -u +%FT%TZ)', 'user_...')"
+```
+
+設定用のリンクで足すには、合言葉を作り、そのハッシュを `users` に入れる。
 
 ```sh
 T=$(openssl rand -hex 24)

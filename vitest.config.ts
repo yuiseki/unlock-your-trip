@@ -9,7 +9,10 @@ export default defineConfig({
         plugins: [
           cloudflareTest(async () => ({
             wrangler: { configPath: "./wrangler.jsonc" },
-            miniflare: { bindings: { TEST_MIGRATIONS: await readD1Migrations("migrations") } },
+            miniflare: { bindings: {
+              CLERK_PUBLISHABLE_KEY: `pk_test_${btoa("test.clerk.accounts.dev$")}`,
+              CLERK_AUTHORIZED_PARTIES: "https://unlock.example",
+              TEST_MIGRATIONS: await readD1Migrations("migrations") } },
           })),
         ],
         test: { name: "worker", include: ["worker/**/*.test.ts"], setupFiles: ["worker/test/apply-migrations.ts"] },
