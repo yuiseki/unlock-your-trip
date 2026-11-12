@@ -53,7 +53,7 @@ export async function createMap(ctx: Context): Promise<MapView> {
       source: "achievements",
       paint: {
         "circle-radius": 9,
-        "circle-color": ["case", ["get", "unlocked"], "#9ca3af", "#d97706"],
+        "circle-color": ["case", ["get", "unlocked"], "#16a34a", "#d97706"], // unlocked: green, still to do: amber
         "circle-stroke-width": 2,
         "circle-stroke-color": "#ffffff",
       },
