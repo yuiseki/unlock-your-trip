@@ -47,7 +47,8 @@ main { flex: 1; min-height: 0; position: relative; }
 .unlock { flex: none; padding: 10px 14px; border: 0; border-radius: 999px; background: var(--accent); color: #fff; font-weight: bold; font-size: 14px; }
 .done { flex: none; font-size: 12px; color: var(--accent); }
 .unlocked img { filter: saturate(1.1); }
-.unlocked .title::after { content: " ✓"; color: var(--accent); }
+/* The same mark as the Scrapbox trip pages, at the start so the marks line up. */
+.unlocked .title::before { content: "✅ "; }
 #toast {
   position: fixed; left: 50%; bottom: 72px; transform: translateX(-50%);
   background: var(--accent); color: #fff; padding: 12px 18px; border-radius: 12px;
