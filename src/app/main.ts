@@ -4,7 +4,7 @@ import type { LngLat } from "../shared/geo";
 import type { MapView } from "./map";
 import { openStore, type Store, type Unlock } from "./store";
 import { createSyncer } from "./syncer";
-import { loadClerk, userMenuItems, whoAmI, writesHere, type Clerk } from "./auth";
+import { SIGN_IN_CLOSED, loadClerk, signInOpen, userMenuItems, whoAmI, writesHere, type Clerk } from "./auth";
 import { creditText, crumbs, formatDistance, headerLine, listView, shownAchievements, unlockedOnlyControl, type ListItem } from "./view";
 import { REGIONS, isPast, regionById, route } from "../shared/regions";
 import { tripSummaries } from "./trips";
@@ -470,8 +470,20 @@ async function showAccount() {
     b.className = "signin";
     b.textContent = "ログイン";
     b.addEventListener("click", () => clerk?.openSignIn());
-    // replaceChildren, not append: the Workers types redefine Element.append.
-    box.replaceChildren(b);
+    if (signInOpen(location.search)) {
+      // replaceChildren, not append: the Workers types redefine Element.append.
+      box.replaceChildren(b);
+      return;
+    }
+    // Closed: the button shows but does not open. The wrapper carries the
+    // tooltip and, on a phone where there is no hover, says it on a tap.
+    b.disabled = true;
+    const wrap = document.createElement("span");
+    wrap.className = "signin-closed";
+    wrap.title = SIGN_IN_CLOSED;
+    wrap.addEventListener("click", () => toast(SIGN_IN_CLOSED));
+    wrap.replaceChildren(b);
+    box.replaceChildren(wrap);
     return;
   }
   // Mount with what this device already knows, so the button shows at once;

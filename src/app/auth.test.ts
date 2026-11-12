@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { userMenuItems, whoAmI, writesHere } from "./auth";
+import { signInOpen, userMenuItems, whoAmI, writesHere } from "./auth";
 
 const reply = (status: number, body: unknown) => async () => new Response(JSON.stringify(body), { status });
 
@@ -39,5 +39,15 @@ describe("writesHere", () => {
     expect(writesHere(null, null)).toBe(false);
     expect(writesHere("yuiseki", "yuiseki")).toBe(false);
     expect(writesHere("someone", "yuiseki")).toBe(false);
+  });
+});
+
+describe("signInOpen", () => {
+  it("opens sign-in only with the hidden ?login=yes", () => {
+    expect(signInOpen("?login=yes")).toBe(true);
+    expect(signInOpen("?foo=1&login=yes")).toBe(true);
+    expect(signInOpen("")).toBe(false);
+    expect(signInOpen("?login=no")).toBe(false);
+    expect(signInOpen("?login=yess")).toBe(false);
   });
 });

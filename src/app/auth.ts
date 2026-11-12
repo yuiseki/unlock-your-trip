@@ -30,6 +30,13 @@ export function writesHere(publicUser: string | null, writer: string | null): bo
   return !publicUser && !!writer;
 }
 
+// Signing in is closed while the app is being built; the author opens it
+// with the hidden ?login=yes. A device already signed in stays signed in.
+export const SIGN_IN_CLOSED = "絶賛開発中です。もうしばらくお待ちください";
+export function signInOpen(search: string): boolean {
+  return new URLSearchParams(search).get("login") === "yes";
+}
+
 // Items for Clerk's user button menu (customMenuItems), before the page
 // adds their icons. The record is public, so it is a plain link.
 export function userMenuItems(writer: string | null): { label: string; href: string }[] {
