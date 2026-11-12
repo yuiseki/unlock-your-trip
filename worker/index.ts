@@ -2,6 +2,9 @@
 // served by Workers static assets; only /api/* reaches this code.
 import { clerkFrontendApi } from "../src/shared/clerk";
 import { clerkKeys, verifyClerkToken } from "./clerk";
+import privateAchievements from "./private-achievements.json";
+
+const PRIVATE = new Set<string>(privateAchievements);
 
 export type Env = { DB: D1Database; CLERK_PUBLISHABLE_KEY: string; CLERK_AUTHORIZED_PARTIES: string };
 
@@ -112,21 +115,31 @@ async function postStars(request: Request, env: Env): Promise<Response> {
   return json({ user: w.user, stars: results });
 }
 
-async function getUnlocks(user: string, env: Env): Promise<Response> {
+// Trips still being planned are their writer's alone: a read of someone's
+// record leaves those achievements out unless the reader is that writer,
+// signed in. A bad or missing token simply reads as a visitor.
+async function readsOwnRecord(request: Request, env: Env, user: string): Promise<boolean> {
+  if (!request.headers.get("authorization")) return false;
+  const w = await writer(request, env);
+  return !("error" in w) && w.user === user;
+}
+const visible = <T extends { achievementId: string }>(rows: T[], own: boolean) => (own ? rows : rows.filter((r) => !PRIVATE.has(r.achievementId)));
+
+async function getUnlocks(request: Request, user: string, env: Env): Promise<Response> {
   const exists = await env.DB.prepare("SELECT 1 FROM users WHERE id = ?").bind(user).first();
   if (!exists) return json({ error: "not found" }, 404);
-  return json({ user, unlocks: await unlocksOf(env, user) });
+  return json({ user, unlocks: visible(await unlocksOf(env, user), await readsOwnRecord(request, env, user)) });
 }
 
-async function getPhotos(user: string, env: Env): Promise<Response> {
+async function getPhotos(request: Request, user: string, env: Env): Promise<Response> {
   const exists = await env.DB.prepare("SELECT 1 FROM users WHERE id = ?").bind(user).first();
   if (!exists) return json({ error: "not found" }, 404);
   const { results } = await env.DB.prepare(
     "SELECT achievement_id AS achievementId, gyazo_id AS gyazoId, taken_at AS takenAt FROM photos WHERE user_id = ? ORDER BY achievement_id, taken_at",
   )
     .bind(user)
-    .all();
-  return json({ user, photos: results });
+    .all<{ achievementId: string }>();
+  return json({ user, photos: visible(results, await readsOwnRecord(request, env, user)) });
 }
 
 export default {
@@ -140,9 +153,9 @@ export default {
     }
     if (url.pathname === "/api/config" && request.method === "GET") return json({ clerkPublishableKey: env.CLERK_PUBLISHABLE_KEY });
     const m = /^\/api\/users\/([a-z0-9-]{1,40})\/unlocks$/.exec(url.pathname);
-    if (m && request.method === "GET") return getUnlocks(m[1], env);
+    if (m && request.method === "GET") return getUnlocks(request, m[1], env);
     const ph = /^\/api\/users\/([a-z0-9-]{1,40})\/photos$/.exec(url.pathname);
-    if (ph && request.method === "GET") return getPhotos(ph[1], env);
+    if (ph && request.method === "GET") return getPhotos(request, ph[1], env);
     return json({ error: "not found" }, 404);
   },
 } satisfies ExportedHandler<Env>;

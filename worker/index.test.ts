@@ -61,12 +61,12 @@ describe("POST /api/unlocks", () => {
 
 describe("GET /api/users/:id/unlocks", () => {
   it("is readable by anyone", async () => {
-    await post({ unlocks: [{ achievementId: "tsutenkaku", unlockedAt: "2026-11-13T04:00:00.000Z" }] });
+    await post({ unlocks: [{ achievementId: "okinawa-steak", unlockedAt: "2026-11-13T04:00:00.000Z" }] });
     const res = await SELF.fetch(`${BASE}/api/users/yuiseki/unlocks`);
     expect(res.status).toBe(200);
     expect(await res.json()).toEqual({
       user: "yuiseki",
-      unlocks: [{ achievementId: "tsutenkaku", unlockedAt: "2026-11-13T04:00:00.000Z" }],
+      unlocks: [{ achievementId: "okinawa-steak", unlockedAt: "2026-11-13T04:00:00.000Z" }],
     });
   });
 
@@ -194,5 +194,34 @@ describe("GET /api/users/:id/photos", () => {
 
   it("returns 404 for someone who does not exist", async () => {
     expect((await SELF.fetch(`${BASE}/api/users/nobody/photos`)).status).toBe(404);
+  });
+});
+
+// Osaka is a planned trip, private to yuiseki (src/shared/regions.ts), and
+// osaka-castle is one of its achievements; okinawa-steak is in a public trip.
+describe("planned trips stay with their owner", () => {
+  const G = "c".repeat(32);
+  beforeEach(async () => {
+    const u = env.DB.prepare("INSERT INTO unlocks (user_id, achievement_id, unlocked_at, received_at) VALUES ('yuiseki', ?, '2026-11-13T03:00:00.000Z', '2026-11-13T03:00:00.000Z')");
+    const ph = env.DB.prepare("INSERT INTO photos (user_id, achievement_id, gyazo_id, taken_at) VALUES ('yuiseki', ?, ?, '2026-11-13T03:00:00.000Z')");
+    await env.DB.batch([u.bind("osaka-castle"), u.bind("okinawa-steak"), ph.bind("osaka-castle", G), ph.bind("okinawa-steak", G)]);
+  });
+  const ids = async (res: Response, key: "unlocks" | "photos") => ((await res.json()) as Record<string, { achievementId: string }[]>)[key].map((x) => x.achievementId).sort();
+
+  it("hides them from anyone else reading the public record", async () => {
+    expect(await ids(await SELF.fetch(`${BASE}/api/users/yuiseki/unlocks`), "unlocks")).toEqual(["okinawa-steak"]);
+    expect(await ids(await SELF.fetch(`${BASE}/api/users/yuiseki/photos`), "photos")).toEqual(["okinawa-steak"]);
+  });
+
+  it("shows them to the owner signed in", async () => {
+    const auth = { headers: { authorization: `Bearer ${TOKEN}` } };
+    expect(await ids(await SELF.fetch(`${BASE}/api/users/yuiseki/unlocks`, auth), "unlocks")).toEqual(["okinawa-steak", "osaka-castle"]);
+    expect(await ids(await SELF.fetch(`${BASE}/api/users/yuiseki/photos`, auth), "photos")).toEqual(["okinawa-steak", "osaka-castle"]);
+  });
+
+  it("does not show them to another writer", async () => {
+    await env.DB.prepare("INSERT INTO users (id, token_sha256, created_at) VALUES ('other', ?, '2026-11-10T00:00:00.000Z')").bind(await sha256Hex("other-token")).run();
+    const res = await SELF.fetch(`${BASE}/api/users/yuiseki/unlocks`, { headers: { authorization: "Bearer other-token" } });
+    expect(await ids(res, "unlocks")).toEqual(["okinawa-steak"]);
   });
 });

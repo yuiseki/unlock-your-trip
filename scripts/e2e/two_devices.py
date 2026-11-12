@@ -6,6 +6,8 @@ from playwright.sync_api import sync_playwright
 EXE=os.environ.get('CHROMIUM')  # None: Playwright's own browser
 
 T=os.environ['E2E_TOKEN']  # a setup token of a writer in the local D1
+# The writer's id. Osaka is private to yuiseki, so the run on Osaka uses that id.
+U=os.environ.get('E2E_USER','yuiseki')
 B='http://127.0.0.1:8820/japan/kansai/osaka/'
 HOST='https://novel-warthog-310.clerk.accounts.dev/npm/'
 FAKE=f"""window.Clerk={{load:async()=>{{}},user:{{id:'user_fake'}},session:{{getToken:async()=>'{T}'}},
@@ -17,11 +19,12 @@ def device(b, writer_known):
         route.fulfill(status=200, content_type='text/javascript', body=FAKE if 'clerk-js' in route.request.url else 'window.__internal_ClerkUICtor=function(){};')
     ctx.route(HOST+'**', clerk)
     if writer_known:
-        ctx.add_init_script("localStorage.setItem('clerkWriter','e2e')")
-    pg=ctx.new_page(); pg.goto(B); pg.wait_for_selector('button.star')
+        ctx.add_init_script(f"localStorage.setItem('clerkWriter','{U}')")
+    pg=ctx.new_page(); pg.goto(B); pg.click('#tab-list')  # trips open on the map
+    pg.wait_for_selector('button.star')
     return pg
 def status(pg): return pg.inner_text('#sync-status')
-# The local D1 must start with no unlocks or stars for this writer.
+# The local D1 must start with no unlocks or stars for this writer on Osaka.
 with sync_playwright() as p:
     b=p.chromium.launch(executable_path=EXE)
     a=device(b, True)
@@ -41,6 +44,6 @@ with sync_playwright() as p:
     pressed=c.locator(f'button.star[data-id="{first}"][aria-pressed="true"]').count()
     print('B star pressed:', pressed, '| B progress:', c.inner_text('#progress'))
     b.close()
-    assert menu == ['自分の実績 /u/e2e/'], 'the user menu has no link to the record'
+    assert menu == [f'自分の実績 /u/{U}/'], 'the user menu has no link to the record'
     assert pressed == 5, 'the star set on A did not reach B'
     assert c_progress.startswith('1 /'), 'the unlock made on A did not reach B'

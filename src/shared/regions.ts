@@ -9,10 +9,13 @@ export type Region = {
   year: number; // the trip the list was first made for
   end: string; // the last day of that trip (YYYY-MM-DD, Japan time); after it, the list looks back
   bbox: [number, number, number, number]; // west, south, east, north
+  // A trip still being planned: only this writer, signed in, sees it, and the
+  // Worker leaves its unlocks and photos out of everyone else's reads.
+  privateTo?: string;
 };
 
 export const REGIONS: Region[] = [
-  { id: "osaka", path: ["japan", "kansai", "osaka"], name: "大阪", year: 2026, end: "2026-11-14", bbox: [135.35, 34.55, 135.65, 34.78] },
+  { id: "osaka", path: ["japan", "kansai", "osaka"], name: "大阪", year: 2026, end: "2026-11-14", privateTo: "yuiseki", bbox: [135.35, 34.55, 135.65, 34.78] },
   { id: "hiroshima", path: ["japan", "chugoku", "hiroshima"], name: "広島", year: 2026, end: "2026-09-03", bbox: [132.2, 34.2, 132.6, 34.55] },
   { id: "nagasaki", path: ["japan", "kyushu", "nagasaki"], name: "長崎", year: 2025, end: "2025-03-16", bbox: [129.6, 32.5, 130.05, 33.0] },
   { id: "kobe", path: ["japan", "kansai", "hyogo"], name: "神戸", year: 2024, end: "2024-03-16", bbox: [134.95, 34.55, 135.35, 34.9] },
@@ -23,6 +26,8 @@ export const REGIONS: Region[] = [
 // Dates are compared in Japan time, the way the trips' ends are written.
 export const isPast = (r: Region, now = new Date()) =>
   new Date(now.getTime() + 9 * 3600_000).toISOString().slice(0, 10) > r.end;
+
+export const visibleTo = (r: Region, viewer: string | null) => !r.privateTo || r.privateTo === viewer;
 
 export const regionPath = (r: Region) => `/${r.path.join("/")}/`;
 export const regionById = (id: string) => REGIONS.find((r) => r.id === id);

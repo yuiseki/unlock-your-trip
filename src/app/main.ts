@@ -6,7 +6,7 @@ import { openStore, type Store, type Unlock } from "./store";
 import { createSyncer } from "./syncer";
 import { SIGN_IN_CLOSED, loadClerk, signInOpen, userMenuItems, whoAmI, writesHere, type Clerk } from "./auth";
 import { creditText, crumbs, formatDistance, headerLine, listView, shownAchievements, unlockedOnlyControl, type ListItem } from "./view";
-import { REGIONS, isPast, regionById, route } from "../shared/regions";
+import { REGIONS, isPast, regionById, route, visibleTo } from "../shared/regions";
 import { tripSummaries } from "./trips";
 import { gyazoImage, gyazoPage, photosByAchievement, type Photo } from "./photos";
 import { loadPrefs, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
@@ -231,10 +231,20 @@ function watchLocation() {
 // Whose photos to show: the public page's person, or the writer.
 const photoOwner = () => publicUser ?? (canWrite ? writerName() : null);
 
+// Who is looking, as far as this device knows: the writer it signs in as.
+const viewer = () => writerName();
+
+// A record read, signed when it is the viewer's own, so the Worker includes
+// the trips still being planned (it leaves them out for everyone else).
+async function readRecord(who: string, what: "unlocks" | "photos"): Promise<Response | null> {
+  const t = who === viewer() ? await currentToken().catch(() => null) : null;
+  return fetch(`/api/users/${who}/${what}`, t ? { headers: { authorization: `Bearer ${t}` } } : {}).catch(() => null);
+}
+
 async function loadPhotos() {
   const who = photoOwner();
   if (!who) return;
-  const res = await fetch(`/api/users/${who}/photos`).catch(() => null);
+  const res = await readRecord(who, "photos");
   if (!res?.ok) return;
   photos = photosByAchievement(((await res.json()) as { photos: Photo[] }).photos);
   render();
@@ -243,11 +253,18 @@ async function loadPhotos() {
 async function showTrips() {
   document.querySelector("nav")?.remove();
   store = await openStore(publicUser ? `public-${publicUser}` : "unlock-your-trip");
+  showAccountSlot();
+  await drawTrips();
+  if ("serviceWorker" in navigator && import.meta.env.PROD) void navigator.serviceWorker.register("/sw.js");
+}
+
+// Drawn again when signing in reveals the viewer, whose planned trips then show.
+async function drawTrips() {
   // A writer's own unlocks are public too, so the top page can count every
   // device's unlocks without signing in first.
   const whose = publicUser ?? (canWrite ? writerName() : null);
   if (whose) {
-    const res = await fetch(`/api/users/${whose}/unlocks`).catch(() => null);
+    const res = await readRecord(whose, "unlocks");
     if (res?.ok) await store.mergeRemote(((await res.json()) as { unlocks: Unlock[] }).unlocks);
   }
   const done = new Set((await store.all()).map((u) => u.achievementId));
@@ -259,7 +276,7 @@ async function showTrips() {
     ),
   );
   const ids = (id: string) => catalogues.find((c) => c?.region === id)?.achievements.map((a) => a.id) ?? null;
-  const trips = tripSummaries(REGIONS, ids, done, publicUser);
+  const trips = tripSummaries(REGIONS.filter((r) => visibleTo(r, viewer())), ids, done, publicUser);
   $("progress").textContent = headerLine({ whose: publicUser, trips: trips.length });
   const list = $("list");
   list.className = "trips";
@@ -273,7 +290,6 @@ async function showTrips() {
       return li;
     }),
   );
-  showAccountSlot();
   // Each card's map is drawn when the card comes into view; the map library
   // is loaded only then, as on a trip's map tab.
   const byId = new Map(catalogues.filter((c): c is Catalogue => !!c).map((c) => [c.region, c]));
@@ -286,7 +302,6 @@ async function showTrips() {
     }
   });
   list.querySelectorAll<HTMLElement>(".mini").forEach((el) => seen.observe(el));
-  if ("serviceWorker" in navigator && import.meta.env.PROD) void navigator.serviceWorker.register("/sw.js");
 }
 
 async function main() {
@@ -299,7 +314,8 @@ async function main() {
     }),
   );
   if (where.kind === "trips") return showTrips();
-  if (where.kind !== "region") {
+  const planned = where.kind === "region" ? regionById(where.region) : undefined;
+  if (where.kind !== "region" || (planned && !visibleTo(planned, viewer()))) {
     document.querySelector("nav")?.remove();
     $("progress").textContent = publicUser ? `${publicUser} さんの旅` : "旅";
     const li = document.createElement("li");
@@ -316,8 +332,8 @@ async function main() {
     ' ・ 実績の場所: <a href="https://www.wikidata.org/" target="_blank" rel="noopener">Wikidata</a>、OpenStreetMap ・ 写真: Wikimedia Commons (各写真の作者とライセンスは写真の下)';
   store = await openStore(publicUser ? `public-${publicUser}` : "unlock-your-trip");
   if (publicUser) {
-    const res = await fetch(`/api/users/${publicUser}/unlocks`);
-    if (res.ok) await store.mergeRemote(((await res.json()) as { unlocks: Unlock[] }).unlocks);
+    const res = await readRecord(publicUser, "unlocks");
+    if (res?.ok) await store.mergeRemote(((await res.json()) as { unlocks: Unlock[] }).unlocks);
   }
   unlocks = await store.all();
   void loadPhotos();
@@ -395,6 +411,7 @@ function note(text: string | null) {
 }
 
 function setWriter(name: string | null) {
+  const before = viewer();
   if (name) localStorage.setItem(CLERK_WRITER, name);
   else localStorage.removeItem(CLERK_WRITER);
   const was = canWrite;
@@ -403,6 +420,11 @@ function setWriter(name: string | null) {
   if (canWrite && !was && catalogue) {
     watchLocation();
     void trySync();
+  }
+  if (viewer() !== before) {
+    // Planned trips appear or go with who is looking.
+    if (where.kind === "trips") void drawTrips();
+    else if (where.kind === "region" && regionById(where.region)?.privateTo) location.reload();
   }
   if (canWrite !== was && catalogue) {
     applyUnlockedOnly();
