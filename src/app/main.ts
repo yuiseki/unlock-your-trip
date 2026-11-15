@@ -9,7 +9,8 @@ import { creditText, crumbs, formatDistance, headerLine, listView, shownAchievem
 import { REGIONS, isPast, regionById, route, visibleTo } from "../shared/regions";
 import { tripSummaries } from "./trips";
 import { gyazoImage, gyazoPage, photosByAchievement, type Photo } from "./photos";
-import { loadPrefs, savePrefs, setStars, toggleCollapsed, type Prefs } from "./prefs";
+import { loadPrefs, savePrefs, setStars, starsOf, toggleCollapsed, type Prefs } from "./prefs";
+import { starsHtml } from "./stars";
 
 const KIND_LABEL = { visit: "行く", eat: "食べる", ride: "乗る", see: "見る", do: "する" } as const;
 
@@ -120,11 +121,8 @@ function render() {
         : canWrite
           ? `<button class="unlock" data-id="${a.id}">解除！</button>`
           : "";
-      const starButtons = [1, 2, 3, 4, 5]
-        .map((n) => `<button class="star" data-id="${a.id}" data-stars="${n}" aria-label="優先度 ${n}" aria-pressed="${n <= stars}"${canWrite ? "" : " disabled"}>${n <= stars ? "★" : "☆"}</button>`)
-        .join("");
       li.innerHTML = `${img}<div class="body"><div class="title">${escape(a.title)}</div>
-        <div class="stars" role="group" aria-label="${escape(a.title)}の優先度">${starButtons}</div>
+        ${starsHtml(a.id, a.title, stars, canWrite)}
         <div class="meta">${KIND_LABEL[a.kind]} ・ ${escape(a.place)}${meters !== null ? ` ・ ${formatDistance(meters)}` : ""}</div>${credit}</div>${action}`;
       return li;
   };
@@ -201,6 +199,7 @@ async function openMap() {
     bbox: catalogue.bbox,
     achievements: geojson,
     canWrite: () => canWrite,
+    stars: (id) => starsOf(prefs, id),
     toast,
     photos: () => photos,
   });
@@ -234,8 +233,7 @@ const photoOwner = () => publicUser ?? (canWrite ? writerName() : null);
 // Who is looking, as far as this device knows: the writer it signs in as.
 const viewer = () => writerName();
 
-// A record read, signed when it is the viewer's own, so the Worker includes
-// the trips still being planned (it leaves them out for everyone else).
+// A record read, signed when it is the viewer's own, to include their pending photos.
 async function readRecord(who: string, what: "unlocks" | "photos"): Promise<Response | null> {
   const t = who === viewer() ? await currentToken().catch(() => null) : null;
   return fetch(`/api/users/${who}/${what}`, t ? { headers: { authorization: `Bearer ${t}` } } : {}).catch(() => null);
@@ -263,9 +261,14 @@ async function drawTrips() {
   // A writer's own unlocks are public too, so the top page can count every
   // device's unlocks without signing in first.
   const whose = publicUser ?? (canWrite ? writerName() : null);
+  let published = new Set<string>();
   if (whose) {
     const res = await readRecord(whose, "unlocks");
-    if (res?.ok) await store.mergeRemote(((await res.json()) as { unlocks: Unlock[] }).unlocks);
+    if (res?.ok) {
+      const remote = ((await res.json()) as { unlocks: Unlock[] }).unlocks;
+      published = new Set(remote.map((u) => u.achievementId));
+      await store.mergeRemote(remote);
+    }
   }
   const done = new Set((await store.all()).map((u) => u.achievementId));
   const catalogues = await Promise.all(
@@ -275,8 +278,14 @@ async function drawTrips() {
         .catch(() => null),
     ),
   );
+  const allowed = REGIONS.filter((r) => visibleTo(r, viewer()) || (publicUser === r.privateTo && catalogues.some((c) => c?.region === r.id && c.achievements.some((a) => published.has(a.id)))));
+  for (const r of allowed) {
+    if (visibleTo(r, viewer())) continue;
+    const c = catalogues.find((item) => item?.region === r.id);
+    if (c) c.achievements = c.achievements.filter((a) => published.has(a.id));
+  }
   const ids = (id: string) => catalogues.find((c) => c?.region === id)?.achievements.map((a) => a.id) ?? null;
-  const trips = tripSummaries(REGIONS.filter((r) => visibleTo(r, viewer())), ids, done, publicUser);
+  const trips = tripSummaries(allowed, ids, done, publicUser);
   $("progress").textContent = headerLine({ whose: publicUser, trips: trips.length });
   const list = $("list");
   list.className = "trips";
@@ -315,7 +324,17 @@ async function main() {
   );
   if (where.kind === "trips") return showTrips();
   const planned = where.kind === "region" ? regionById(where.region) : undefined;
-  if (where.kind !== "region" || (planned && !visibleTo(planned, viewer()))) {
+  const restricted = !!planned && !visibleTo(planned, viewer());
+  let published: Set<string> | null = null;
+  if (restricted && publicUser && publicUser === planned?.privateTo) {
+    const res = await readRecord(publicUser, "unlocks");
+    if (res?.ok) published = new Set(((await res.json()) as { unlocks: Unlock[] }).unlocks.map((u) => u.achievementId));
+  }
+  if (where.kind === "region" && (!restricted || published)) {
+    catalogue = await (await fetch(`/catalogues/${where.region}.json`)).json();
+    if (restricted) catalogue.achievements = catalogue.achievements.filter((a) => published!.has(a.id));
+  }
+  if (where.kind !== "region" || (restricted && (!published || !catalogue.achievements.length))) {
     document.querySelector("nav")?.remove();
     $("progress").textContent = publicUser ? `${publicUser} さんの旅` : "旅";
     const li = document.createElement("li");
@@ -325,7 +344,6 @@ async function main() {
     showAccountSlot();
     return;
   }
-  catalogue = await (await fetch(`/catalogues/${where.region}.json`)).json();
   $("region").textContent = catalogue.name;
   $("credits").innerHTML =
     '地図: <a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a> © OpenMapTiles © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a>' +

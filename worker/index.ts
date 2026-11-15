@@ -47,9 +47,13 @@ async function writer(request: Request, env: Env): Promise<Writer> {
 
 async function unlocksOf(env: Env, user: string): Promise<Unlock[]> {
   const { results } = await env.DB.prepare(
-    "SELECT achievement_id AS achievementId, unlocked_at AS unlockedAt FROM unlocks WHERE user_id = ? ORDER BY unlocked_at, achievement_id",
+    `SELECT achievement_id AS achievementId, MIN(unlocked_at) AS unlockedAt FROM (
+       SELECT achievement_id, unlocked_at FROM unlocks WHERE user_id = ?
+       UNION ALL
+       SELECT achievement_id, taken_at AS unlocked_at FROM photos WHERE user_id = ?
+     ) GROUP BY achievement_id ORDER BY unlockedAt, achievementId`,
   )
-    .bind(user)
+    .bind(user, user)
     .all<Unlock>();
   return results;
 }
@@ -115,20 +119,17 @@ async function postStars(request: Request, env: Env): Promise<Response> {
   return json({ user: w.user, stars: results });
 }
 
-// Trips still being planned are their writer's alone: a read of someone's
-// record leaves those achievements out unless the reader is that writer,
-// signed in. A bad or missing token simply reads as a visitor.
+// A bad or missing token reads as a visitor, hiding photos of locked items
+// in trips still being planned.
 async function readsOwnRecord(request: Request, env: Env, user: string): Promise<boolean> {
   if (!request.headers.get("authorization")) return false;
   const w = await writer(request, env);
   return !("error" in w) && w.user === user;
 }
-const visible = <T extends { achievementId: string }>(rows: T[], own: boolean) => (own ? rows : rows.filter((r) => !PRIVATE.has(r.achievementId)));
-
-async function getUnlocks(request: Request, user: string, env: Env): Promise<Response> {
+async function getUnlocks(_request: Request, user: string, env: Env): Promise<Response> {
   const exists = await env.DB.prepare("SELECT 1 FROM users WHERE id = ?").bind(user).first();
   if (!exists) return json({ error: "not found" }, 404);
-  return json({ user, unlocks: visible(await unlocksOf(env, user), await readsOwnRecord(request, env, user)) });
+  return json({ user, unlocks: await unlocksOf(env, user) });
 }
 
 async function getPhotos(request: Request, user: string, env: Env): Promise<Response> {
@@ -139,7 +140,9 @@ async function getPhotos(request: Request, user: string, env: Env): Promise<Resp
   )
     .bind(user)
     .all<{ achievementId: string }>();
-  return json({ user, photos: visible(results, await readsOwnRecord(request, env, user)) });
+  const own = await readsOwnRecord(request, env, user);
+  const unlocked = own ? new Set<string>() : new Set((await unlocksOf(env, user)).map((u) => u.achievementId));
+  return json({ user, photos: own ? results : results.filter((p) => !PRIVATE.has(p.achievementId) || unlocked.has(p.achievementId)) });
 }
 
 export default {

@@ -8,6 +8,7 @@ import type { Catalogue } from "../shared/catalogue";
 import { boundsOf, type LngLat } from "../shared/geo";
 import { japaneseLabels } from "./style";
 import { gyazoImage, photoMarkers } from "./photos";
+import { starsHtml } from "./stars";
 
 setWorkerUrl(workerUrl);
 
@@ -20,6 +21,7 @@ type Context = {
   bbox: [number, number, number, number];
   achievements: () => FeatureCollection;
   canWrite: () => boolean;
+  stars: (id: string) => number;
   toast: (text: string) => void;
   photos: () => Map<string, string[]>;
 };
@@ -120,9 +122,11 @@ export async function createMap(ctx: Context): Promise<MapView> {
       paint: { "text-color": "#7c2d12", "text-halo-color": "#ffffff", "text-halo-width": 1.5 },
     });
   });
+  let activePopup: Popup | null = null;
   const popup = (id: string, title: string, unlocked: boolean, at: [number, number]) => {
-    const html = `<strong>${escape(title)}</strong><br>` + (unlocked ? "🏆 解除済み" : ctx.canWrite() ? `<button class="unlock" data-id="${id}">解除！</button>` : "");
-    new Popup({ offset: 14 }).setLngLat(at).setHTML(html).addTo(map);
+    activePopup?.remove();
+    const html = `<strong>${escape(title)}</strong>${starsHtml(id, title, ctx.stars(id), ctx.canWrite())}` + (unlocked ? "🏆 解除済み" : ctx.canWrite() ? `<button class="unlock" data-id="${escape(id)}">解除！</button>` : "");
+    activePopup = new Popup({ offset: 14 }).setLngLat(at).setHTML(html).addTo(map);
   };
   map.on("click", "achievements", (ev) => {
     const f = ev.features?.[0];
@@ -158,6 +162,12 @@ export async function createMap(ctx: Context): Promise<MapView> {
   return {
     update() {
       (map.getSource("achievements") as GeoJSONSource | undefined)?.setData(ctx.achievements());
+      activePopup?.getElement()?.querySelectorAll<HTMLButtonElement>("button.star").forEach((button) => {
+        const selected = Number(button.dataset.stars) <= ctx.stars(button.dataset.id!);
+        button.textContent = selected ? "★" : "☆";
+        button.setAttribute("aria-pressed", String(selected));
+        button.disabled = !ctx.canWrite();
+      });
       if (map.loaded()) drawPhotos();
     },
     // Frame what is shown now, e.g. after the list switches between the
