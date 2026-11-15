@@ -5,7 +5,7 @@
     "test": "vitest run",
     "dev": "vite",
     "build": "npm run catalogue && tsc --noEmit && vite build",
-    "catalogue": "for r in osaka hiroshima nagasaki kobe okinawa kosovo; do vite-node scripts/build-catalogue.ts $r || exit 1; done && vite-node scripts/private-achievements.ts",
+    "catalogue": "for r in osaka malaysia hiroshima nagasaki kobe okinawa kosovo; do vite-node scripts/build-catalogue.ts $r || exit 1; done && vite-node scripts/private-achievements.ts",
     "dev:worker": "wrangler dev --port 8820 --ip 127.0.0.1"
   },
   "type": "module",

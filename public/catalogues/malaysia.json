@@ -1,0 +1,210 @@
+{
+ "region": "malaysia",
+ "name": "マレーシア",
+ "bbox": [
+  101.64,
+  2.7,
+  101.74,
+  3.19
+ ],
+ "categories": [
+  {
+   "id": "kl-sightseeing",
+   "label": "クアラルンプールを歩く"
+  },
+  {
+   "id": "geoai-fusion",
+   "label": "ASEAN GeoAI Fusion 2026"
+  },
+  {
+   "id": "malaysian-food",
+   "label": "マレーシアの食"
+  },
+  {
+   "id": "city-life",
+   "label": "街の出来事"
+  }
+ ],
+ "achievements": [
+  {
+   "id": "malaysia-geoai-fusion",
+   "title": "ASEAN GeoAI Fusion 2026 に参加する",
+   "kind": "do",
+   "category": "geoai-fusion",
+   "place": "ブキッ・ジャリルの ASEAN GeoAI Fusion 2026 会場",
+   "lngLat": [
+    101.6710972,
+    3.0538944
+   ],
+   "source": "gyazo:5b1cdb97880a50070b86e1edc8fd110f"
+  },
+  {
+   "id": "malaysia-kl-night-tour",
+   "title": "参加者とクアラルンプールの夜景を見に行く",
+   "kind": "visit",
+   "category": "geoai-fusion",
+   "place": "クアラルンプール市内",
+   "lngLat": [
+    101.6706833,
+    3.0536583
+   ],
+   "source": "gyazo:e7a3feb6829a0667637836c4e4c3468b"
+  },
+  {
+   "id": "malaysia-petronas-towers",
+   "title": "ペトロナスツインタワーを見る",
+   "kind": "see",
+   "category": "kl-sightseeing",
+   "place": "KLCC",
+   "lngLat": [
+    101.7131492,
+    3.1571037
+   ],
+   "source": "gyazo:73e7bac4491c2469ccb77063c10ac6cf"
+  },
+  {
+   "id": "malaysia-suria-klcc",
+   "title": "スリアKLCCを歩く",
+   "kind": "visit",
+   "category": "kl-sightseeing",
+   "place": "スリアKLCC",
+   "lngLat": [
+    101.7123274,
+    3.1576603
+   ],
+   "source": "gyazo:00034411871cbef8e3cf56c98fef7a22"
+  },
+  {
+   "id": "malaysia-masjid-jamek",
+   "title": "マスジッド・ジャメを訪ねる",
+   "kind": "visit",
+   "category": "kl-sightseeing",
+   "place": "マスジッド・ジャメ",
+   "lngLat": [
+    101.6956214,
+    3.1488553
+   ],
+   "source": "gyazo:8a2b4f432089a276af801a3688581385"
+  },
+  {
+   "id": "malaysia-river-of-life",
+   "title": "River of Life の川沿いを歩く",
+   "kind": "visit",
+   "category": "kl-sightseeing",
+   "place": "River of Life",
+   "lngLat": [
+    101.6956214,
+    3.1488553
+   ],
+   "source": "gyazo:8a2b4f432089a276af801a3688581385"
+  },
+  {
+   "id": "malaysia-dataran-merdeka",
+   "title": "ムルデカ広場で独立の歴史に触れる",
+   "kind": "see",
+   "category": "kl-sightseeing",
+   "place": "ムルデカ広場",
+   "lngLat": [
+    101.6932899,
+    3.1497162
+   ],
+   "source": "gyazo:34f178ed69c0c333626bf4255d77b14a"
+  },
+  {
+   "id": "malaysia-national-museum",
+   "title": "マレーシア国立博物館を見学する",
+   "kind": "visit",
+   "category": "kl-sightseeing",
+   "place": "マレーシア国立博物館",
+   "lngLat": [
+    101.687511,
+    3.1377201
+   ],
+   "source": "gyazo:504916c3084459bceb9554ef6f519844"
+  },
+  {
+   "id": "malaysia-history-exhibit",
+   "title": "国立博物館でマラヤの歴史を知る",
+   "kind": "see",
+   "category": "kl-sightseeing",
+   "place": "マレーシア国立博物館",
+   "lngLat": [
+    101.6869467,
+    3.1377185
+   ],
+   "source": "gyazo:2ed8a23bfab8a15b714f94706280bf0c"
+  },
+  {
+   "id": "malaysia-bukit-jalil",
+   "title": "ブキッ・ジャリルの街を歩く",
+   "kind": "visit",
+   "category": "kl-sightseeing",
+   "place": "ブキッ・ジャリル",
+   "lngLat": [
+    101.6710028,
+    3.0528278
+   ],
+   "source": "gyazo:8b38d6ad32f980789d6cfdafda93adb0"
+  },
+  {
+   "id": "malaysia-nasi-briyani",
+   "title": "チキン・ナシブリヤニを食べる",
+   "kind": "eat",
+   "category": "malaysian-food",
+   "place": "ブキッ・ジャリル",
+   "lngLat": [
+    101.6710083,
+    3.0528167
+   ],
+   "source": "gyazo:65e264a0ffac93510fedb839253b6f4b"
+  },
+  {
+   "id": "malaysia-mee-siam",
+   "title": "ミー・シャムを食べる",
+   "kind": "eat",
+   "category": "malaysian-food",
+   "place": "ブキッ・ジャリル",
+   "lngLat": [
+    101.6710167,
+    3.0538222
+   ],
+   "source": "gyazo:ce9b7fa0333160ccddf5e89e6a68fd0b"
+  },
+  {
+   "id": "malaysia-char-kuey-teow",
+   "title": "チャークイティオを食べる",
+   "kind": "eat",
+   "category": "malaysian-food",
+   "place": "クアラルンプール国際空港",
+   "lngLat": [
+    101.7138528,
+    2.7475111
+   ],
+   "source": "gyazo:7ce6083154cbe0b53b5ff106f1369d9e"
+  },
+  {
+   "id": "malaysia-klia",
+   "title": "クアラルンプール国際空港から飛び立つ",
+   "kind": "ride",
+   "category": "city-life",
+   "place": "クアラルンプール国際空港",
+   "lngLat": [
+    101.7138528,
+    2.7475111
+   ],
+   "source": "gyazo:cb639989231710c8055546becd19cc75"
+  },
+  {
+   "id": "malaysia-kl-traffic",
+   "title": "クアラルンプールで渋滞に巻き込まれる",
+   "kind": "do",
+   "category": "city-life",
+   "place": "クアラルンプール市内",
+   "lngLat": [
+    101.696,
+    3.15
+   ],
+   "source": ""
+  }
+ ]
+}

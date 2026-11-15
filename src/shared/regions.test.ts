@@ -21,6 +21,7 @@ describe("route", () => {
     expect(route("/japan/chugoku/hiroshima/")).toMatchObject({ kind: "region", region: "hiroshima" });
     expect(route("/japan/kansai/hyogo/")).toMatchObject({ kind: "region", region: "kobe" });
     expect(route("/kosovo/prizren/prizren/")).toMatchObject({ kind: "region", region: "kosovo" });
+    expect(route("/malaysia/kuala-lumpur/kuala-lumpur/")).toMatchObject({ kind: "region", region: "malaysia" });
   });
 
   it("says when a region does not exist yet", () => {
@@ -32,6 +33,10 @@ describe("route", () => {
 });
 
 describe("REGIONS", () => {
+  it("registers the September 2026 Kuala Lumpur trip", () => {
+    expect(REGIONS.find((r) => r.id === "malaysia")).toMatchObject({ name: "マレーシア", year: 2026, end: "2026-09-22" });
+    expect(REGIONS.find((r) => r.id === "malaysia")?.showGoalsByDefault).toBe(true);
+  });
   it("gives every region a lower-case path of country, area and prefecture", () => {
     for (const r of REGIONS) expect(regionPath(r)).toMatch(/^\/[a-z-]+\/[a-z-]+\/[a-z-]+\/$/);
     expect(new Set(REGIONS.map(regionPath)).size).toBe(REGIONS.length);

@@ -11,10 +11,13 @@ export type Region = {
   bbox: [number, number, number, number]; // west, south, east, north
   // A trip still being planned appears publicly after its first unlock.
   privateTo?: string;
+  // Show the full goal checklist by default for this public trip.
+  showGoalsByDefault?: boolean;
 };
 
 export const REGIONS: Region[] = [
   { id: "osaka", path: ["japan", "kansai", "osaka"], name: "大阪", year: 2026, end: "2026-11-14", privateTo: "yuiseki", bbox: [135.35, 34.55, 135.65, 34.78] },
+  { id: "malaysia", path: ["malaysia", "kuala-lumpur", "kuala-lumpur"], name: "マレーシア", year: 2026, end: "2026-09-22", showGoalsByDefault: true, bbox: [101.64, 2.70, 101.74, 3.19] },
   { id: "hiroshima", path: ["japan", "chugoku", "hiroshima"], name: "広島", year: 2026, end: "2026-09-03", bbox: [132.2, 34.2, 132.6, 34.55] },
   { id: "nagasaki", path: ["japan", "kyushu", "nagasaki"], name: "長崎", year: 2025, end: "2025-03-16", bbox: [129.6, 32.5, 130.05, 33.0] },
   { id: "kobe", path: ["japan", "kansai", "hyogo"], name: "神戸", year: 2024, end: "2024-03-16", bbox: [134.95, 34.55, 135.35, 34.9] },

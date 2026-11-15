@@ -11,6 +11,7 @@
 | 旅 | URL | 実績 |
 |---|---|---|
 | 大阪 2026 | `/japan/kansai/osaka/` | 49 |
+| マレーシア 2026 | `/malaysia/kuala-lumpur/kuala-lumpur/` | 15 |
 | 広島 2026 | `/japan/chugoku/hiroshima/` | 60 |
 | 長崎 2025 | `/japan/kyushu/nagasaki/` | 31 |
 | 神戸 2024 | `/japan/kansai/hyogo/` | 21 |
@@ -71,10 +72,10 @@ Clerk は今、開発用インスタンス (`pk_test_`) で動かしている。
 
 元のデータは 1 件 1 行の TSV で、ビルドのときに Web の API は呼ばない。
 
-地域ごとに 4 つの TSV がある (`<地域>` は `osaka`、`hiroshima`、`nagasaki`、`kobe`、`okinawa`、`kosovo`)。
+地域ごとに 4 つの TSV がある (`<地域>` は `osaka`、`malaysia`、`hiroshima`、`nagasaki`、`kobe`、`okinawa`、`kosovo`)。
 
 - `data/<地域>.categories.tsv`: その地域の分類と、一覧に出す順
-- `data/<地域>.seed.tsv`: 実績の候補 (ID、題名、種類、分類、場所)。大阪は AI が出した定番の名所と体験。ほかの 5 つは、作者が旅ごとに Scrapbox に書いた実績解除のページから起こした。店が分からない食べ物などは、代表の場所 (大阪のたこ焼きなら道頓堀) に置いた。大阪より後の地域の ID は地域名で始める (解除と星は ID ごとに記録するため)
+- `data/<地域>.seed.tsv`: 実績の候補 (ID、題名、種類、分類、場所)。マレーシアは2026年9月19〜22日の Gyazo 写真、撮影位置、写真内の文字から作成。ほかの地域の由来は各地域の実績一覧を参照。店が分からない食べ物などは代表の場所に置く。ID は地域名で始める (解除と星は ID ごとに記録するため)
 - `data/<地域>.places.tsv`: 場所の座標と出どころ。Wikidata (CC0) の座標と、Wikidata に無いもの (路線の乗り場、店、商店街) は OpenStreetMap の地物を名前と種類で 1 件ずつ確かめて固定した。作者が写真 (Gyazo) を結びつけた実績は、その写真の撮影地点 (EXIF の GPS) を正本にし、出どころを `gyazo:<写真の ID>` と書く。場所の名前は撮影地点の近くの地物 (自前の Overpass) から付ける
 - `data/<地域>.images.tsv`: 名所の写真 (Wikimedia Commons) の作者とライセンス
 

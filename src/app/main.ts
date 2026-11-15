@@ -58,7 +58,8 @@ function readUnlockedOnly(): boolean | null {
 
 function applyUnlockedOnly() {
   const hasRecord = !!publicUser || canWrite;
-  const c = unlockedOnlyControl({ lookingBack, hasRecord, stored: readUnlockedOnly(), planned: !!regionById(catalogue.region)?.privateTo });
+  const region = regionById(catalogue.region);
+  const c = unlockedOnlyControl({ lookingBack, hasRecord, stored: readUnlockedOnly(), planned: !!region?.privateTo || !!region?.showGoalsByDefault });
   const box = $<HTMLInputElement>("unlocked-only");
   box.closest("label")!.hidden = !c.shown;
   box.disabled = !c.enabled;
