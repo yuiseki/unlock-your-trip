@@ -1,4 +1,5 @@
 export type LngLat = [number, number];
+import type { PolygonBoundary } from "./catalogue";
 
 const EARTH_RADIUS_M = 6_371_008.8;
 const rad = (d: number) => (d * Math.PI) / 180;
@@ -27,4 +28,16 @@ export function boundsOf(points: LngLat[], here: LngLat | null): [number, number
   const lngs = all.map((p) => p[0]);
   const lats = all.map((p) => p[1]);
   return [Math.min(...lngs), Math.min(...lats), Math.max(...lngs), Math.max(...lats)];
+}
+
+// Calculate a view that includes the full administrative boundary and any
+// achievement pins outside it (for example, an airport in a neighboring state).
+export function boundsOfGeometry(geometry: PolygonBoundary, points: LngLat[]): [number, number, number, number] {
+  const rings = geometry.type === "Polygon"
+    ? geometry.coordinates
+    : geometry.coordinates.flatMap((polygon) => polygon);
+  const positions = [...rings.flatMap((ring) => ring as LngLat[]), ...points];
+  const bounds = boundsOf(positions, null);
+  if (!bounds) throw new Error("polygon boundary has no coordinates");
+  return bounds;
 }

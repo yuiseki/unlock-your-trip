@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { distanceMeters, sortByDistance } from "./geo";
+import { boundsOf, boundsOfGeometry, distanceMeters, sortByDistance } from "./geo";
 
 describe("distanceMeters", () => {
   it("is zero for the same point", () => {
@@ -38,5 +38,17 @@ describe("boundsOf", () => {
   it("returns null when there is nothing to wrap", async () => {
     const { boundsOf } = await import("./geo");
     expect(boundsOf([], null)).toBeNull();
+  });
+});
+
+describe("boundsOfGeometry", () => {
+  it("fits every polygon ring and achievement point in the region bounds", () => {
+    const polygon = { type: "Polygon" as const, coordinates: [[[101.68, 3.1], [101.7, 3.1], [101.7, 3.15], [101.68, 3.1]]] };
+    expect(boundsOfGeometry(polygon, [[101.72, 2.75]])).toEqual([101.68, 2.75, 101.72, 3.15]);
+  });
+
+  it("supports MultiPolygon geometry", () => {
+    const polygon = { type: "MultiPolygon" as const, coordinates: [[[[20, 42], [21, 42], [21, 43], [20, 42]]], [[[22, 41], [23, 41], [23, 42], [22, 41]]]] };
+    expect(boundsOfGeometry(polygon, [])).toEqual([20, 41, 23, 43]);
   });
 });

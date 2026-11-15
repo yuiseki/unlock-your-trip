@@ -1,4 +1,5 @@
 import type { LngLat } from "./geo";
+import type { Geometry } from "geojson";
 
 export const KINDS = ["visit", "eat", "ride", "see", "do"] as const;
 export type Kind = (typeof KINDS)[number];
@@ -31,9 +32,12 @@ export type Catalogue = {
   region: string;
   name: string;
   bbox: [number, number, number, number]; // west, south, east, north
+  boundary: PolygonBoundary;
   categories: Category[];
   achievements: Achievement[];
 };
+
+export type PolygonBoundary = Extract<Geometry, { type: "Polygon" | "MultiPolygon" }>;
 
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 // These carry no attribution duty, so an empty author is not an error.

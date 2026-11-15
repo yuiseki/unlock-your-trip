@@ -5,7 +5,7 @@ import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { FeatureCollection, Point } from "geojson";
 import type { Catalogue } from "../shared/catalogue";
-import { boundsOf, type LngLat } from "../shared/geo";
+import { boundsOfGeometry, type LngLat } from "../shared/geo";
 import { japaneseLabels } from "./style";
 import { gyazoImage, photoMarkers } from "./photos";
 import { starsHtml } from "./stars";
@@ -19,7 +19,7 @@ export type MapView = { update(): void; fit(): void; flyTo(lngLat: LngLat): void
 
 type Context = {
   container: string;
-  bbox: [number, number, number, number];
+  boundary: Catalogue["boundary"];
   achievements: () => FeatureCollection;
   canWrite: () => boolean;
   stars: (id: string) => number;
@@ -43,7 +43,7 @@ export async function createMiniMap(container: HTMLElement, c: Catalogue, done: 
   const map = new MapLibreMap({
     container,
     style: await loadStyle(),
-    bounds: boundsOf(pts, null) ?? c.bbox,
+    bounds: boundsOfGeometry(c.boundary, pts),
     // Room around the points, so the ones at the edge are not cut by the card.
     fitBoundsOptions: { padding: { top: 28, bottom: 28, left: 36, right: 36 }, maxZoom: 15 },
     interactive: false,
@@ -52,6 +52,9 @@ export async function createMiniMap(container: HTMLElement, c: Catalogue, done: 
     attributionControl: false,
   });
   map.on("load", () => {
+    map.addSource("region-boundary", { type: "geojson", data: { type: "Feature", properties: {}, geometry: c.boundary } });
+    map.addLayer({ id: "region-boundary-fill", type: "fill", source: "region-boundary", paint: { "fill-color": "#f97316", "fill-opacity": 0.09 } });
+    map.addLayer({ id: "region-boundary-line", type: "line", source: "region-boundary", paint: { "line-color": "#c2410c", "line-width": 1.5, "line-opacity": 0.8 } });
     map.addSource("achievements", {
       type: "geojson",
       data: {
@@ -73,7 +76,7 @@ export async function createMap(ctx: Context): Promise<MapView> {
     // The trip's achievements only. Looking back at a past trip from home,
     // the device's position would only zoom the map out; the geolocate
     // control brings it in when wanted.
-    bounds: boundsOf(points(), null) ?? ctx.bbox,
+    bounds: boundsOfGeometry(ctx.boundary, points()),
     fitBoundsOptions: { padding: PADDING, maxZoom: 16 },
   });
   map.addControl(new NavigationControl(), "top-right");
@@ -86,6 +89,9 @@ export async function createMap(ctx: Context): Promise<MapView> {
       "top-right",
     );
   map.on("load", () => {
+    map.addSource("region-boundary", { type: "geojson", data: { type: "Feature", properties: {}, geometry: ctx.boundary } });
+    map.addLayer({ id: "region-boundary-fill", type: "fill", source: "region-boundary", paint: { "fill-color": "#f97316", "fill-opacity": 0.09 } });
+    map.addLayer({ id: "region-boundary-line", type: "line", source: "region-boundary", paint: { "line-color": "#c2410c", "line-width": 2, "line-opacity": 0.8 } });
     map.addSource("achievements", { type: "geojson", data: ctx.achievements() });
     map.addLayer({
       id: "achievements",
@@ -166,8 +172,7 @@ export async function createMap(ctx: Context): Promise<MapView> {
     // Frame what is shown now, e.g. after the list switches between the
     // unlocked achievements only and all of them.
     fit() {
-      const b = boundsOf(points(), null);
-      if (b) map.fitBounds(b, { padding: PADDING, maxZoom: 16 });
+      map.fitBounds(boundsOfGeometry(ctx.boundary, points()), { padding: PADDING, maxZoom: 16 });
     },
     flyTo: (lngLat) => map.flyTo({ center: lngLat, zoom: 16 }),
     resize: () => map.resize(),

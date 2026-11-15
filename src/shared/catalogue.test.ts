@@ -5,6 +5,7 @@ const ok: Catalogue = {
   region: "osaka",
   name: "大阪",
   bbox: [135.3, 34.5, 135.7, 34.8],
+  boundary: { type: "Polygon", coordinates: [[[135.3, 34.5], [135.7, 34.5], [135.7, 34.8], [135.3, 34.5]]] },
   categories: [
     { id: "sightseeing", label: "観光" },
     { id: "kuidaore", label: "食い倒れ" },

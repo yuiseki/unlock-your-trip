@@ -58,6 +58,14 @@ describe("every region", () => {
     }
   });
 
+  it("has a Natural Earth boundary polygon for every achievement region", () => {
+    for (const r of REGIONS) {
+      const c = catalogueOf(r.id) as { boundary?: { type?: string; coordinates?: unknown } };
+      expect(c.boundary?.type, `${r.id} boundary`).toMatch(/^(Polygon|MultiPolygon)$/);
+      expect(c.boundary?.coordinates, `${r.id} boundary coordinates`).toBeDefined();
+    }
+  });
+
   // Unlocks and stars are kept per achievement id, not per region, so an id
   // used by two regions would share one unlock. Osaka's ids came first and
   // keep their names; every later region prefixes its own.

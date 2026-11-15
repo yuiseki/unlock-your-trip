@@ -197,7 +197,7 @@ async function openMap() {
   const { createMap } = await import("./map");
   mapView = await createMap({
     container: "map",
-    bbox: catalogue.bbox,
+    boundary: catalogue.boundary,
     achievements: geojson,
     canWrite: () => canWrite,
     stars: (id) => starsOf(prefs, id),
