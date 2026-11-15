@@ -1,5 +1,9 @@
 // The top page: one line per trip, with how much of it is unlocked.
-import { regionPath, type Region } from "../shared/regions";
+import { regionPath, visibleTo, type Region } from "../shared/regions";
+
+export function tripAvailable(region: Region, viewer: string | null, publicUser: string | null, ids: string[] | null, unlocked: Set<string>): boolean {
+  return visibleTo(region, viewer) || (!!region.privateTo && publicUser === region.privateTo && !!ids?.some((id) => unlocked.has(id)));
+}
 
 export type TripSummary = { id: string; name: string; year: number; href: string; total: number | null; unlocked: number };
 

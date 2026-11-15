@@ -55,10 +55,10 @@ export function listView(
 // 「解除済みの実績のみ表示」 on a past trip. Without a record (a visitor not
 // signed in on someone's own pages) there is nothing unlocked to narrow to,
 // so it stays off and cannot be ticked. stored: this device's last choice.
-export function unlockedOnlyControl(o: { lookingBack: boolean; hasRecord: boolean; stored: boolean | null }) {
+export function unlockedOnlyControl(o: { lookingBack: boolean; hasRecord: boolean; stored: boolean | null; planned?: boolean }) {
   if (!o.lookingBack) return { shown: false, enabled: false, checked: false };
   if (!o.hasRecord) return { shown: true, enabled: false, checked: false };
-  return { shown: true, enabled: true, checked: o.stored ?? true };
+  return { shown: true, enabled: true, checked: o.stored ?? !o.planned };
 }
 
 // The achievements the list and the map show, under the same options.

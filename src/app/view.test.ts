@@ -176,6 +176,10 @@ describe("crumbs", () => {
 });
 
 describe("unlockedOnlyControl", () => {
+  it("shows all goals by default for a planned trip, while respecting a saved choice", () => {
+    expect(unlockedOnlyControl({ lookingBack: true, hasRecord: true, stored: null, planned: true }).checked).toBe(false);
+    expect(unlockedOnlyControl({ lookingBack: true, hasRecord: true, stored: true, planned: true }).checked).toBe(true);
+  });
   it("is shown only when looking back at a past trip", () => {
     expect(unlockedOnlyControl({ lookingBack: false, hasRecord: true, stored: null })).toEqual({ shown: false, enabled: false, checked: false });
   });

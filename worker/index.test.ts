@@ -197,9 +197,8 @@ describe("GET /api/users/:id/photos", () => {
   });
 });
 
-// Osaka is a planned trip, private to yuiseki (src/shared/regions.ts), and
-// osaka-castle is one of its achievements; okinawa-steak is in a public trip.
-describe("planned trips stay with their owner", () => {
+// Osaka is a planned trip, and osaka-castle is one of its achievements.
+describe("planned trips publish unlocked achievements", () => {
   const G = "c".repeat(32);
   beforeEach(async () => {
     const u = env.DB.prepare("INSERT INTO unlocks (user_id, achievement_id, unlocked_at, received_at) VALUES ('yuiseki', ?, '2026-11-13T03:00:00.000Z', '2026-11-13T03:00:00.000Z')");
@@ -208,9 +207,9 @@ describe("planned trips stay with their owner", () => {
   });
   const ids = async (res: Response, key: "unlocks" | "photos") => ((await res.json()) as Record<string, { achievementId: string }[]>)[key].map((x) => x.achievementId).sort();
 
-  it("hides them from anyone else reading the public record", async () => {
-    expect(await ids(await SELF.fetch(`${BASE}/api/users/yuiseki/unlocks`), "unlocks")).toEqual(["okinawa-steak"]);
-    expect(await ids(await SELF.fetch(`${BASE}/api/users/yuiseki/photos`), "photos")).toEqual(["okinawa-steak"]);
+  it("shows unlocked achievements and photos in the public record", async () => {
+    expect(await ids(await SELF.fetch(`${BASE}/api/users/yuiseki/unlocks`), "unlocks")).toEqual(["okinawa-steak", "osaka-castle"]);
+    expect(await ids(await SELF.fetch(`${BASE}/api/users/yuiseki/photos`), "photos")).toEqual(["okinawa-steak", "osaka-castle"]);
   });
 
   it("shows them to the owner signed in", async () => {
@@ -219,9 +218,17 @@ describe("planned trips stay with their owner", () => {
     expect(await ids(await SELF.fetch(`${BASE}/api/users/yuiseki/photos`, auth), "photos")).toEqual(["okinawa-steak", "osaka-castle"]);
   });
 
-  it("does not show them to another writer", async () => {
+  it("shows unlocked achievements to another writer", async () => {
     await env.DB.prepare("INSERT INTO users (id, token_sha256, created_at) VALUES ('other', ?, '2026-11-10T00:00:00.000Z')").bind(await sha256Hex("other-token")).run();
     const res = await SELF.fetch(`${BASE}/api/users/yuiseki/unlocks`, { headers: { authorization: "Bearer other-token" } });
-    expect(await ids(res, "unlocks")).toEqual(["okinawa-steak"]);
+    expect(await ids(res, "unlocks")).toEqual(["okinawa-steak", "osaka-castle"]);
+  });
+
+  it("counts a photo as an unlock at its earliest timestamp", async () => {
+    await env.DB.prepare("INSERT INTO photos (user_id, achievement_id, gyazo_id, taken_at) VALUES ('yuiseki', 'dotonbori-glico', ?, '2026-11-13T02:00:00.000Z')").bind(G).run();
+    const res = await SELF.fetch(`${BASE}/api/users/yuiseki/unlocks`);
+    const body = await res.json() as { unlocks: { achievementId: string; unlockedAt: string }[] };
+    expect(body.unlocks).toContainEqual({ achievementId: "dotonbori-glico", unlockedAt: "2026-11-13T02:00:00.000Z" });
+    expect(await ids(await SELF.fetch(`${BASE}/api/users/yuiseki/photos`), "photos")).toContain("dotonbori-glico");
   });
 });

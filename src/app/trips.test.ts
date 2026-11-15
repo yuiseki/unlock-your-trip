@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Region } from "../shared/regions";
-import { tripSummaries } from "./trips";
+import { tripAvailable, tripSummaries } from "./trips";
 
 const regions: Region[] = [
   { id: "osaka", path: ["japan", "kansai", "osaka"], name: "大阪", year: 2026, end: "2026-11-14", bbox: [0, 0, 1, 1] },
@@ -10,6 +10,14 @@ const regions: Region[] = [
 const ids = { osaka: ["osaka-castle", "tsutenkaku"], okinawa: ["okinawa-a", "okinawa-b", "okinawa-c"], hiroshima: ["hiroshima-a"] };
 
 describe("tripSummaries", () => {
+  it("publishes a planned trip after an unlock while counting all goals", () => {
+    const osaka = { ...regions[0], privateTo: "yuiseki" };
+    const unlocked = new Set(["osaka-castle"]);
+    expect(tripAvailable(osaka, null, "yuiseki", ids.osaka, unlocked)).toBe(true);
+    expect(tripSummaries([osaka], () => ids.osaka, unlocked, "yuiseki")[0]).toMatchObject({ total: 2, unlocked: 1 });
+    expect(tripAvailable(osaka, null, "yuiseki", ids.osaka, new Set())).toBe(false);
+    expect(tripAvailable(osaka, null, "someone-else", ids.osaka, unlocked)).toBe(false);
+  });
   it("counts each trip's achievements and unlocks, newest trips first", () => {
     const list = tripSummaries(regions, (id) => ids[id as keyof typeof ids], new Set(["osaka-castle", "okinawa-b", "okinawa-c"]), null);
     expect(list).toEqual([

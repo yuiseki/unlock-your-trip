@@ -9,7 +9,7 @@ export type Region = {
   year: number; // the trip the list was first made for
   end: string; // the last day of that trip (YYYY-MM-DD, Japan time); after it, the list looks back
   bbox: [number, number, number, number]; // west, south, east, north
-  // A trip still being planned: others see only this writer's unlocked items.
+  // A trip still being planned appears publicly after its first unlock.
   privateTo?: string;
 };
 

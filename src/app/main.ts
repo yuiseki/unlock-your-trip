@@ -7,7 +7,7 @@ import { createSyncer } from "./syncer";
 import { SIGN_IN_CLOSED, loadClerk, signInOpen, userMenuItems, whoAmI, writesHere, type Clerk } from "./auth";
 import { creditText, crumbs, formatDistance, headerLine, listView, shownAchievements, unlockedOnlyControl, type ListItem } from "./view";
 import { REGIONS, isPast, regionById, route, visibleTo } from "../shared/regions";
-import { tripSummaries } from "./trips";
+import { tripAvailable, tripSummaries } from "./trips";
 import { gyazoImage, gyazoPage, photosByAchievement, type Photo } from "./photos";
 import { loadPrefs, savePrefs, setStars, starsOf, toggleCollapsed, type Prefs } from "./prefs";
 import { starsHtml } from "./stars";
@@ -58,7 +58,7 @@ function readUnlockedOnly(): boolean | null {
 
 function applyUnlockedOnly() {
   const hasRecord = !!publicUser || canWrite;
-  const c = unlockedOnlyControl({ lookingBack, hasRecord, stored: readUnlockedOnly() });
+  const c = unlockedOnlyControl({ lookingBack, hasRecord, stored: readUnlockedOnly(), planned: !!regionById(catalogue.region)?.privateTo });
   const box = $<HTMLInputElement>("unlocked-only");
   box.closest("label")!.hidden = !c.shown;
   box.disabled = !c.enabled;
@@ -278,13 +278,8 @@ async function drawTrips() {
         .catch(() => null),
     ),
   );
-  const allowed = REGIONS.filter((r) => visibleTo(r, viewer()) || (publicUser === r.privateTo && catalogues.some((c) => c?.region === r.id && c.achievements.some((a) => published.has(a.id)))));
-  for (const r of allowed) {
-    if (visibleTo(r, viewer())) continue;
-    const c = catalogues.find((item) => item?.region === r.id);
-    if (c) c.achievements = c.achievements.filter((a) => published.has(a.id));
-  }
   const ids = (id: string) => catalogues.find((c) => c?.region === id)?.achievements.map((a) => a.id) ?? null;
+  const allowed = REGIONS.filter((r) => tripAvailable(r, viewer(), publicUser, ids(r.id), published));
   const trips = tripSummaries(allowed, ids, done, publicUser);
   $("progress").textContent = headerLine({ whose: publicUser, trips: trips.length });
   const list = $("list");
@@ -332,9 +327,8 @@ async function main() {
   }
   if (where.kind === "region" && (!restricted || published)) {
     catalogue = await (await fetch(`/catalogues/${where.region}.json`)).json();
-    if (restricted) catalogue.achievements = catalogue.achievements.filter((a) => published!.has(a.id));
   }
-  if (where.kind !== "region" || (restricted && (!published || !catalogue.achievements.length))) {
+  if (where.kind !== "region" || (restricted && (!planned || !tripAvailable(planned, viewer(), publicUser, catalogue?.achievements.map((a) => a.id) ?? null, published ?? new Set())))) {
     document.querySelector("nav")?.remove();
     $("progress").textContent = publicUser ? `${publicUser} さんの旅` : "旅";
     const li = document.createElement("li");
