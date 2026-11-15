@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { REGIONS, isPast, regionPath, route } from "./regions";
+import { boundsOfGeometry } from "./geo";
+import type { PolygonBoundary } from "./catalogue";
 
 describe("route", () => {
   it("opens a region by its place in the world", () => {
@@ -45,7 +47,7 @@ describe("REGIONS", () => {
 });
 
 // The built catalogues, read the way Vite reads files (no Node types needed).
-const built = import.meta.glob("../../public/catalogues/*.json", { eager: true, import: "default" }) as Record<string, { region: string; name: string; achievements: { id: string }[] }>;
+const built = import.meta.glob("../../public/catalogues/*.json", { eager: true, import: "default" }) as Record<string, { region: string; name: string; boundary: PolygonBoundary; achievements: { id: string }[] }>;
 const catalogueOf = (id: string) => built[`../../public/catalogues/${id}.json`];
 
 describe("every region", () => {
@@ -60,10 +62,19 @@ describe("every region", () => {
 
   it("has a Natural Earth boundary polygon for every achievement region", () => {
     for (const r of REGIONS) {
-      const c = catalogueOf(r.id) as { boundary?: { type?: string; coordinates?: unknown } };
+      const c = catalogueOf(r.id);
       expect(c.boundary?.type, `${r.id} boundary`).toMatch(/^(Polygon|MultiPolygon)$/);
       expect(c.boundary?.coordinates, `${r.id} boundary coordinates`).toBeDefined();
     }
+  });
+
+  it("frames all of Kosovo, including Pristina, rather than only Prizren district", () => {
+    const c = catalogueOf("kosovo");
+    const [west, south, east, north] = boundsOfGeometry(c.boundary, []);
+    expect(west).toBeLessThan(21.16);
+    expect(east).toBeGreaterThan(21.16);
+    expect(south).toBeLessThan(42.66);
+    expect(north).toBeGreaterThan(42.66);
   });
 
   // Unlocks and stars are kept per achievement id, not per region, so an id

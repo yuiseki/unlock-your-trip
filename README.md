@@ -50,7 +50,7 @@
 |---|---|
 | 画面 | Vite と TypeScript。地図は MapLibre GL JS 6 系で、地図のタブを開いたときだけ読み込む。地図の現在地は MapLibre 標準の GeolocateControl (書き込む人の画面だけ) |
 | 背景の地図 | OpenFreeMap の Liberty スタイル。注記を日本語だけに直して使う (`src/app/style.ts`) |
-| 旅の対象地域 | `data/<地域>.boundary.geojson` に [Natural Earth Admin 1](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/) の境界を収録し、カタログ JSON に同梱する。マレーシアはクアラルンプールと隣接するセランゴール州、コソボはプリズレン地区、日本の各旅は対応する都道府県を使う |
+| 旅の対象地域 | `data/<地域>.boundary.geojson` に [Natural Earth](https://www.naturalearthdata.com/downloads/10m-cultural-vectors/) の境界を収録し、カタログ JSON に同梱する。マレーシアはクアラルンプールと隣接するセランゴール州、コソボは国全体、日本の各旅は対応する都道府県を使う |
 | 実績の一覧 | 静的な JSON (`public/catalogues/<地域>.json`)。`data/` の TSV からビルドする。旅の表 (名前、年、URL、範囲) は `src/shared/regions.ts` |
 | ログイン | Clerk (Google)。SDK は Clerk の Frontend API から、書き込む人の画面でだけ読み込む (`src/app/auth.ts`)。Worker は Clerk の公開鍵 (JWKS) でセッショントークンを確かめ、Clerk のシークレットキーは持たない (`worker/clerk.ts`) |
 | 解除の記録 | 端末の IndexedDB に先に書き (`src/app/store.ts`)、Cloudflare Workers の API (`worker/index.ts`) を通して D1 に送る |
@@ -79,7 +79,7 @@ Clerk は今、開発用インスタンス (`pk_test_`) で動かしている。
 - `data/<地域>.seed.tsv`: 実績の候補 (ID、題名、種類、分類、場所)。マレーシアは2026年9月19〜22日の Gyazo 写真、撮影位置、写真内の文字から作成。ほかの地域の由来は各地域の実績一覧を参照。店が分からない食べ物などは代表の場所に置く。ID は地域名で始める (解除と星は ID ごとに記録するため)
 - `data/<地域>.places.tsv`: 場所の座標と出どころ。Wikidata (CC0) の座標と、Wikidata に無いもの (路線の乗り場、店、商店街) は OpenStreetMap の地物を名前と種類で 1 件ずつ確かめて固定した。作者が写真 (Gyazo) を結びつけた実績は、その写真の撮影地点 (EXIF の GPS) を正本にし、出どころを `gyazo:<写真の ID>` と書く。場所の名前は撮影地点の近くの地物 (自前の Overpass) から付ける
 - `data/<地域>.images.tsv`: 名所の写真 (Wikimedia Commons) の作者とライセンス
-- `data/<地域>.boundary.geojson`: 地図上で旅の地域を示す Natural Earth Admin 1 の境界ポリゴン。Natural Earth の地理データはパブリックドメイン
+- `data/<地域>.boundary.geojson`: 地図上で旅の地域を示す Natural Earth の境界ポリゴン。日本の旅は Admin 1 (都道府県)、コソボは Admin 0 (国全体)。Natural Earth の地理データはパブリックドメイン
 
 `npm run catalogue` で全地域の TSV をつなぎ、つなげない行や範囲外の座標があれば止まる。
 
