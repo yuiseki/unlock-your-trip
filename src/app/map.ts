@@ -9,6 +9,7 @@ import { boundsOf, type LngLat } from "../shared/geo";
 import { japaneseLabels } from "./style";
 import { gyazoImage, photoMarkers } from "./photos";
 import { starsHtml } from "./stars";
+import { miniAchievementLayer, TO_DO, UNLOCKED } from "./mini-map-style";
 
 setWorkerUrl(workerUrl);
 
@@ -35,9 +36,6 @@ const loadStyle = () =>
     .then((r) => r.json())
     .then((s) => japaneseLabels(s as StyleSpecification)));
 
-const UNLOCKED = "#16a34a"; // green
-const TO_DO = "#d97706"; // amber
-
 // A trip's card on the top page: its achievements on a map that only shows,
 // so a tap anywhere on the card opens the trip.
 export async function createMiniMap(container: HTMLElement, c: Catalogue, done: Set<string>): Promise<void> {
@@ -61,12 +59,7 @@ export async function createMiniMap(container: HTMLElement, c: Catalogue, done: 
         features: c.achievements.map((a) => ({ type: "Feature", geometry: { type: "Point", coordinates: a.lngLat }, properties: { unlocked: done.has(a.id) } })),
       },
     });
-    map.addLayer({
-      id: "achievements",
-      type: "circle",
-      source: "achievements",
-      paint: { "circle-radius": 4, "circle-color": ["case", ["get", "unlocked"], UNLOCKED, TO_DO], "circle-stroke-width": 1, "circle-stroke-color": "#ffffff" },
-    });
+    map.addLayer(miniAchievementLayer);
   });
 }
 
